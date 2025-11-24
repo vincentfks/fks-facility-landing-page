@@ -60,7 +60,7 @@ export const StatCard: React.FC<StatCardProps> = ({
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
       className="text-center p-6 rounded-2xl hover:bg-white/50 hover:backdrop-blur-sm transition-colors duration-300"
     >
-      <div className="text-4xl lg:text-5xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400 mb-3">
+      <div className="text-3xl lg:text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400 mb-3">
         <StatsCounter value={value} suffix={suffix} />
       </div>
       <p className="text-gray-600 font-medium text-base lg:text-lg">{label}</p>

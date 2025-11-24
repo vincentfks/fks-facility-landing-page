@@ -14,6 +14,7 @@ export const HeroSection: React.FC = () => {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           className="absolute top-[-10%] left-[-5%] w-[500px] h-[500px] bg-primary-200/20 rounded-full blur-[100px]"
+          style={{ willChange: 'transform, opacity' }}
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -22,6 +23,7 @@ export const HeroSection: React.FC = () => {
         />
         <motion.div
           className="absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] bg-secondary-200/20 rounded-full blur-[100px]"
+          style={{ willChange: 'transform, opacity' }}
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -153,9 +155,17 @@ export const HeroSection: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex -space-x-2">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-medium text-gray-500">
-                      {i === 3 ? '+' : ''}
+                  {[
+                    { name: 'Cenpac', logo: '/partners/cenpac-logo.png' },
+                    { name: 'Bruneau', logo: '/partners/logo-bruneau.png' },
+                    { name: 'ENI', logo: '/partners/eni-logo.png' }
+                  ].map((partner, i) => (
+                    <div key={i} className="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden shadow-sm">
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name}
+                        className="w-full h-full object-contain p-1"
+                      />
                     </div>
                   ))}
                 </div>

@@ -1,12 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { LucideIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export interface FeatureCardProps {
   icon: LucideIcon;
   title: string;
   description: string;
   delay?: number;
+  link?: string;
 }
 
 export const FeatureCard: React.FC<FeatureCardProps> = ({
@@ -14,15 +16,16 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
   title,
   description,
   delay = 0,
+  link,
 }) => {
-  return (
+  const CardContent = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay }}
       whileHover={{ y: -5 }}
-      className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-glow-sm hover:border-primary-100 transition-all duration-300"
+      className="group relative bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-glow-sm hover:border-primary-100 transition-all duration-300 h-full"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-2xl -z-10" />
       
@@ -39,4 +42,14 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({
       </p>
     </motion.div>
   );
+
+  if (link) {
+    return (
+      <Link to={link} className="block h-full">
+        {CardContent}
+      </Link>
+    );
+  }
+
+  return CardContent;
 };

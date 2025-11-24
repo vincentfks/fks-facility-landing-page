@@ -18,6 +18,7 @@ const step2Schema = z.object({
   company: z.string().optional(),
   employees_range: z.string().optional(),
   sector: z.string().optional(),
+  supplies_interests: z.string().optional(),
 });
 
 const step3Schema = z.object({
@@ -59,7 +60,7 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
     if (step === 1) {
       isValid = await form.trigger(['name', 'email', 'phone']);
     } else if (step === 2) {
-      isValid = await form.trigger(['company', 'employees_range', 'sector']);
+      isValid = await form.trigger(['company', 'employees_range', 'sector', 'supplies_interests']);
     } else {
       isValid = await form.trigger(['message']);
     }
@@ -211,6 +212,24 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
               {...form.register('sector')}
               error={form.formState.errors.sector?.message}
             />
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                Ce qui vous intéresse
+              </label>
+              <select
+                {...form.register('supplies_interests')}
+                className="flex h-11 w-full rounded-lg border border-gray-300 bg-white px-4 py-2 text-base text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              >
+                <option value="">Sélectionnez...</option>
+                <option value="Tous m'intéresse">Tous m'intéresse</option>
+                <option value="Informatique">Informatique</option>
+                <option value="Snacking">Snacking</option>
+                <option value="Espace bureau">Espace bureau (Fournitures, Mobilier...)</option>
+                <option value="Transport & logistique">Transport & logistique</option>
+                <option value="Emballage">Emballage</option>
+                <option value="Énergie">Énergie</option>
+              </select>
+            </div>
           </motion.div>
         )}
 

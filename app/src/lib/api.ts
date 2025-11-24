@@ -1,6 +1,15 @@
 import { sanitizeContactData, checkRateLimit } from './security';
+import { generateEmailHtml } from './email-template';
 
 const RESEND_API_URL = 'https://api.resend.com/emails';
+/**
+ * WARNING: Exposing API keys in client-side code is a security risk.
+ * In a production environment, this key should be kept on a secure backend server.
+ * Anyone with access to this bundle can potentially use this key to send emails.
+ * 
+ * Recommended fix: Move email sending logic to a serverless function (e.g., Vercel Functions, Supabase Edge Functions)
+ * and call that function from here instead of calling Resend directly.
+ */
 const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY || '';
 
 export interface ContactData {
@@ -13,6 +22,7 @@ export interface ContactData {
   message?: string;
   current_spending?: number;
   source?: 'contact' | 'simulation' | 'solution';
+  supplies_interests?: string;
 }
 
 export interface SimulationData extends ContactData {
@@ -37,29 +47,8 @@ const sendEmailViaResend = async (data: ContactData) => {
   // Sanitize and validate data
   const sanitized = sanitizeContactData(data);
 
-  // Construct email content
-  let emailHtml = `
-    <h1>Nouvelle demande : ${(data.source || 'contact').toUpperCase()}</h1>
-    <p><strong>Nom:</strong> ${sanitized.name}</p>
-    <p><strong>Email:</strong> ${sanitized.email}</p>
-    <p><strong>Téléphone:</strong> ${sanitized.phone || 'Non renseigné'}</p>
-    <p><strong>Entreprise:</strong> ${sanitized.company || 'Non renseigné'}</p>
-    <p><strong>Taille:</strong> ${data.employees_range || 'Non renseigné'}</p>
-    <p><strong>Secteur:</strong> ${data.sector || 'Non renseigné'}</p>
-  `;
-
-  if (sanitized.message) {
-    emailHtml += `<p><strong>Message:</strong><br/>${sanitized.message}</p>`;
-  }
-
-  if (data.source === 'simulation' && data.current_spending) {
-    const estimatedSavings = data.current_spending * 0.3;
-    emailHtml += `
-      <h2>Détails Simulation</h2>
-      <p><strong>Dépenses actuelles:</strong> ${data.current_spending}€</p>
-      <p><strong>Économies estimées (30%):</strong> ${estimatedSavings.toFixed(2)}€</p>
-    `;
-  }
+  // Generate email content
+  const emailHtml = generateEmailHtml(sanitized);
 
   const response = await fetch(RESEND_API_URL, {
     method: 'POST',

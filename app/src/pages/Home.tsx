@@ -19,18 +19,21 @@ const features = [
     title: 'Accès Direct',
     description:
       'Accès privilégié directement chez le fournisseur. Éliminez les intermédiaires pour une efficacité maximale et des coûts réduits.',
+    link: '/solutions',
   },
   {
     icon: Zap,
     title: 'Liberté Totale',
     description:
       'Achetez sans obligations ni minimum requis. Une gestion flexible qui s\'adapte à votre rythme, sans contraintes cachées.',
+    link: '/tarifs',
   },
   {
     icon: Settings,
     title: 'Contrôle Absolu',
     description:
       'Gardez la main sur vos achats. Commandez où vous voulez, quand vous voulez. Vous restez le seul décideur.',
+    link: '/a-propos',
   },
 ];
 

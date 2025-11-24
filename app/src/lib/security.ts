@@ -4,14 +4,20 @@
 
 /**
  * Sanitize string input to prevent XSS attacks
+ * Escapes HTML entities to prevent injection
  */
 export const sanitizeInput = (input: string): string => {
   if (typeof input !== 'string') return '';
   
   return input
     .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;')
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/[<>]/g, '')
     .replace(/javascript:/gi, '')
     .replace(/on\w+\s*=/gi, '');
 };
@@ -71,8 +77,28 @@ export const sanitizeContactData = (data: {
     sanitized.company = sanitizeInput(data.company).substring(0, 255);
   }
 
+  if (data.employees_range) {
+    sanitized.employees_range = sanitizeInput(data.employees_range).substring(0, 50);
+  }
+
+  if (data.sector) {
+    sanitized.sector = sanitizeInput(data.sector).substring(0, 100);
+  }
+
+  if (data.supplies_interests) {
+    sanitized.supplies_interests = sanitizeInput(data.supplies_interests).substring(0, 255);
+  }
+
   if (data.message) {
     sanitized.message = sanitizeInput(data.message).substring(0, 5000);
+  }
+
+  if (data.current_spending) {
+    sanitized.current_spending = data.current_spending;
+  }
+
+  if (data.source) {
+    sanitized.source = sanitizeInput(data.source).substring(0, 50);
   }
 
   return sanitized;
