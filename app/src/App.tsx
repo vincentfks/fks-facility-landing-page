@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
-import { ChatWidget } from './components/chat/ChatWidget';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 
 // Lazy load pages for better initial performance
@@ -12,6 +11,10 @@ const Pricing = lazy(() => import('./pages/Pricing').then(module => ({ default: 
 const About = lazy(() => import('./pages/About').then(module => ({ default: module.About })));
 const SolutionsIndex = lazy(() => import('./pages/Solutions').then(module => ({ default: module.SolutionsIndex })));
 const SolutionDetail = lazy(() => import('./pages/Solutions/[slug]').then(module => ({ default: module.SolutionDetail })));
+const Simulation = lazy(() => import('./pages/Simulation').then(module => ({ default: module.Simulation })));
+const LegalNotice = lazy(() => import('./pages/LegalNotice').then(module => ({ default: module.LegalNotice })));
+const Cookies = lazy(() => import('./pages/Cookies').then(module => ({ default: module.Cookies })));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy })));
 
 function App() {
   return (
@@ -37,13 +40,16 @@ function App() {
               <Route path="/a-propos" element={<About />} />
               <Route path="/solutions" element={<SolutionsIndex />} />
               <Route path="/solutions/:slug" element={<SolutionDetail />} />
-              <Route path="/simuler-mes-economies" element={<Contact />} />
+              <Route path="/simuler-mes-economies" element={<Simulation />} />
+              <Route path="/mentions-legales" element={<LegalNotice />} />
+              <Route path="/cookies" element={<Cookies />} />
+              <Route path="/confidentialite" element={<PrivacyPolicy />} />
+              <Route path="/politique-de-confidentialite" element={<PrivacyPolicy />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </Suspense>
         </main>
         <Footer />
-        <ChatWidget />
       </div>
     </BrowserRouter>
   );

@@ -39,14 +39,14 @@ const pricingTiers = [
   {
     name: 'ENTREPRISE',
     employees: '20 à 50 collaborateurs',
-    price: '200',
+    price: '199',
     period: '/an HT',
     description: 'Boostez votre potentiel avec un plan fait pour les grandes ambitions.',
-      features: [
-        'Tout du plan Croissance',
-        'Jusqu\'à -70% sur certaines catégories',
-        'Support premium 24/7',
-        'Accompagnement stratégique',
+    features: [
+      'Tout du plan Croissance',
+      'Jusqu\'à -70% sur certaines catégories',
+      'Support premium 24/7',
+      'Accompagnement stratégique',
       'Reporting trimestriel',
     ],
     delay: 0.2,
@@ -59,8 +59,6 @@ const pricingTiers = [
     description: 'Sur mesure pour les grandes entreprises prêtes à transformer leur industrie. Maxi entreprise, maxi économies !',
     features: [
       'Tarifs négociés sur mesure',
-      'Déploiement multi-sites',
-      'API & Intégrations',
       'Account Manager dédié',
       'Contrats cadres spécifiques',
     ],

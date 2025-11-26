@@ -9,6 +9,7 @@ import { StatCard } from '../components/features/StatsCounter';
 import { MultiStepForm } from '../components/forms/MultiStepForm';
 import { Button } from '../components/ui/Button';
 import { SecurityBadges } from '../components/security/SecurityBadges';
+import { FAQSection } from '../components/faq/FAQSection';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Zap, Settings, TrendingUp } from 'lucide-react';
 import { api } from '../lib/api';
@@ -42,7 +43,7 @@ const partners = [
   { name: 'ENI', src: '/partners/eni-logo.png' },
   { name: 'Cenpac', src: '/partners/cenpac-logo.png' },
   { name: 'Bruneau', src: '/partners/logo-bruneau.png' },
-  { name: 'Fi Conseils', src: '/partners/Logo-Fi-Conseils.webp' },
+  { name: 'Polaris', src: '/partners/polaris.png' },
 ];
 
 export const Home: React.FC = () => {
@@ -219,6 +220,9 @@ export const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* Security Badges */}
       <div className="bg-gray-50 py-8 border-t border-gray-200">

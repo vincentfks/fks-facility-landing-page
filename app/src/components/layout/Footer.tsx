@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, Linkedin, Twitter, Facebook } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 
 const solutions = [
   { name: 'Solutions Énergie', path: '/solutions/energie' },
@@ -29,17 +29,6 @@ export const Footer: React.FC = () => {
               La centrale d'achat nouvelle génération pour TPE et PME. 
               Optimisez vos coûts sans compromis sur la qualité.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-full">
-                <Facebook className="w-5 h-5" />
-              </a>
-            </div>
           </div>
 
           {/* Solutions */}
@@ -66,8 +55,6 @@ export const Footer: React.FC = () => {
               <li><Link to="/a-propos" className="hover:text-primary-400 transition-colors py-1 block">À propos</Link></li>
               <li><Link to="/tarifs" className="hover:text-primary-400 transition-colors py-1 block">Tarifs</Link></li>
               <li><Link to="/contact" className="hover:text-primary-400 transition-colors py-1 block">Contact</Link></li>
-              <li><Link to="/blog" className="hover:text-primary-400 transition-colors py-1 block">Blog</Link></li>
-              <li><Link to="/carrieres" className="hover:text-primary-400 transition-colors py-1 block">Carrières</Link></li>
             </ul>
           </div>
 

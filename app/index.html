@@ -5,10 +5,24 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5CJ9TVMC');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Rybbit Tracker -->
+    <script
+      src="https://app.rybbit.io/api/script.js"
+      data-site-id="6087b9e8663f"
+      defer
+    ></script>
+
     <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.resend.com https://*.supabase.co wss://*.supabase.co ws://localhost:* http://localhost:*;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.rybbit.io https://static.axept.io https://*.axept.io https://www.googletagmanager.com https://client.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.axept.io https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data: https://client.crisp.chat; img-src 'self' data: https: https://*.axept.io https://www.googletagmanager.com https://*.crisp.chat; connect-src 'self' https://api.resend.com https://*.supabase.co wss://*.supabase.co ws://localhost:* http://localhost:* https://app.rybbit.io https://*.axept.io https://client.axept.io https://www.googletagmanager.com https://client.crisp.chat wss://client.relay.crisp.chat https://storage.crisp.chat;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     
@@ -63,11 +77,41 @@
     }
     </script>
     
+    <!-- Axeptio -->
+    <script>
+      window.axeptioSettings = {
+        clientId: "69258fdf3c6a01aba542b14e",
+        cookiesVersion: "0e488f5d-2657-4f21-a75b-4534c5b002ae",
+        googleConsentMode: {
+          default: {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500
+          }
+        }
+      };
+      
+      (function(d, s) {
+        var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+        e.async = true; e.src = "https://static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+      })(document, "script");
+    </script>
+
+    <!-- Crisp Chat -->
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f30a7df0-e7f8-41a8-b00b-369f7fc7c15b";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5CJ9TVMC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

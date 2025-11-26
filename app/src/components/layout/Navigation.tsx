@@ -187,11 +187,6 @@ export const Navigation: React.FC = () => {
           </Link>
           <div className="pt-4 space-y-3">
             <Link to="/contact" className="block w-full">
-              <Button variant="outline" className="w-full justify-center">
-                Espace Client
-              </Button>
-            </Link>
-            <Link to="/simuler-mes-economies" className="block w-full">
               <Button className="w-full justify-center bg-primary-600">
                 Demander à être rappelé(e)
               </Button>
