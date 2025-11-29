@@ -68,7 +68,7 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto lg:mx-0"
             >
-              Rejoignez +80 entreprises qui économisent <span className="font-semibold text-gray-900">jusqu'à -70%</span> sur certaines catégories. Sans engagement, sans minimum d'achat.
+              Rejoignez +800 entreprises qui économisent <span className="font-semibold text-gray-900">jusqu'à -70%</span> sur certaines catégories. Sans engagement, sans minimum d'achat.
             </motion.p>
 
             {/* CTAs */}
@@ -78,12 +78,14 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
-              <Link to="/contact" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white shadow-lg shadow-primary-500/20 border-0">
-                  Commencer à économiser
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
+              <Button 
+                size="lg" 
+                className="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-white shadow-lg shadow-primary-500/20 border-0"
+                onClick={() => document.getElementById('tarification')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                Commencer à économiser
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
               <Link to="/simuler-mes-economies" className="w-full sm:w-auto">
                 <Button variant="outline" size="lg" className="w-full sm:w-auto bg-white/50 backdrop-blur border-gray-300 hover:bg-white">
                   Simuler mes économies
@@ -108,7 +110,7 @@ export const HeroSection: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Star className="w-4 h-4 mr-2 text-yellow-400 fill-yellow-400" />
-                <span>4.9/5 avis clients</span>
+                <span>4.7/5 avis clients</span>
               </div>
             </motion.div>
           </div>

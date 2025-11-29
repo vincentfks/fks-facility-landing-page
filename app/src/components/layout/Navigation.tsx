@@ -110,6 +110,15 @@ export const Navigation: React.FC = () => {
             >
               Tarifs
             </Link>
+            <a
+              href="/#temoignages"
+              className={cn(
+                'px-4 py-2 text-sm font-medium transition-colors rounded-full hover:bg-gray-50',
+                'text-gray-600 hover:text-primary-600'
+              )}
+            >
+              Témoignages
+            </a>
             
             <div className="w-px h-6 bg-gray-200 mx-4" />
             

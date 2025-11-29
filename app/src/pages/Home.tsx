@@ -44,6 +44,7 @@ const partners = [
   { name: 'Cenpac', src: '/partners/cenpac-logo.png' },
   { name: 'Bruneau', src: '/partners/logo-bruneau.png' },
   { name: 'Polaris', src: '/partners/polaris.png' },
+  { name: 'CP Consulting', src: '/transport-page/CP-consulting-logo.png' },
 ];
 
 export const Home: React.FC = () => {
@@ -198,7 +199,7 @@ export const Home: React.FC = () => {
       <PricingSection />
 
       {/* Final CTA with form */}
-      <section className="py-24 bg-white relative">
+      <section id="contact-form" className="py-24 bg-white relative scroll-mt-24">
         <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 pointer-events-none" />
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">

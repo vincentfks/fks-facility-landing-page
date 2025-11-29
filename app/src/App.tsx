@@ -12,6 +12,7 @@ const About = lazy(() => import('./pages/About').then(module => ({ default: modu
 const SolutionsIndex = lazy(() => import('./pages/Solutions').then(module => ({ default: module.SolutionsIndex })));
 const SolutionDetail = lazy(() => import('./pages/Solutions/[slug]').then(module => ({ default: module.SolutionDetail })));
 const Simulation = lazy(() => import('./pages/Simulation').then(module => ({ default: module.Simulation })));
+const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess').then(module => ({ default: module.PaymentSuccess })));
 const LegalNotice = lazy(() => import('./pages/LegalNotice').then(module => ({ default: module.LegalNotice })));
 const Cookies = lazy(() => import('./pages/Cookies').then(module => ({ default: module.Cookies })));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy })));
@@ -41,6 +42,7 @@ function App() {
               <Route path="/solutions" element={<SolutionsIndex />} />
               <Route path="/solutions/:slug" element={<SolutionDetail />} />
               <Route path="/simuler-mes-economies" element={<Simulation />} />
+              <Route path="/paiement-reussi" element={<PaymentSuccess />} />
               <Route path="/mentions-legales" element={<LegalNotice />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/confidentialite" element={<PrivacyPolicy />} />

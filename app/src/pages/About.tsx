@@ -88,9 +88,13 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-100 rounded-xl h-64 lg:h-96"
+              className="relative rounded-xl h-64 lg:h-96 overflow-hidden shadow-xl"
             >
-              {/* Image placeholder */}
+              <img 
+                src="/a-propos/team.png" 
+                alt="L'équipe FKS Facility" 
+                className="w-full h-full object-cover transform scale-110"
+              />
             </motion.div>
           </div>
         </div>

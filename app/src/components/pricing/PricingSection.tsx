@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Check, Sparkles } from 'lucide-react';
+import { Check, Sparkles, Loader2 } from 'lucide-react';
 import { Button } from '../ui/Button';
-// Card components not used in this component
-import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { api } from '../../lib/api';
 
+/**
+ * Configuration des tarifs avec Stripe (PRODUCTION)
+ * 
+ * STARTER - 79€ HT/an
+ * - Product ID: prod_TVlvjwsGkA754F
+ * - Price ID: price_1SYkQPLfvqfGVHOIc47ZhCL7
+ * - Payment link: https://buy.stripe.com/dRm5kE5SXfh1gUTgeLfIs00
+ * 
+ * CROISSANCE - 129€ HT/an
+ * - Product ID: prod_TVlvCnEq9ySqyW
+ * - Price ID: price_1SYkQSLfvqfGVHOIpWEO1sA3
+ * - Payment link: https://buy.stripe.com/dRmfZi959c4P9sr0fNfIs01
+ * 
+ * ENTREPRISE - 199€ HT/an
+ * - Product ID: prod_TVlvEHxzEtiKH0
+ * - Price ID: price_1SYkQULfvqfGVHOIjaP9gfB2
+ * - Payment link: https://buy.stripe.com/9B6cN6gxB7OzdIHe6DfIs02
+ */
 const pricingTiers = [
   {
     name: 'STARTER',
     employees: 'Moins de 10 collaborateurs',
     price: '79',
     period: '/an HT',
+    priceId: import.meta.env.VITE_STRIPE_PRICE_ID_STARTER || 'price_1SYkQPLfvqfGVHOIc47ZhCL7',
     description: 'Parfait pour les petites entreprises, les startups en plein essor et les travailleurs indépendants.',
       features: [
         'Accès illimité centrale d\'achat',
@@ -25,6 +44,7 @@ const pricingTiers = [
     employees: '10 à 20 collaborateurs',
     price: '129',
     period: '/an HT',
+    priceId: import.meta.env.VITE_STRIPE_PRICE_ID_CROISSANCE || 'price_1SYkQSLfvqfGVHOIpWEO1sA3',
     description: 'Conçu pour les moyennes entreprises, pour qui les économies ne sont pas à prendre à la légère.',
       features: [
         'Tout du plan précédent',
@@ -41,6 +61,7 @@ const pricingTiers = [
     employees: '20 à 50 collaborateurs',
     price: '199',
     period: '/an HT',
+    priceId: import.meta.env.VITE_STRIPE_PRICE_ID_ENTREPRISE || 'price_1SYkQULfvqfGVHOIjaP9gfB2',
     description: 'Boostez votre potentiel avec un plan fait pour les grandes ambitions.',
     features: [
       'Tout du plan Croissance',
@@ -56,6 +77,7 @@ const pricingTiers = [
     employees: '+ de 50 collaborateurs',
     price: 'Sur devis',
     period: '',
+    priceId: '', // Pas de prix Stripe pour ce plan
     description: 'Sur mesure pour les grandes entreprises prêtes à transformer leur industrie. Maxi entreprise, maxi économies !',
     features: [
       'Tarifs négociés sur mesure',
@@ -67,8 +89,56 @@ const pricingTiers = [
 ];
 
 export const PricingSection: React.FC = () => {
+  const [loading, setLoading] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Scroll to contact form if hash is present after navigation
+  useEffect(() => {
+    if (location.hash === '#contact-form') {
+      setTimeout(() => {
+        const element = document.getElementById('contact-form');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
+
+  const handleContactRedirect = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (location.pathname === '/') {
+      // Already on home page, just scroll
+      const element = document.getElementById('contact-form');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // Navigate to home page with hash
+      navigate('/#contact-form');
+    }
+  };
+
+  const handleCheckout = async (tier: typeof pricingTiers[0]) => {
+    if (!tier.priceId || tier.price === 'Sur devis') {
+      return;
+    }
+
+    setLoading(tier.name);
+    setError(null);
+
+    try {
+      await api.createCheckoutSession(tier.priceId);
+    } catch (err: any) {
+      console.error('Checkout error:', err);
+      setError(err.message || 'Une erreur est survenue lors de la création de la session de paiement');
+      setLoading(null);
+    }
+  };
+
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section id="tarification" className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="inline-block py-1 px-3 rounded-full bg-secondary-50 text-secondary-600 text-sm font-semibold mb-4 border border-secondary-100">
@@ -109,11 +179,11 @@ export const PricingSection: React.FC = () => {
                   : 'border border-gray-100 shadow-sm hover:shadow-lg hover:border-primary-200'
                 }
               `}>
-                <div className="bg-white rounded-xl p-6 h-full flex flex-col">
+                <div className="bg-white rounded-xl p-6 h-full flex flex-col pricing-card">
                   <div className="mb-6">
-                    <h3 className="text-lg font-bold text-gray-900">{tier.name}</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{tier.name}</h3>
                     <p className="text-sm text-primary-600 font-medium mb-4">{tier.employees}</p>
-                    <div className="flex items-baseline gap-1">
+                    <div className="flex items-baseline gap-1 mb-2">
                       {tier.price !== 'Sur devis' ? (
                         <>
                           <span className="text-4xl font-bold text-gray-900">{tier.price}€</span>
@@ -123,34 +193,54 @@ export const PricingSection: React.FC = () => {
                         <span className="text-3xl font-bold text-gray-900">{tier.price}</span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500 mt-4 min-h-[40px]">{tier.description}</p>
+                    <p className="text-sm text-gray-500 mt-3 min-h-[40px] leading-relaxed">{tier.description}</p>
                   </div>
 
-                  <div className="space-y-4 mb-8 flex-grow">
+                  <div className="space-y-3 mb-6 flex-grow">
                     {tier.features.map((feature, index) => (
                       <div key={index} className="flex items-start gap-3">
                         <div className="mt-0.5 w-5 h-5 rounded-full bg-green-50 flex items-center justify-center flex-shrink-0">
                           <Check className="w-3 h-3 text-green-600" />
                         </div>
-                        <span className="text-sm text-gray-600">{feature}</span>
+                        <span className="text-sm text-gray-600 leading-relaxed">{feature}</span>
                       </div>
                     ))}
                   </div>
 
-                  <Link to={tier.price === 'Sur devis' ? "#contact-form" : "/contact"} className="block mt-auto">
-                    <Button
-                      variant={tier.popular ? 'primary' : 'outline'}
-                      className="w-full justify-center"
-                      onClick={(e) => {
-                        if (tier.price === 'Sur devis') {
-                          e.preventDefault();
-                          document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }}
-                    >
-                      {tier.price === 'Sur devis' ? 'Faire un devis' : 'Choisir ce plan'}
-                    </Button>
-                  </Link>
+                  {tier.price === 'Sur devis' ? (
+                    <div className="mt-auto pt-2">
+                      <Button
+                        variant={tier.popular ? 'primary' : 'outline'}
+                        className="w-full justify-center"
+                        onClick={handleContactRedirect}
+                      >
+                        Faire un devis
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="mt-auto pt-2">
+                      {error && tier.name === loading && (
+                        <div className="mb-3 p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-700">
+                          {error}
+                        </div>
+                      )}
+                      <Button
+                        variant={tier.popular ? 'primary' : 'outline'}
+                        className="w-full justify-center"
+                        onClick={() => handleCheckout(tier)}
+                        disabled={loading === tier.name || !tier.priceId}
+                      >
+                        {loading === tier.name ? (
+                          <>
+                            <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+                            Redirection...
+                          </>
+                        ) : (
+                          'Choisir ce plan'
+                        )}
+                      </Button>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

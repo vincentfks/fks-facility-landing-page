@@ -259,6 +259,7 @@ const solutions: Record<string, any> = {
       'Parce que chaque colis a son histoire, confiez-nous la vôtre. Que vous ayez besoin d\'un service d\'affrètement dédié, d\'une messagerie rapide ou d\'un stockage sécurisé, faites appel à FKS Facility pour vous mettre en relation avec nos fournisseurs en transport et logistique.',
     icon: '🚚',
     heroImage: '/transport-page/office-arrangement-with-partitions-1-5.jpg',
+    partnerLogo: '/transport-page/CP-consulting-logo.png',
     introTitle: 'Du point <span class="text-pink-600 font-bold">A</span> au succès <span class="text-pink-500 font-bold">B</span>',
     introIcons: ['🚚', '📦', '📍'],
     introText1: 'Vous en avez marre des retards de livraison chez vos clients, des colis perdus ou endommagés ? Un transporteur reflète votre image et se doit d\'être irréprochable.',

@@ -41,7 +41,7 @@ export const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gray-900 relative overflow-hidden text-white">
+    <section id="temoignages" className="py-24 bg-gray-900 relative overflow-hidden text-white">
       {/* Background Decoration */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-gray-950" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary-500/5 rounded-full blur-[120px]" />
@@ -67,9 +67,13 @@ export const TestimonialsSection: React.FC = () => {
             
             <div className="flex gap-4">
               <div className="flex -space-x-3">
-                 {[1,2,3,4].map(i => (
-                   <div key={i} className="w-10 h-10 rounded-full bg-gray-700 border-2 border-gray-900 flex items-center justify-center text-xs text-white font-medium">
-                     {String.fromCharCode(64 + i)}
+                 {[16, 11, 5, 12].map((imgId, i) => (
+                   <div key={i} className="w-10 h-10 rounded-full border-2 border-gray-900 overflow-hidden">
+                     <img 
+                       src={`https://i.pravatar.cc/150?img=${imgId}`} 
+                       alt="Avatar client" 
+                       className="w-full h-full object-cover"
+                     />
                    </div>
                  ))}
               </div>
@@ -77,7 +81,7 @@ export const TestimonialsSection: React.FC = () => {
                 <div className="flex text-yellow-400 mb-1">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
                 </div>
-                <span className="text-sm text-gray-500">Note moyenne 4.9/5</span>
+                <span className="text-sm text-gray-500">Note moyenne 4.7/5</span>
               </div>
             </div>
           </div>

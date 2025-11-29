@@ -74,12 +74,38 @@ const sendEmailViaResend = async (data: ContactData) => {
 
 /**
  * Create Stripe Checkout Session
- * Note: This should be implemented server-side for security
  */
-const createStripeCheckout = async (_priceId: string) => {
-  // For production, you should call your own API endpoint that uses the secret key
-  // This is a placeholder - you'll need to implement a server-side endpoint
-  throw new Error('Stripe Checkout must be implemented server-side. Please create an API endpoint.');
+const createStripeCheckout = async (priceId: string, customerEmail?: string, customerName?: string) => {
+  // En production, l'API est sur le même domaine
+  const apiUrl = import.meta.env.VITE_API_URL || '/api';
+  
+  const response = await fetch(`${apiUrl}/checkout/create-session`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      priceId,
+      customerEmail,
+      customerName,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json();
+    throw new Error(errorData.message || 'Failed to create checkout session');
+  }
+
+  const data = await response.json();
+  
+  // Rediriger vers Stripe Checkout
+  if (data.url) {
+    window.location.href = data.url;
+  } else {
+    throw new Error('No checkout URL returned');
+  }
+  
+  return data;
 };
 
 export const api = {
@@ -107,7 +133,7 @@ export const api = {
     }
   },
 
-  async createCheckoutSession(priceId: string) {
-    return createStripeCheckout(priceId);
+  async createCheckoutSession(priceId: string, customerEmail?: string, customerName?: string) {
+    return createStripeCheckout(priceId, customerEmail, customerName);
   },
 };
