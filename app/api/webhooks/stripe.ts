@@ -75,19 +75,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ error: 'Webhook secret not configured' });
   }
 
-  // Pour Vercel, récupérer le body brut
-  // @ts-ignore - rawBody existe dans Vercel
-  const rawBody = (req as any).rawBody || req.body;
-  
-  let body: string | Buffer;
-  if (typeof rawBody === 'string') {
-    body = rawBody;
-  } else if (Buffer.isBuffer(rawBody)) {
-    body = rawBody;
-  } else {
-    // Fallback : convertir en string si c'est un objet
-    body = JSON.stringify(rawBody);
-  }
+  // Pour Vercel, le body brut est nécessaire pour vérifier la signature Stripe
+  // Le body est déjà disponible comme string dans req.body pour les webhooks
+  const body = typeof req.body === 'string' ? req.body : JSON.stringify(req.body);
 
   let event: Stripe.Event;
 
