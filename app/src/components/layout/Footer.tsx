@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
 
 const solutions = [
-  { name: 'Solutions Énergie', path: '/solutions/energie' },
+  // { name: 'Solutions Énergie', path: '/solutions/energie' },
   { name: 'Solutions Snacking', path: '/solutions/snacking' },
   { name: 'Solutions Espace Bureau', path: '/solutions/bureau' },
   { name: 'Solutions Emballage', path: '/solutions/emballage' },

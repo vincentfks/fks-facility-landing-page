@@ -160,7 +160,7 @@ export const HeroSection: React.FC = () => {
                   {[
                     { name: 'Cenpac', logo: '/partners/cenpac-logo.png' },
                     { name: 'Bruneau', logo: '/partners/logo-bruneau.png' },
-                    { name: 'ENI', logo: '/partners/eni-logo.png' }
+                    // { name: 'ENI', logo: '/partners/eni-logo.png' }
                   ].map((partner, i) => (
                     <div key={i} className="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden shadow-sm">
                       <img 

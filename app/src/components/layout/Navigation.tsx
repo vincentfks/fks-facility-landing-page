@@ -7,7 +7,7 @@ import { Button } from '../ui/Button';
 const solutions = [
   { name: 'Emballage', path: '/solutions/emballage' },
   { name: 'Espace Bureau', path: '/solutions/bureau' },
-  { name: 'Énergie', path: '/solutions/energie' },
+  // { name: 'Énergie', path: '/solutions/energie' },
   { name: 'Informatique', path: '/solutions/informatique' },
   { name: 'Snacking', path: '/solutions/snacking' },
   { name: 'Transport & Logistique', path: '/solutions/transport' },

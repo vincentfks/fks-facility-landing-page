@@ -40,7 +40,7 @@ const features = [
 
 const partners = [
   { name: 'D8', src: '/partners/D8-logo.webp' },
-  { name: 'ENI', src: '/partners/eni-logo.png' },
+  // { name: 'ENI', src: '/partners/eni-logo.png' },
   { name: 'Cenpac', src: '/partners/cenpac-logo.png' },
   { name: 'Bruneau', src: '/partners/logo-bruneau.png' },
   { name: 'Polaris', src: '/partners/polaris.png' },

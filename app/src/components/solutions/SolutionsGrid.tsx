@@ -45,13 +45,13 @@ const solutions = [
     path: '/solutions/emballage',
     color: 'secondary' as const,
   },
-  {
-    icon: Zap,
-    title: 'Énergie',
-    description: 'Vos contrats gaz et électricité, au meilleur prix.',
-    path: '/solutions/energie',
-    color: 'accent' as const,
-  },
+  // {
+  //   icon: Zap,
+  //   title: 'Énergie',
+  //   description: 'Vos contrats gaz et électricité, au meilleur prix.',
+  //   path: '/solutions/energie',
+  //   color: 'accent' as const,
+  // },
 ];
 
 export const SolutionsGrid: React.FC = () => {

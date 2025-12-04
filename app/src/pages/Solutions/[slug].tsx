@@ -125,46 +125,46 @@ const solutions: Record<string, any> = {
     ],
     savings: 'jusqu\'à 70%',
   },
-  energie: {
-    title: 'Solutions Énergie',
-    description:
-      'Illuminez votre parcours avec notre fourniture d\'énergie ENI, élu meilleur fournisseur énergétique en 2022 et 2023. Du gaz à l\'électricité, nous mettons la puissance entre vos mains. Profitez de nos conditions commerciales et faites enfin baisser vos factures.',
-    icon: '⚡',
-    heroImage: '/energie-page/solutions_energie.jpg',
-    partnerLogo: '/partners/eni-logo.png',
-    introTitle: 'Le courant passe entre nous !',
-    introIcons: ['⚡', '💡', '🌱'],
-    introText1: 'Des Mégawatts d\'économies ! FKS Facility vous fait profiter de <span class="text-green-600">tarifs négociés avec notre fournisseur ENI, médaillée Silver d\'Ecovadis 2023.</span>',
-    introText2: 'Engagée pour l\'environnement, ENI propose des offres vertes, une solution complète pour <span class="text-green-500">limiter votre impact environnemental</span>, car le respect de la planète est au cœur de nos valeurs.',
-    introFeatures: [],
-    partnersInfo: [
-      { icon: TrendingDown, title: 'Économies', description: 'Tarifs négociés' },
-      { icon: Sparkles, title: 'Optimisation', description: 'Énergétique' },
-      { icon: Check, title: 'Fiabilité', description: 'ENI certifié' },
-      { icon: Leaf, title: 'Durabilité', description: 'Offres vertes' },
-    ],
-    categories: [
-      {
-        title: 'Gaz',
-        description: 'Optez pour des contrats gaz flexibles et avantageux pour votre entreprise.',
-        image: '/energie-page/gaz.svg',
-      },
-      {
-        title: 'Électricité',
-        description: 'Des contrats énergétiques adaptés à vos besoins et au meilleur prix !',
-        image: '/energie-page/electricite.svg',
-      },
-    ],
-    products: [],
-    benefits: [
-      'Tarifs négociés avec ENI, meilleur fournisseur énergétique 2022 et 2023',
-      'Offres vertes pour limiter votre impact environnemental',
-      'Médaillée Silver d\'Ecovadis 2023',
-      'Contrats flexibles adaptés à vos besoins',
-      'Solution complète gaz et électricité',
-    ],
-    savings: 'jusqu\'à 40%',
-  },
+  // energie: {
+  //   title: 'Solutions Énergie',
+  //   description:
+  //     'Illuminez votre parcours avec notre fourniture d\'énergie ENI, élu meilleur fournisseur énergétique en 2022 et 2023. Du gaz à l\'électricité, nous mettons la puissance entre vos mains. Profitez de nos conditions commerciales et faites enfin baisser vos factures.',
+  //   icon: '⚡',
+  //   heroImage: '/energie-page/solutions_energie.jpg',
+  //   partnerLogo: '/partners/eni-logo.png',
+  //   introTitle: 'Le courant passe entre nous !',
+  //   introIcons: ['⚡', '💡', '🌱'],
+  //   introText1: 'Des Mégawatts d\'économies ! FKS Facility vous fait profiter de <span class="text-green-600">tarifs négociés avec notre fournisseur ENI, médaillée Silver d\'Ecovadis 2023.</span>',
+  //   introText2: 'Engagée pour l\'environnement, ENI propose des offres vertes, une solution complète pour <span class="text-green-500">limiter votre impact environnemental</span>, car le respect de la planète est au cœur de nos valeurs.',
+  //   introFeatures: [],
+  //   partnersInfo: [
+  //     { icon: TrendingDown, title: 'Économies', description: 'Tarifs négociés' },
+  //     { icon: Sparkles, title: 'Optimisation', description: 'Énergétique' },
+  //     { icon: Check, title: 'Fiabilité', description: 'ENI certifié' },
+  //     { icon: Leaf, title: 'Durabilité', description: 'Offres vertes' },
+  //   ],
+  //   categories: [
+  //     {
+  //       title: 'Gaz',
+  //       description: 'Optez pour des contrats gaz flexibles et avantageux pour votre entreprise.',
+  //       image: '/energie-page/gaz.svg',
+  //     },
+  //     {
+  //       title: 'Électricité',
+  //       description: 'Des contrats énergétiques adaptés à vos besoins et au meilleur prix !',
+  //       image: '/energie-page/electricite.svg',
+  //     },
+  //   ],
+  //   products: [],
+  //   benefits: [
+  //     'Tarifs négociés avec ENI, meilleur fournisseur énergétique 2022 et 2023',
+  //     'Offres vertes pour limiter votre impact environnemental',
+  //     'Médaillée Silver d\'Ecovadis 2023',
+  //     'Contrats flexibles adaptés à vos besoins',
+  //     'Solution complète gaz et électricité',
+  //   ],
+  //   savings: 'jusqu\'à 40%',
+  // },
   informatique: {
     title: 'Solutions Informatique',
     description:
