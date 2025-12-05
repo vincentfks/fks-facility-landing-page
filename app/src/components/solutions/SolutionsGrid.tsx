@@ -4,7 +4,6 @@ import {
   Coffee,
   Briefcase,
   Package,
-  Zap,
   Truck,
 } from 'lucide-react';
 import { SolutionCard } from './SolutionCard';

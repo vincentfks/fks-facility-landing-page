@@ -33,11 +33,10 @@ npm install
 
 ## Configuration
 
-1. Créez un fichier `.env` dans le dossier `app/` (copiez `.env.example`)
-2. Configurez vos variables d'environnement :
-   - `VITE_RESEND_API_KEY` : Clé API Resend pour l'envoi d'emails
-   - `VITE_STRIPE_PUBLISHABLE_KEY` : Clé publique Stripe (pour les paiements)
-   - `VITE_FRONTEND_URL` : URL du frontend (pour les redirections)
+1. Créez un fichier `.env.local` dans le dossier `app/`
+2. Configurez vos variables d'environnement selon les besoins du projet
+
+**⚠️ Important :** Les variables d'environnement sont sensibles et ne doivent jamais être commitées dans Git.
 
 ## Développement
 
@@ -82,6 +81,6 @@ Le projet inclut des mesures de sécurité de base :
 
 ## Notes importantes
 
-- Les clés API sensibles (Resend, Stripe) doivent être configurées via les variables d'environnement
-- Pour la production, assurez-vous de configurer un domaine vérifié dans Resend
-- Les paiements Stripe nécessitent une implémentation serveur pour la sécurité (secret key)
+- Les clés API et variables d'environnement sensibles doivent être configurées via les variables d'environnement
+- Pour la production, configurez les variables d'environnement sur votre plateforme de déploiement
+- Consultez la documentation interne pour la configuration complète

@@ -6,18 +6,15 @@ Ce script injecte le hash SHA-256 du mot de passe dans la page `fournisseurs.htm
 
 ### Configuration
 
-1. Créez un fichier `.env` à la racine du dossier `app/` (si ce n'est pas déjà fait)
+1. Créez un fichier `.env.local` à la racine du dossier `app/` (si ce n'est pas déjà fait)
 
-2. Ajoutez la variable d'environnement suivante :
-```env
-VITE_SUPPLIERS_PASSWORD=votre_mot_de_passe_ici
-```
+2. Ajoutez la variable d'environnement nécessaire pour le mot de passe.
 
-**⚠️ Important :** Ne commitez jamais le fichier `.env` contenant le mot de passe en clair. Le fichier `.env` doit être dans `.gitignore`.
+**⚠️ Important :** Ne commitez jamais le fichier `.env.local` contenant le mot de passe en clair. Les fichiers `.env*` sont déjà dans `.gitignore`.
 
 ### Fonctionnement
 
-- Le script lit le mot de passe depuis `VITE_SUPPLIERS_PASSWORD`
+- Le script lit le mot de passe depuis la variable d'environnement configurée
 - Il génère un hash SHA-256 du mot de passe
 - Il remplace le placeholder `__PASSWORD_HASH_PLACEHOLDER__` dans `fournisseurs.html`
 - Le hash est stocké dans le code, jamais le mot de passe en clair

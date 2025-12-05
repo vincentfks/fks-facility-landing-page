@@ -3,8 +3,11 @@
 interface ImportMetaEnv {
   readonly VITE_RESEND_API_KEY: string;
   readonly VITE_STRIPE_PUBLISHABLE_KEY: string;
-  readonly VITE_STRIPE_SECRET_KEY: string;
   readonly VITE_FRONTEND_URL: string;
+  readonly VITE_STRIPE_PRICE_ID_STARTER: string;
+  readonly VITE_STRIPE_PRICE_ID_CROISSANCE: string;
+  readonly VITE_STRIPE_PRICE_ID_ENTREPRISE: string;
+  readonly VITE_API_URL: string;
 }
 
 interface ImportMeta {

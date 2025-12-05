@@ -544,7 +544,7 @@
             const EXPECTED_HASH = window.SUPPLIERS_PASSWORD_HASH || '44e3545ca51e7de02d4293faaec0402f23018aa204049d4ee5b6e657f4f5f0e8';
             
             // Check if hash is properly configured (not a placeholder)
-            const isHashConfigured = EXPECTED_HASH && EXPECTED_HASH !== '__PASSWORD_HASH_PLACEHOLDER__';
+            const isHashConfigured = EXPECTED_HASH && EXPECTED_HASH !== '44e3545ca51e7de02d4293faaec0402f23018aa204049d4ee5b6e657f4f5f0e8';
             
             // SHA-256 hash function
             async function sha256(message) {
