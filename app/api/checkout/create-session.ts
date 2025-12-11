@@ -47,6 +47,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       allow_promotion_codes: true,
       billing_address_collection: 'required',
       locale: 'fr',
+      // Activer la collecte automatique de la TVA (Stripe Tax)
+      automatic_tax: {
+        enabled: true,
+      },
     });
 
     return res.status(200).json({ sessionId: session.id, url: session.url });

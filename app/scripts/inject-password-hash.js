@@ -16,40 +16,45 @@ if (existsSync(envPath)) {
 }
 
 const password = process.env.VITE_SUPPLIERS_PASSWORD;
-const htmlPath = join(process.cwd(), 'public', 'fournisseurs.html');
 
 if (!password) {
-  console.warn('⚠️  VITE_SUPPLIERS_PASSWORD not set. Password protection will not work.');
-  console.warn('   Set it in your .env file: VITE_SUPPLIERS_PASSWORD=your_password');
-  process.exit(0);
+  console.error('❌ VITE_SUPPLIERS_PASSWORD not set. Password protection is required.');
+  console.error('   Set it in your .env file: VITE_SUPPLIERS_PASSWORD=your_password');
+  console.error('   The page /fournisseurs requires password protection to function.');
+  process.exit(1); // Fail hard - password is required
 }
 
 // Generate SHA-256 hash of the password
 const hash = createHash('sha256').update(password).digest('hex');
 
-console.log('✅ Password hash generated successfully');
+// Write hash to .env.local for Vite to pick up
+const envLocalPath = join(process.cwd(), '.env.local');
+let envContent = '';
 
-// Read the HTML file
-let html = readFileSync(htmlPath, 'utf8');
-
-// Replace only the placeholder in the window.SUPPLIERS_PASSWORD_HASH assignment
-// We use a regex to be more specific and only replace the one in the script tag at the top
-const regex = /window\.SUPPLIERS_PASSWORD_HASH\s*=\s*['"]__PASSWORD_HASH_PLACEHOLDER__['"]/;
-if (regex.test(html)) {
-  html = html.replace(regex, `window.SUPPLIERS_PASSWORD_HASH = '${hash}'`);
-  console.log('✅ Password hash injected into fournisseurs.html');
-  console.log(`   Hash: ${hash.substring(0, 16)}...`);
-} else {
-  // Fallback: check if already replaced or try direct replacement
-  if (!html.includes('__PASSWORD_HASH_PLACEHOLDER__')) {
-    console.log('⚠️  Placeholder not found. Hash may already be injected.');
-  } else {
-    // Last resort: replace all (should not happen if structure is correct)
-    html = html.replace('window.SUPPLIERS_PASSWORD_HASH = \'__PASSWORD_HASH_PLACEHOLDER__\'', `window.SUPPLIERS_PASSWORD_HASH = '${hash}'`);
-    console.log('✅ Password hash injected (fallback method)');
-  }
+// Read existing .env.local if it exists
+if (existsSync(envLocalPath)) {
+  envContent = readFileSync(envLocalPath, 'utf8');
 }
 
-// Write back to file
-writeFileSync(htmlPath, html, 'utf8');
+// Check if VITE_SUPPLIERS_PASSWORD_HASH already exists and is the same
+const hashRegex = /^VITE_SUPPLIERS_PASSWORD_HASH=(.*)$/m;
+const existingMatch = envContent.match(hashRegex);
+
+// Only write if hash doesn't exist or has changed (optimization: skip unnecessary writes)
+if (!existingMatch || existingMatch[1] !== hash) {
+  if (hashRegex.test(envContent)) {
+    // Replace existing hash
+    envContent = envContent.replace(hashRegex, `VITE_SUPPLIERS_PASSWORD_HASH=${hash}`);
+  } else {
+    // Append new hash
+    envContent = envContent ? `${envContent}\nVITE_SUPPLIERS_PASSWORD_HASH=${hash}` : `VITE_SUPPLIERS_PASSWORD_HASH=${hash}`;
+  }
+
+  // Write back to .env.local
+  writeFileSync(envLocalPath, envContent, 'utf8');
+  console.log('✅ Password hash updated in .env.local');
+} else {
+  // Hash is already correct, skip write (much faster)
+  // console.log('✓ Password hash already up to date');
+}
 

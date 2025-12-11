@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node server.js & node scripts/inject-password-hash.js && vite",
+    "dev:fast": "node server.js & vite",
     "dev:vite": "node scripts/inject-password-hash.js && vite",
     "dev:server": "node server.js",
     "dev:vercel": "vercel dev",

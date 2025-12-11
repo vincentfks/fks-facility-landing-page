@@ -40,5 +40,14 @@ export default defineConfig({
         secure: false,
       },
     },
+    // Optimize HMR (Hot Module Replacement) for faster updates
+    hmr: {
+      overlay: true,
+    },
+    // Pre-bundle dependencies for faster startup
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'react-router-dom', 'framer-motion'],
+      exclude: [],
+    },
   },
 });

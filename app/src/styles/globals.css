@@ -89,4 +89,45 @@
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
+
+  @keyframes shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-10px);
+    }
+    75% {
+      transform: translateX(10px);
+    }
+  }
+
+  .animate-shake {
+    animation: shake 0.4s ease-in-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  @media print {
+    body {
+      background: white !important;
+    }
+    
+    .print\\:hidden {
+      display: none !important;
+    }
+  }
 }
