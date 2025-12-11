@@ -39,6 +39,21 @@ export const isValidPhone = (phone: string): boolean => {
 };
 
 /**
+ * Sanitize string for HTML display (less aggressive, preserves basic formatting)
+ */
+export const sanitizeForHtml = (input: string): string => {
+  if (typeof input !== 'string') return '';
+  
+  return input
+    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+};
+
+/**
  * Sanitize and validate contact data
  */
 export const sanitizeContactData = (data: {
@@ -51,54 +66,64 @@ export const sanitizeContactData = (data: {
 }) => {
   const sanitized: any = {};
 
-  if (data.name) {
-    sanitized.name = sanitizeInput(data.name).substring(0, 255);
-    if (sanitized.name.length < 2) {
-      throw new Error('Le nom doit contenir au moins 2 caractères');
-    }
+  // Name is required
+  if (!data.name || typeof data.name !== 'string') {
+    throw new Error('Le nom est requis');
+  }
+  sanitized.name = data.name.trim().substring(0, 255);
+  if (sanitized.name.length < 2) {
+    throw new Error('Le nom doit contenir au moins 2 caractères');
   }
 
-  if (data.email) {
-    sanitized.email = sanitizeInput(data.email).toLowerCase().substring(0, 255);
-    if (!isValidEmail(sanitized.email)) {
-      throw new Error('Format d\'email invalide');
-    }
+  // Email is required
+  if (!data.email || typeof data.email !== 'string') {
+    throw new Error('L\'email est requis');
+  }
+  sanitized.email = data.email.trim().toLowerCase().substring(0, 255);
+  if (!isValidEmail(sanitized.email)) {
+    throw new Error('Format d\'email invalide');
   }
 
-  if (data.phone) {
-    sanitized.phone = sanitizeInput(data.phone).substring(0, 50);
+  // Optional fields
+  if (data.phone && typeof data.phone === 'string') {
+    sanitized.phone = data.phone.trim().substring(0, 50);
     if (sanitized.phone && !isValidPhone(sanitized.phone)) {
       // Phone validation is optional, just log warning
-      console.warn('Format de téléphone potentiellement invalide');
+      console.warn('Format de téléphone potentiellement invalide:', sanitized.phone);
     }
   }
 
-  if (data.company) {
-    sanitized.company = sanitizeInput(data.company).substring(0, 255);
+  if (data.company && typeof data.company === 'string') {
+    sanitized.company = data.company.trim().substring(0, 255);
   }
 
-  if (data.employees_range) {
-    sanitized.employees_range = sanitizeInput(data.employees_range).substring(0, 50);
+  if (data.employees_range && typeof data.employees_range === 'string') {
+    sanitized.employees_range = data.employees_range.trim().substring(0, 50);
   }
 
-  if (data.sector) {
-    sanitized.sector = sanitizeInput(data.sector).substring(0, 100);
+  if (data.sector && typeof data.sector === 'string') {
+    sanitized.sector = data.sector.trim().substring(0, 100);
   }
 
-  if (data.supplies_interests) {
-    sanitized.supplies_interests = sanitizeInput(data.supplies_interests).substring(0, 255);
+  if (data.supplies_interests && typeof data.supplies_interests === 'string') {
+    sanitized.supplies_interests = data.supplies_interests.trim().substring(0, 255);
   }
 
-  if (data.message) {
-    sanitized.message = sanitizeInput(data.message).substring(0, 5000);
+  if (data.message && typeof data.message === 'string') {
+    sanitized.message = data.message.trim().substring(0, 5000);
   }
 
-  if (data.current_spending) {
-    sanitized.current_spending = data.current_spending;
+  if (data.current_spending !== undefined && data.current_spending !== null) {
+    const spending = typeof data.current_spending === 'number' 
+      ? data.current_spending 
+      : parseFloat(String(data.current_spending));
+    if (!isNaN(spending) && spending >= 0) {
+      sanitized.current_spending = spending;
+    }
   }
 
-  if (data.source) {
-    sanitized.source = sanitizeInput(data.source).substring(0, 50);
+  if (data.source && typeof data.source === 'string') {
+    sanitized.source = data.source.trim().substring(0, 50);
   }
 
   return sanitized;

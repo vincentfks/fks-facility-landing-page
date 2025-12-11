@@ -5,6 +5,7 @@ import {
   Briefcase,
   Package,
   Truck,
+  Sparkles,
 } from 'lucide-react';
 import { SolutionCard } from './SolutionCard';
 
@@ -43,6 +44,13 @@ const solutions = [
     description: 'Caisse, film étirable, rouleau bulle, cerclage, adhésif, etc.',
     path: '/solutions/emballage',
     color: 'secondary' as const,
+  },
+  {
+    icon: Sparkles,
+    title: 'Nettoyage',
+    description: 'Nettoyage de vitres professionnel, entretien régulier, après chantier...',
+    path: '/solutions/nettoyage',
+    color: 'primary' as const,
   },
   // {
   //   icon: Zap,

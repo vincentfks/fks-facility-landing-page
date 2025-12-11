@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <!-- Background -->
+  <rect width="400" height="300" fill="#e0f2fe"/>
+  
+  <!-- Building/window frame -->
+  <rect x="50" y="50" width="300" height="200" rx="5" fill="#ffffff" stroke="#3b82f6" stroke-width="3"/>
+  <line x1="200" y1="50" x2="200" y2="250" stroke="#3b82f6" stroke-width="2"/>
+  <line x1="50" y1="150" x2="350" y2="150" stroke="#3b82f6" stroke-width="2"/>
+  
+  <!-- Window panes with shine effect -->
+  <rect x="60" y="60" width="130" height="80" fill="#dbeafe" opacity="0.5"/>
+  <rect x="210" y="60" width="130" height="80" fill="#dbeafe" opacity="0.5"/>
+  <rect x="60" y="160" width="130" height="80" fill="#dbeafe" opacity="0.5"/>
+  <rect x="210" y="160" width="130" height="80" fill="#dbeafe" opacity="0.5"/>
+  
+  <!-- Cleaning tool/brush -->
+  <rect x="280" y="100" width="40" height="8" rx="4" fill="#3b82f6"/>
+  <rect x="320" y="95" width="15" height="18" rx="2" fill="#60a5fa"/>
+  
+  <!-- Sparkles/clean effect -->
+  <circle cx="100" cy="100" r="4" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="250" cy="120" r="3" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="150" cy="200" r="4" fill="#fbbf24" opacity="0.8"/>
+  <circle cx="280" cy="180" r="3" fill="#fbbf24" opacity="0.8"/>
+</svg>

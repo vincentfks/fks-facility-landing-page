@@ -45,6 +45,7 @@ const partners = [
   { name: 'Bruneau', src: '/partners/logo-bruneau.png' },
   { name: 'Polaris', src: '/partners/polaris.png' },
   { name: 'CP Consulting', src: '/transport-page/CP-consulting-logo.png' },
+  { name: 'Yaklean', src: '/partners/Yaklean-logo.png' },
 ];
 
 export const Home: React.FC = () => {

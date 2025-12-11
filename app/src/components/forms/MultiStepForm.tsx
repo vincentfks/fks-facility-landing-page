@@ -55,18 +55,17 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
     return () => subscription.unsubscribe();
   }, [form, setSavedData]);
 
-  const handleNext = useCallback(async () => {
-    let isValid = false;
-    if (step === 1) {
-      isValid = await form.trigger(['name', 'email', 'phone']);
-    } else if (step === 2) {
-      isValid = await form.trigger(['company', 'employees_range', 'sector', 'supplies_interests']);
-    } else {
-      isValid = await form.trigger(['message']);
-    }
+  const handleNext = useCallback(async (e?: React.MouseEvent) => {
+    e?.preventDefault();
+    e?.stopPropagation();
     
-    if (isValid && step < 3) {
-      setStep(step + 1);
+    if (step === 1) {
+      const isValid = await form.trigger(['name', 'email', 'phone']);
+      if (isValid) {
+        setStep(2);
+      }
+    } else if (step === 2) {
+      setStep(3);
     }
   }, [form, step]);
 
@@ -79,16 +78,20 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
   const handleSubmit = useCallback(async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      await onSubmit(data);
+      console.log('📝 Soumission formulaire:', data);
+      const result = await onSubmit(data);
+      console.log('✅ Résultat soumission:', result);
       setIsSubmitted(true);
       setSavedData({});
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
     } catch (error) {
-      console.error('Form submission error:', error);
-      alert('Une erreur est survenue. Veuillez réessayer.');
-    } finally {
+      console.error('❌ Form submission error:', error);
+      const errorMessage = error instanceof Error 
+        ? error.message 
+        : 'Une erreur est survenue. Veuillez réessayer.';
+      alert(errorMessage);
       setIsSubmitting(false);
     }
   }, [onSubmit, onSuccess, setSavedData]);
@@ -268,7 +271,14 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
           Précédent
         </Button>
         {step < 3 ? (
-          <Button type="button" onClick={handleNext}>
+          <Button 
+            type="button" 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              handleNext(e);
+            }}
+          >
             Suivant
             <ChevronRight className="w-4 h-4 ml-2" />
           </Button>

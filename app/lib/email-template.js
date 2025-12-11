@@ -1,5 +1,7 @@
-import { ContactData } from './api';
-import { sanitizeForHtml } from './security';
+/**
+ * Email template generator (JavaScript version for server.js)
+ * Shared with TypeScript version in src/lib/email-template.ts
+ */
 
 const colors = {
   primary: '#0066FF',
@@ -10,10 +12,18 @@ const colors = {
   white: '#FFFFFF',
 };
 
-/**
- * Generate professional email HTML template
- */
-export const generateEmailHtml = (data: ContactData): string => {
+const sanitizeForHtml = (input) => {
+  if (typeof input !== 'string') return '';
+  return input
+    .trim()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+};
+
+export const generateEmailHtml = (data) => {
   const {
     name = '',
     email = '',
@@ -45,19 +55,23 @@ export const generateEmailHtml = (data: ContactData): string => {
   if (source === 'simulation' && current_spending && typeof current_spending === 'number') {
     const estimatedSavings = current_spending * 0.3;
     savingsHtml = `
-      <div style="background: linear-gradient(135deg, ${colors.secondary}15 0%, ${colors.secondary}08 100%); border-left: 4px solid ${colors.secondary}; padding: 20px; margin-top: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
-        <h3 style="margin: 0 0 16px 0; color: ${colors.secondary}; font-size: 18px; font-weight: 700;">💰 Estimation des économies</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-          <div style="background: white; padding: 12px; border-radius: 6px;">
-            <p style="margin: 0; font-size: 11px; color: ${colors.gray}; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Dépenses actuelles</p>
-            <p style="margin: 8px 0 0 0; font-size: 20px; font-weight: 700; color: ${colors.dark};">${current_spending.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
+      <tr>
+        <td style="padding-top: 24px;">
+          <div style="background: linear-gradient(135deg, ${colors.secondary}15 0%, ${colors.secondary}08 100%); border-left: 4px solid ${colors.secondary}; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <h3 style="margin: 0 0 16px 0; color: ${colors.secondary}; font-size: 18px; font-weight: 700;">💰 Estimation des économies</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+              <div style="background: white; padding: 12px; border-radius: 6px;">
+                <p style="margin: 0; font-size: 11px; color: ${colors.gray}; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Dépenses actuelles</p>
+                <p style="margin: 8px 0 0 0; font-size: 20px; font-weight: 700; color: ${colors.dark};">${current_spending.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
+              </div>
+              <div style="background: white; padding: 12px; border-radius: 6px;">
+                <p style="margin: 0; font-size: 11px; color: ${colors.gray}; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Économies estimées (30%)</p>
+                <p style="margin: 8px 0 0 0; font-size: 20px; font-weight: 700; color: ${colors.secondary};">${estimatedSavings.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
+              </div>
+            </div>
           </div>
-          <div style="background: white; padding: 12px; border-radius: 6px;">
-            <p style="margin: 0; font-size: 11px; color: ${colors.gray}; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Économies estimées (30%)</p>
-            <p style="margin: 8px 0 0 0; font-size: 20px; font-weight: 700; color: ${colors.secondary};">${estimatedSavings.toLocaleString('fr-FR', { style: 'currency', currency: 'EUR' })}</p>
-          </div>
-        </div>
-      </div>
+        </td>
+      </tr>
     `;
   }
 
@@ -232,3 +246,4 @@ export const generateEmailHtml = (data: ContactData): string => {
 </html>
   `;
 };
+

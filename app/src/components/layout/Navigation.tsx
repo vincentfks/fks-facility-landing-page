@@ -9,6 +9,7 @@ const solutions = [
   { name: 'Espace Bureau', path: '/solutions/bureau' },
   // { name: 'Énergie', path: '/solutions/energie' },
   { name: 'Informatique', path: '/solutions/informatique' },
+  { name: 'Nettoyage', path: '/solutions/nettoyage' },
   { name: 'Snacking', path: '/solutions/snacking' },
   { name: 'Transport & Logistique', path: '/solutions/transport' },
 ];

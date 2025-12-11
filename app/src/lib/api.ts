@@ -1,16 +1,4 @@
 import { sanitizeContactData, checkRateLimit } from './security';
-import { generateEmailHtml } from './email-template';
-
-const RESEND_API_URL = 'https://api.resend.com/emails';
-/**
- * WARNING: Exposing API keys in client-side code is a security risk.
- * In a production environment, this key should be kept on a secure backend server.
- * Anyone with access to this bundle can potentially use this key to send emails.
- * 
- * Recommended fix: Move email sending logic to a serverless function (e.g., Vercel Functions, Supabase Edge Functions)
- * and call that function from here instead of calling Resend directly.
- */
-const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY || '';
 
 export interface ContactData {
   name: string;
@@ -31,13 +19,9 @@ export interface SimulationData extends ContactData {
 }
 
 /**
- * Send email via Resend API
+ * Send email via API route (production) or directly via Resend (local dev)
  */
 const sendEmailViaResend = async (data: ContactData) => {
-  if (!RESEND_API_KEY) {
-    throw new Error('RESEND_API_KEY is not configured');
-  }
-
   // Rate limiting check
   const rateLimitKey = `email_${data.email}`;
   if (!checkRateLimit(rateLimitKey, 5, 900000)) {
@@ -45,31 +29,63 @@ const sendEmailViaResend = async (data: ContactData) => {
   }
 
   // Sanitize and validate data
-  const sanitized = sanitizeContactData(data);
-
-  // Generate email content
-  const emailHtml = generateEmailHtml(sanitized);
-
-  const response = await fetch(RESEND_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${RESEND_API_KEY}`,
-    },
-    body: JSON.stringify({
-      from: 'FKS Facility <onboarding@resend.dev>', // Update with verified domain
-      to: ['franck.k@fks-facility.com'],
-      subject: `Nouvelle demande FKS (${data.source || 'contact'}): ${sanitized.company || sanitized.name}`,
-      html: emailHtml,
-    }),
-  });
-
-  if (!response.ok) {
-    const errorData = await response.text();
-    throw new Error(`Failed to send email: ${errorData}`);
+  let sanitized: ContactData;
+  try {
+    sanitized = sanitizeContactData(data);
+  } catch (error) {
+    console.error('Data validation error:', error);
+    throw error instanceof Error ? error : new Error('Données invalides');
   }
 
-  return response.json();
+  // Use relative path '/api' - handled by Vite proxy in dev (-> localhost:3001) and Vercel in prod
+  const apiUrl = '/api';
+  const endpoint = `${apiUrl}/send-email`;
+
+  console.log('📧 Envoi email via API route:', {
+    url: endpoint,
+    data: {
+      name: sanitized.name,
+      email: sanitized.email,
+      source: sanitized.source,
+    },
+  });
+
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(sanitized),
+    });
+
+    // Check if response has content before parsing
+    const contentType = response.headers.get('content-type');
+    if (!contentType || !contentType.includes('application/json')) {
+      const text = await response.text();
+      throw new Error(text || 'Réponse invalide du serveur');
+    }
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      const errorMessage = result.error || result.message || 'Erreur lors de l\'envoi de l\'email';
+      console.error('❌ API error:', result);
+      throw new Error(errorMessage);
+    }
+
+    console.log('✅ Email envoyé avec succès:', result);
+    return result;
+  } catch (error) {
+    console.error('❌ Network/API error:', error);
+    if (error instanceof Error && error.message.includes('JSON')) {
+      throw new Error('Erreur de communication avec le serveur. Veuillez réessayer.');
+    }
+    if (error instanceof Error) {
+      throw error;
+    }
+    throw new Error('Erreur réseau lors de l\'envoi de l\'email');
+  }
 };
 
 /**
