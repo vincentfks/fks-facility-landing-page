@@ -1,90 +1,45 @@
 import { sanitizeContactData, checkRateLimit } from './security';
+import { ContactData, SimulationData } from './types';
 
-export interface ContactData {
-  name: string;
-  email: string;
-  phone?: string;
-  company?: string;
-  employees_range?: string;
-  sector?: string;
-  message?: string;
-  current_spending?: number;
-  source?: 'contact' | 'simulation' | 'solution';
-  supplies_interests?: string;
-}
-
-export interface SimulationData extends ContactData {
-  current_spending: number;
-  sector: string;
-}
+export type { ContactData, SimulationData };
 
 /**
- * Send email via API route (production) or directly via Resend (local dev)
+ * Send email via API route
  */
 const sendEmailViaResend = async (data: ContactData) => {
-  // Rate limiting check
-  const rateLimitKey = `email_${data.email}`;
-  if (!checkRateLimit(rateLimitKey, 5, 900000)) {
-    throw new Error('Trop de requêtes. Veuillez réessayer dans quelques minutes.');
-  }
-
-  // Sanitize and validate data
-  let sanitized: ContactData;
   try {
-    sanitized = sanitizeContactData(data);
-  } catch (error) {
-    console.error('Data validation error:', error);
-    throw error instanceof Error ? error : new Error('Données invalides');
-  }
-
-  // Use relative path '/api' - handled by Vite proxy in dev (-> localhost:3001) and Vercel in prod
-  const apiUrl = '/api';
-  const endpoint = `${apiUrl}/send-email`;
-
-  console.log('📧 Envoi email via API route:', {
-    url: endpoint,
-    data: {
-      name: sanitized.name,
-      email: sanitized.email,
-      source: sanitized.source,
-    },
-  });
-
-  try {
-    const response = await fetch(endpoint, {
+    const response = await fetch('/api/send-email', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(sanitized),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
 
-    // Check if response has content before parsing
-    const contentType = response.headers.get('content-type');
-    if (!contentType || !contentType.includes('application/json')) {
+    let result;
+    try {
+      result = await response.json();
+    } catch (parseError) {
       const text = await response.text();
-      throw new Error(text || 'Réponse invalide du serveur');
+      console.error('❌ Réponse non-JSON:', text);
+      throw new Error(`Erreur serveur (${response.status}): ${text.substring(0, 200)}`);
     }
-
-    const result = await response.json();
 
     if (!response.ok || !result.success) {
-      const errorMessage = result.error || result.message || 'Erreur lors de l\'envoi de l\'email';
-      console.error('❌ API error:', result);
-      throw new Error(errorMessage);
+      console.error('❌ API Error:', { 
+        status: response.status, 
+        statusText: response.statusText,
+        result 
+      });
+      const errorMsg = result.error || result.message || result.details || `Erreur serveur (${response.status})`;
+      throw new Error(errorMsg);
     }
 
-    console.log('✅ Email envoyé avec succès:', result);
     return result;
   } catch (error) {
-    console.error('❌ Network/API error:', error);
-    if (error instanceof Error && error.message.includes('JSON')) {
-      throw new Error('Erreur de communication avec le serveur. Veuillez réessayer.');
-    }
+    console.error('❌ Fetch Error:', error);
     if (error instanceof Error) {
       throw error;
     }
-    throw new Error('Erreur réseau lors de l\'envoi de l\'email');
+    throw new Error('Erreur réseau lors de l\'envoi');
   }
 };
 

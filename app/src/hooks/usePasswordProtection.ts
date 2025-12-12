@@ -7,6 +7,14 @@ const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 heures
 const EXPECTED_HASH = import.meta.env.VITE_SUPPLIERS_PASSWORD_HASH || '__PASSWORD_HASH_PLACEHOLDER__';
 const isHashConfigured = EXPECTED_HASH && EXPECTED_HASH !== '__PASSWORD_HASH_PLACEHOLDER__';
 
+// Debug log (only in development)
+if (import.meta.env.DEV) {
+  console.log('🔐 Password protection status:', {
+    hashConfigured: isHashConfigured,
+    hashPreview: EXPECTED_HASH.substring(0, 16) + '...',
+  });
+}
+
 // SHA-256 hash function
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);
@@ -45,18 +53,17 @@ export function usePasswordProtection() {
   const [error, setError] = useState<string>('');
 
   useEffect(() => {
-    // Always block access if hash is not configured
-    if (!isHashConfigured) {
-      console.warn('⚠️ Password hash not configured. Page access blocked.');
-      setIsAuthenticated(false);
-      setIsLoading(false);
-      return;
-    }
-    
     // Check authentication on mount
+    // If hash is not configured, still check auth (might work if user was previously authenticated)
     const authenticated = checkAuth();
     setIsAuthenticated(authenticated);
     setIsLoading(false);
+    
+    // Log warning if hash is not configured
+    if (!isHashConfigured) {
+      console.warn('⚠️ Password hash not configured. Password protection may not work correctly.');
+      console.warn('   Make sure VITE_SUPPLIERS_PASSWORD is set in .env and run the build script.');
+    }
   }, []);
 
   const handleLogin = useCallback(async (password: string): Promise<boolean> => {

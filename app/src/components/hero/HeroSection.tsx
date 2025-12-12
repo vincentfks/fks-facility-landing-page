@@ -110,7 +110,7 @@ export const HeroSection: React.FC = () => {
               </div>
               <div className="flex items-center">
                 <Star className="w-4 h-4 mr-2 text-yellow-400 fill-yellow-400" />
-                <span>4.7/5 avis clients</span>
+                <span>5/5 avis clients</span>
               </div>
             </motion.div>
           </div>
@@ -129,13 +129,20 @@ export const HeroSection: React.FC = () => {
                     <TrendingDown className="w-6 h-6 text-secondary-600" />
                   </div>
                   <span className="bg-secondary-50 text-secondary-700 px-2 py-1 rounded text-xs font-medium">
-                    -45% économisé
+                    -53% économisé
                   </span>
                 </div>
-                <p className="text-gray-600 text-sm mb-1">Papier A4 (500 feuilles)</p>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-gray-600 text-sm">Papier A4 (500 feuilles)</p>
+                  <img 
+                    src="/home-page/Feuille.png" 
+                    alt="Papier A4" 
+                    className="w-20 h-20 object-contain ml-2"
+                  />
+                </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-gray-900">4,38 €</span>
-                  <span className="text-sm text-gray-500 line-through">7,75 €</span>
+                  <span className="text-2xl font-bold text-gray-900">3,36 €</span>
+                  <span className="text-sm text-gray-500 line-through">7,15 €</span>
                 </div>
               </div>
             </motion.div>
@@ -160,9 +167,9 @@ export const HeroSection: React.FC = () => {
                   {[
                     { name: 'Cenpac', logo: '/partners/cenpac-logo.png' },
                     { name: 'Bruneau', logo: '/partners/logo-bruneau.png' },
-                    // { name: 'ENI', logo: '/partners/eni-logo.png' }
+                    { name: 'Polaris', logo: '/partners/polaris.png' },
                   ].map((partner, i) => (
-                    <div key={i} className="w-8 h-8 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden shadow-sm">
+                    <div key={i} className="w-16 h-16 rounded-full bg-white border-2 border-white flex items-center justify-center overflow-hidden shadow-sm">
                       <img 
                         src={partner.logo} 
                         alt={partner.name}
@@ -189,10 +196,17 @@ export const HeroSection: React.FC = () => {
                     -66% économisé
                   </span>
                 </div>
-                <p className="text-gray-600 text-sm mb-1">Caisse Carton (x10)</p>
+                <div className="flex items-center justify-between mb-1">
+                  <p className="text-gray-600 text-sm">Caisse Carton (x10)</p>
+                  <img 
+                    src="/home-page/Carton.png" 
+                    alt="Caisse Carton" 
+                    className="w-20 h-20 object-contain ml-2"
+                  />
+                </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-gray-900">1,07 €</span>
-                  <span className="text-sm text-gray-500 line-through">3,14 €</span>
+                  <span className="text-2xl font-bold text-gray-900">0,75 €</span>
+                  <span className="text-sm text-gray-500 line-through">2,20 €</span>
                 </div>
               </div>
             </motion.div>
@@ -202,6 +216,56 @@ export const HeroSection: React.FC = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] border border-gray-100 rounded-full" />
           </div>
         </div>
+      </div>
+
+      {/* Scrolling Banner */}
+      <div className="absolute top-0 left-0 right-0 py-[34px] z-40 pointer-events-none">
+        <div className="relative overflow-hidden">
+          <div className="flex animate-scroll-hero whitespace-nowrap">
+            {[
+              { text: 'Votre centrale de référencement' },
+              { text: 'Des économies massives sur vos achats généraux' },
+            ].map((item, idx) => (
+              <div key={`item-1-${idx}`} className="flex items-center mx-8 flex-shrink-0">
+                <span className="text-base md:text-xl lg:text-5xl font-bold italic text-gray-800/70 whitespace-nowrap">
+                  {item.text}
+                </span>
+              </div>
+            ))}
+            {/* Duplicate for seamless loop */}
+            {[
+              { text: 'Votre centrale de référencement' },
+              { text: 'Des économies massives sur vos achats généraux' },
+            ].map((item, idx) => (
+              <div key={`item-2-${idx}`} className="flex items-center mx-8 flex-shrink-0">
+                <span className="text-base md:text-xl lg:text-5xl font-bold italic text-gray-800/70 whitespace-nowrap">
+                  {item.text}
+                </span>
+              </div>
+            ))}
+          </div>
+          {/* Fade edges */}
+          <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+          <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        </div>
+        <style>{`
+          @keyframes scroll-hero {
+            0% {
+              transform: translateX(0);
+            }
+            100% {
+              transform: translateX(-50%);
+            }
+          }
+          .animate-scroll-hero {
+            animation: scroll-hero 30s linear infinite;
+            display: flex;
+            width: fit-content;
+          }
+          .animate-scroll-hero:hover {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
     </section>
   );

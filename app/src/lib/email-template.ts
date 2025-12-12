@@ -1,4 +1,4 @@
-import { ContactData } from './api';
+import { ContactData } from './types';
 import { sanitizeForHtml } from './security';
 
 const colors = {

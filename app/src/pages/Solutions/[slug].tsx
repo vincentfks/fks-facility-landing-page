@@ -60,7 +60,7 @@ const solutions: Record<string, any> = {
       'Livraison rapide en 24/72 heures',
       'Plus de 6 000 références disponibles',
     ],
-    savings: 'jusqu\'à 80%',
+    savings: 'jusqu\'à 65%',
   },
   bureau: {
     title: 'Solutions Espace Bureau',
@@ -179,13 +179,13 @@ const solutions: Record<string, any> = {
       { icon: Brain, title: 'Audit & Conseil', description: 'Recommandations personnalisées' },
       { icon: GraduationCap, title: 'Formations', description: 'Équipes opérationnelles rapidement' },
       { icon: Rocket, title: 'Solutions IA', description: 'Agents intelligents sur mesure' },
-      { icon: PenTool, title: 'Landing page', description: 'Création d\'une landing page sur-mesure qui converti' },
+      { icon: PenTool, title: 'Site web', description: 'Création d\'un site web sur-mesure qui converti' },
     ],
     partnersInfo: [
       { icon: Brain, title: 'Audit & Conseil', description: 'Recommandations personnalisées' },
       { icon: GraduationCap, title: 'Formations', description: 'Équipes opérationnelles rapidement' },
       { icon: Rocket, title: 'Solutions IA', description: 'Agents intelligents sur mesure' },
-      { icon: PenTool, title: 'Landing page', description: 'Création d\'une landing page sur-mesure qui converti' },
+      { icon: PenTool, title: 'Site web', description: 'Création d\'un site web sur-mesure qui converti' },
     ],
     categories: [
       {
@@ -212,7 +212,7 @@ const solutions: Record<string, any> = {
       'Formations pour rendre vos équipes opérationnelles rapidement',
       'Automatisations et agents intelligents intégrés à vos outils',
     ],
-    savings: 'jusqu\'à 50%',
+    savings: 'jusqu\'à 30%',
   },
   snacking: {
     title: 'Solutions Snacking',
@@ -553,6 +553,19 @@ export const SolutionDetail: React.FC = () => {
                       className="w-full h-full object-contain"
                     />
                   </div>
+                )}
+                {/* Mention Polaris pour la page informatique */}
+                {slug === 'informatique' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    className="mt-6 text-center"
+                  >
+                    <p className="text-sm text-gray-400 italic">
+                      💡 <span className="text-amber-400/80">Ce site web a été créé par Polaris</span>
+                    </p>
+                  </motion.div>
                 )}
               </motion.div>
             )}

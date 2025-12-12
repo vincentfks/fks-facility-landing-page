@@ -81,7 +81,7 @@ export const TestimonialsSection: React.FC = () => {
                 <div className="flex text-yellow-400 mb-1">
                   {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-current" />)}
                 </div>
-                <span className="text-sm text-gray-500">Note moyenne 4.7/5</span>
+                <span className="text-sm text-gray-500">Note moyenne 5/5</span>
               </div>
             </div>
           </div>

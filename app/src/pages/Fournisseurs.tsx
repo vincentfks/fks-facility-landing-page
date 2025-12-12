@@ -116,6 +116,15 @@ export const Fournisseurs: React.FC = () => {
     })
   );
 
+  // Debug in development
+  if (import.meta.env.DEV) {
+    console.log('📄 Fournisseurs page loaded', {
+      isAuthenticated,
+      isLoading,
+      isHashConfigured,
+    });
+  }
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const success = await handleLogin(password);
@@ -134,8 +143,9 @@ export const Fournisseurs: React.FC = () => {
     );
   }
 
-  // Always show password form if not authenticated OR if hash is not configured
-  if (!isAuthenticated || !isHashConfigured) {
+  // Always show password form if not authenticated
+  // If hash is not configured, still show form but with warning
+  if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#667eea] to-[#764ba2] flex items-center justify-center p-5">
         <div className="bg-white rounded-3xl p-12 max-w-md w-full shadow-2xl animate-slide-up">
