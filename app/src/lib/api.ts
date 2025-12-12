@@ -1,4 +1,3 @@
-import { sanitizeContactData, checkRateLimit } from './security';
 import { ContactData, SimulationData } from './types';
 
 export type { ContactData, SimulationData };
