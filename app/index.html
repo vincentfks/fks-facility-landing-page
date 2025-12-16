@@ -5,33 +5,99 @@
     <link rel="icon" type="image/png" href="/logo/FKS_LOGO_B.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-5CJ9TVMC');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Axeptio - Cookie Consent Manager (MUST BE FIRST) -->
+    <script>
+      window.axeptioSettings = {
+        clientId: "69258fdf3c6a01aba542b14e",
+        cookiesVersion: "0e488f5d-2657-4f21-a75b-4534c5b002ae",
+        googleConsentMode: {
+          default: {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied",
+            wait_for_update: 500
+          },
+          granted: {
+            analytics_storage: "granted",
+            ad_storage: "granted",
+            ad_user_data: "granted",
+            ad_personalization: "granted"
+          }
+        }
+      };
+      
+      (function(d, s) {
+        var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
+        e.async = true; e.src = "https://static.axept.io/sdk.js";
+        t.parentNode.insertBefore(e, t);
+      })(document, "script");
+    </script>
 
-    <!-- Rybbit Tracker -->
-    <script
-      src="https://app.rybbit.io/api/script.js"
-      data-site-id="6087b9e8663f"
-      defer
-    ></script>
+    <!-- Trackers loaded conditionally after consent -->
+    <script>
+      // Function to load trackers based on consent
+      function loadTrackers(consent) {
+        // Load Google Tag Manager if analytics cookies are accepted
+        if (consent && (consent.googleAnalytics || consent.analytics || consent['google-analytics'])) {
+          if (!window.dataLayer) {
+            window.dataLayer = window.dataLayer || [];
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-5CJ9TVMC');
+          }
+        }
 
-    <!-- Lemlist Tracker -->
-    <script type="text/javascript" src="https://app.lemlist.com/api/visitors/tracking?k=5DEW4OaUcqqz8kENmAFQmeCHYqY79janrPKqd%2BNRpJQ%3D&t=tea_KjPPCh7XLanbviEJv"></script>
+        // Load Rybbit Tracker if analytics cookies are accepted
+        if (consent && (consent.googleAnalytics || consent.analytics || consent['google-analytics'])) {
+          if (!document.querySelector('script[data-site-id="6087b9e8663f"]')) {
+            var rybbitScript = document.createElement('script');
+            rybbitScript.src = 'https://app.rybbit.io/api/script.js';
+            rybbitScript.setAttribute('data-site-id', '6087b9e8663f');
+            rybbitScript.defer = true;
+            document.head.appendChild(rybbitScript);
+          }
+        }
+
+        // Load Lemlist Tracker if marketing cookies are accepted
+        if (consent && (consent.facebookPixel || consent.marketing || consent['facebook-pixel'])) {
+          if (!document.querySelector('script[src*="lemlist.com"]')) {
+            var lemlistScript = document.createElement('script');
+            lemlistScript.type = 'text/javascript';
+            lemlistScript.src = 'https://app.lemlist.com/api/visitors/tracking?k=5DEW4OaUcqqz8kENmAFQmeCHYqY79janrPKqd%2BNRpJQ%3D&t=tea_KjPPCh7XLanbviEJv';
+            document.head.appendChild(lemlistScript);
+          }
+        }
+      }
+
+      // Wait for Axeptio to be ready
+      window.addEventListener('axeptio:ready', function() {
+        // Load trackers when consent is given
+        window.axeptioSDK.on('consent:complete', function(consent) {
+          loadTrackers(consent);
+        });
+        
+        // Also check if consent was already given (page reload)
+        window.axeptioSDK.getConsent().then(function(consent) {
+          if (consent) {
+            loadTrackers(consent);
+          }
+        });
+      });
+    </script>
 
     <!-- Security Headers -->
     <!-- Content Security Policy: Compatible with Vite HMR in development -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.rybbit.io https://app.lemlist.com https://static.axept.io https://*.axept.io https://www.googletagmanager.com https://client.crisp.chat https://js.stripe.com https://checkout.stripe.com http://localhost:* http://127.0.0.1:*; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.axept.io https://client.crisp.chat https://checkout.stripe.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data: https://client.crisp.chat; img-src 'self' data: https: http: https://*.axept.io https://www.googletagmanager.com https://*.crisp.chat https://checkout.stripe.com; connect-src 'self' https://api.resend.com https://*.supabase.co wss://*.supabase.co ws://localhost:* wss://localhost:* http://localhost:* https://localhost:* http://127.0.0.1:* ws://127.0.0.1:* https://app.rybbit.io https://app.lemlist.com https://*.axept.io https://client.axept.io https://www.googletagmanager.com https://client.crisp.chat wss://client.relay.crisp.chat https://storage.crisp.chat https://api.stripe.com https://checkout.stripe.com; frame-src 'self' https://www.googletagmanager.com https://*.crisp.chat https://checkout.stripe.com https://js.stripe.com; worker-src 'self' blob:; child-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.resend.com https://checkout.stripe.com; upgrade-insecure-requests;" />
+    <!-- Note: X-Frame-Options must be set via HTTP headers, not meta tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.rybbit.io https://app.lemlist.com https://*.lemlist.com https://static.axept.io https://*.axept.io https://www.googletagmanager.com https://client.crisp.chat https://js.stripe.com https://checkout.stripe.com http://localhost:* http://127.0.0.1:*; script-src-elem 'self' 'unsafe-inline' https://app.rybbit.io https://app.lemlist.com https://*.lemlist.com https://static.axept.io https://*.axept.io https://www.googletagmanager.com https://client.crisp.chat https://js.stripe.com https://checkout.stripe.com http://localhost:* http://127.0.0.1:*; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.axept.io https://client.crisp.chat https://checkout.stripe.com; font-src 'self' https://fonts.gstatic.com https://r2cdn.perplexity.ai data: https://client.crisp.chat; img-src 'self' data: https: http: https://*.axept.io https://www.googletagmanager.com https://*.crisp.chat https://checkout.stripe.com; connect-src 'self' https://api.resend.com https://*.supabase.co wss://*.supabase.co ws://localhost:* wss://localhost:* http://localhost:* https://localhost:* http://127.0.0.1:* ws://127.0.0.1:* https://app.rybbit.io https://app.lemlist.com https://*.lemlist.com https://*.axept.io https://client.axept.io https://www.googletagmanager.com https://client.crisp.chat wss://client.relay.crisp.chat https://storage.crisp.chat https://api.stripe.com https://checkout.stripe.com; frame-src 'self' https://www.googletagmanager.com https://*.crisp.chat https://checkout.stripe.com https://js.stripe.com; worker-src 'self' blob:; child-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://api.resend.com https://checkout.stripe.com; upgrade-insecure-requests;" />
     
     <!-- Additional Security Headers -->
+    <!-- Note: X-Frame-Options must be configured via HTTP headers on your server (Vercel/Netlify/etc) -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN" />
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(self 'https://js.stripe.com')" />
     
     <!-- SEO Meta Tags -->
@@ -84,31 +150,8 @@
       ]
     }
     </script>
-    
-    <!-- Axeptio -->
-    <script>
-      window.axeptioSettings = {
-        clientId: "69258fdf3c6a01aba542b14e",
-        cookiesVersion: "0e488f5d-2657-4f21-a75b-4534c5b002ae",
-        googleConsentMode: {
-          default: {
-            analytics_storage: "denied",
-            ad_storage: "denied",
-            ad_user_data: "denied",
-            ad_personalization: "denied",
-            wait_for_update: 500
-          }
-        }
-      };
-      
-      (function(d, s) {
-        var t = d.getElementsByTagName(s)[0], e = d.createElement(s);
-        e.async = true; e.src = "https://static.axept.io/sdk.js";
-        t.parentNode.insertBefore(e, t);
-      })(document, "script");
-    </script>
 
-    <!-- Crisp Chat -->
+    <!-- Crisp Chat (Functional - loads without consent) -->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="f30a7df0-e7f8-41a8-b00b-369f7fc7c15b";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 
     <!-- Preconnect for performance -->
