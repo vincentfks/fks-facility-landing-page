@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '../../components/ui/Button';
 import { MultiStepForm } from '../../components/forms/MultiStepForm';
 import { Card } from '../../components/ui/Card';
@@ -351,13 +351,29 @@ const solutions: Record<string, any> = {
       'Intervention en Essonne (91) et Hauts-de-Seine (92)',
       'Formules flexibles adaptées à vos besoins (ponctuel, trimestriel, mensuel)',
     ],
-    savings: 'jusqu\'à 50%',
+    savings: 'jusqu\'à 20%',
   },
 };
 
 export const SolutionDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const solution = slug ? solutions[slug] : null;
+
+  // Carousel automatique pour la page nettoyage
+  const nettoyageImages = slug === 'nettoyage' 
+    ? ['/nettoyage-page/yak1.jpeg', '/nettoyage-page/yak2.jpeg', '/nettoyage-page/yak3.jpeg']
+    : [];
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    if (slug === 'nettoyage' && nettoyageImages.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % nettoyageImages.length);
+      }, 3000); // 3 secondes
+
+      return () => clearInterval(interval);
+    }
+  }, [slug, nettoyageImages.length]);
 
   if (!solution) {
     return (
@@ -384,6 +400,11 @@ export const SolutionDetail: React.FC = () => {
       throw error;
     }
   };
+
+  // Détermine quelle image afficher
+  const displayImage = slug === 'nettoyage' && nettoyageImages.length > 0
+    ? nettoyageImages[currentImageIndex]
+    : solution.heroImage;
 
   return (
     <div className={`min-h-screen ${slug === 'informatique' ? 'bg-black' : 'bg-gray-50'}`}>
@@ -532,16 +553,33 @@ export const SolutionDetail: React.FC = () => {
                     : 'from-primary-200/40 to-secondary-200/40'
                 }`}></div>
                 <div className={`absolute inset-0 bg-gradient-to-br to-transparent rounded-2xl ${
-                  slug === 'transport' ? 'from-pink-100/20' : slug === 'emballage' ? 'from-orange-100/20' : slug === 'energie' ? 'from-green-100/20' : slug === 'bureau' ? 'from-teal-100/20' : slug === 'snacking' ? 'from-rose-100/20' : 'from-primary-100/20'
+                  slug === 'transport' ? 'from-pink-100/20' : slug === 'emballage' ? 'from-orange-100/20' : slug === 'energie' ? 'from-green-100/20' : slug === 'bureau' ? 'from-teal-100/20' : slug === 'snacking' ? 'from-rose-100/20' : slug === 'nettoyage' ? 'from-blue-100/20' : 'from-primary-100/20'
                 }`}></div>
                 {/* Image principale */}
-                <img
-                  src={solution.heroImage}
-                  alt={solution.title}
-                  className={`relative rounded-2xl shadow-2xl w-full object-cover transform -rotate-1 hover:rotate-0 transition-transform duration-500 ${
-                    slug === 'transport' ? 'shadow-pink-500/20' : slug === 'emballage' ? 'shadow-orange-500/20' : slug === 'energie' ? 'shadow-green-500/20' : slug === 'bureau' ? 'shadow-teal-500/20' : slug === 'snacking' ? 'shadow-rose-500/20' : 'shadow-primary-500/20'
-                  }`}
-                />
+                {slug === 'nettoyage' && nettoyageImages.length > 0 ? (
+                  <div className="relative rounded-2xl shadow-2xl w-full overflow-hidden shadow-blue-500/20">
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={currentImageIndex}
+                        src={displayImage}
+                        alt={solution.title}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="relative w-full h-full object-cover transform -rotate-1 hover:rotate-0 transition-transform duration-500"
+                      />
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <img
+                    src={displayImage}
+                    alt={solution.title}
+                    className={`relative rounded-2xl shadow-2xl w-full object-cover transform -rotate-1 hover:rotate-0 transition-transform duration-500 ${
+                      slug === 'transport' ? 'shadow-pink-500/20' : slug === 'emballage' ? 'shadow-orange-500/20' : slug === 'energie' ? 'shadow-green-500/20' : slug === 'bureau' ? 'shadow-teal-500/20' : slug === 'snacking' ? 'shadow-rose-500/20' : 'shadow-primary-500/20'
+                    }`}
+                  />
+                )}
                 {/* Logo partenaire (si disponible) */}
                 {solution.partnerLogo && (
                   <div className={`absolute -bottom-6 -right-6 w-24 h-24 bg-white rounded-xl shadow-xl p-2 flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-300 ${
