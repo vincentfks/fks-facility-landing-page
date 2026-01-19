@@ -5,7 +5,14 @@
     <link rel="icon" type="image/png" href="/logo/FKS_LOGO_B.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <!-- Axeptio - Cookie Consent Manager (MUST BE FIRST) -->
+    <!-- Rybbit Tracker - Loaded before consent (analytics) -->
+    <script
+      src="https://app.rybbit.io/api/script.js"
+      data-site-id="6087b9e8663f"
+      defer
+    ></script>
+
+    <!-- Axeptio - Cookie Consent Manager -->
     <script>
       window.axeptioSettings = {
         clientId: "69258fdf3c6a01aba542b14e",
@@ -47,17 +54,6 @@
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
             })(window,document,'script','dataLayer','GTM-5CJ9TVMC');
-          }
-        }
-
-        // Load Rybbit Tracker if analytics cookies are accepted
-        if (consent && (consent.googleAnalytics || consent.analytics || consent['google-analytics'])) {
-          if (!document.querySelector('script[data-site-id="6087b9e8663f"]')) {
-            var rybbitScript = document.createElement('script');
-            rybbitScript.src = 'https://app.rybbit.io/api/script.js';
-            rybbitScript.setAttribute('data-site-id', '6087b9e8663f');
-            rybbitScript.defer = true;
-            document.head.appendChild(rybbitScript);
           }
         }
 
