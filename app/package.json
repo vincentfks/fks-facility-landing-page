@@ -9,7 +9,7 @@
     "dev:vite": "node scripts/inject-password-hash.js && vite",
     "dev:server": "node server.js",
     "dev:vercel": "vercel dev",
-    "typecheck": "npx --package=typescript tsc --noEmit",
+    "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
     "build": "node scripts/inject-password-hash.js && npm run typecheck && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
