@@ -5,7 +5,7 @@ import { Button } from '../../components/ui/Button';
 import { MultiStepForm } from '../../components/forms/MultiStepForm';
 import { Card } from '../../components/ui/Card';
 import { api } from '../../lib/api';
-import { Check, Package, PenTool, FileText, Sparkles, TrendingDown, ShoppingCart, Zap, Clock, Star, Brain, GraduationCap, Rocket, Sparkle, Camera, Video, Globe, Instagram, Palette, Megaphone, Search, Printer, Calendar, Share2 } from 'lucide-react';
+import { Check, Package, PenTool, FileText, Sparkles, TrendingDown, ShoppingCart, Zap, Clock, Star, Brain, GraduationCap, Rocket, Sparkle, Camera, Video, Globe, Palette, Search, Printer, Calendar, Share2 } from 'lucide-react';
 
 const solutions: Record<string, any> = {
   emballage: {
