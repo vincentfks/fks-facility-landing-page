@@ -68,19 +68,16 @@ export const About: React.FC = () => {
                 Notre histoire
               </h2>
               <p className="text-gray-600 leading-relaxed mb-4">
-                FKS Facility est née en réponse à la crise sanitaire de la Covid-19, une période
-                où la réorganisation budgétaire est devenue cruciale pour la pérennité des
-                entreprises.
+                Tout a commencé durant la crise sanitaire de la COVID-19, une période où le monde s'est mis à l'arrêt et où la réorganisation budgétaire est devenue cruciale pour la pérennité des entreprises. C'est dans ce contexte particulier que <strong className="text-gray-900">Franck</strong> et <strong className="text-gray-900">Vincent</strong>, deux entrepreneurs aux parcours différents, ont vu leurs chemins se croiser.
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                Notre mission a rapidement émergé : réaliser une expertise approfondie de vos
-                achats pour identifier des opportunités d'optimisation, que ce soit en termes de
-                qualité ou de coûts.
+                Chacun de leur côté, ils avaient constaté un même constat : les entreprises, qu'elles soient petites ou grandes, payaient souvent trop cher pour leurs achats quotidiens. L'un venait du monde de la logistique et de l'approvisionnement, l'autre de l'entrepreneuriat et de l'optimisation opérationnelle. Mais au-delà de leurs expériences respectives, ils partageaient une conviction profonde : <strong className="text-gray-900">il était possible de permettre aux entreprises d'accéder à des prix plus avantageux</strong>, sans compromettre la qualité ni les relations avec les fournisseurs.
+              </p>
+              <p className="text-gray-600 leading-relaxed mb-4">
+                C'est ainsi qu'est née <strong className="text-gray-900">FKS Facility</strong>, portée par une ambition commune : créer une centrale d'achat nouvelle génération qui met le pouvoir de négociation au service des entreprises. Leur mission ? Réaliser une expertise approfondie des achats pour identifier des opportunités d'optimisation, que ce soit en termes de qualité ou de coûts. Leur idée ? Rassembler les volumes d'achats de nombreuses entreprises pour négocier des conditions tarifaires exceptionnelles, que seules les grandes corporations pouvaient obtenir jusqu'alors.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                Nous sommes déterminés à vous aider à économiser, améliorer la qualité de vos
-                achats, et garantir la santé financière de votre entreprise. Avec FKS Facility,
-                vous avez un partenaire dévoué pour réussir dans un monde en constante évolution.
+                Aujourd'hui, cette vision est devenue réalité. FKS Facility accompagne des centaines d'entreprises dans l'optimisation de leurs achats, leur permettant de réaliser des économies significatives tout en conservant leur liberté de choix et leur autonomie. Nous sommes déterminés à vous aider à économiser, améliorer la qualité de vos achats, et garantir la santé financière de votre entreprise. Parce que nous croyons que <strong className="text-gray-900">chaque entreprise mérite d'avoir accès aux meilleurs prix</strong>, quelle que soit sa taille.
               </p>
             </motion.div>
             <motion.div
@@ -88,13 +85,51 @@ export const About: React.FC = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative rounded-xl h-64 lg:h-96 overflow-hidden shadow-xl"
+              className="relative h-full flex items-center"
             >
-              <img 
-                src="/a-propos/team.png" 
-                alt="L'équipe FKS Facility" 
-                className="w-full h-full object-cover transform scale-110"
-              />
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 w-full">
+                {/* Franck - Colonne de gauche */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, rotate: -8 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: -8 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="relative w-full flex justify-center"
+                >
+                  <div className="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-white">
+                    <img 
+                      src="/a-propos/franck.jpeg" 
+                      alt="Franck - Fondateur et directeur commercial FKS Facility" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-5">
+                      <p className="text-white font-bold text-xl">Franck</p>
+                      <p className="text-white/90 text-sm font-medium">Fondateur et directeur commercial</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Vincent - Colonne de droite */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20, rotate: 8 }}
+                  whileInView={{ opacity: 1, y: 0, rotate: 8 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="relative w-full flex justify-center"
+                >
+                  <div className="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-white">
+                    <img 
+                      src="/a-propos/vincent.jpeg" 
+                      alt="Vincent - Associé et directeur marketing FKS Facility" 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent p-5">
+                      <p className="text-white font-bold text-xl">Vincent</p>
+                      <p className="text-white/90 text-sm font-medium">Associé et directeur marketing</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </div>

@@ -23,7 +23,7 @@ const suppliers: Supplier[] = [
     categoryColor: 'primary',
     contact: {
       name: 'Estelle Lavalle',
-      phone: '0160920988',
+      phone: '+33 1.60.92.09.88',
       email: 'e-lavalle@bruneau.fr',
       website: 'https://www.bruneau.fr',
     },
@@ -36,7 +36,7 @@ const suppliers: Supplier[] = [
     categoryColor: 'secondary',
     contact: {
       name: 'Frédéric Prépin',
-      phone: '0649892194',
+      phone: '+33 6.49.89.21.94',
       email: 'F.prepin@cpconsulting.fr',
       website: 'https://www.cpconsulting.fr',
     },
@@ -50,7 +50,7 @@ const suppliers: Supplier[] = [
     categoryColor: 'primary',
     contact: {
       name: 'Benjamin Lheureux',
-      phone: '0648632342',
+      phone: '+33 6.48.63.23.42',
       email: 'benjamin.lheureux@cenpac.fr',
       website: 'https://www.cenpac.fr',
     },
@@ -63,7 +63,7 @@ const suppliers: Supplier[] = [
     categoryColor: 'primary',
     contact: {
       name: 'Vincent Felisat',
-      phone: '0604083673',
+      phone: '+33 6.04.08.36.73',
       email: 'Vincent.felisat@polarisagency.fr',
       website: 'https://www.polarisagency.fr',
     },
@@ -76,7 +76,7 @@ const suppliers: Supplier[] = [
     categoryColor: 'secondary',
     contact: {
       name: 'Julien Pinera',
-      phone: '0672289306',
+      phone: '+33 6.72.28.93.06',
       email: 'jpinera@d8.fr',
       website: 'https://d8.fr',
     },
@@ -89,12 +89,25 @@ const suppliers: Supplier[] = [
     categoryColor: 'primary',
     contact: {
       name: 'May',
-      phone: '0782941349',
+      phone: '+33 7.82.94.13.49',
       email: 'yakleannettoyage@gmail.com',
       website: 'https://www.yakclean.fr',
     },
     logo: '/partners/Yaklean-logo.png',
     logoAlt: 'Yaklean Logo',
+  },
+  {
+    name: 'Agence Rouge Varap',
+    category: 'Design marque',
+    categoryColor: 'secondary',
+    contact: {
+      name: 'Doriane Chantôme',
+      phone: '+33 6.95.33.34.07',
+      email: 'contact@agence-varap.fr',
+      website: 'https://www.agence-varap.fr',
+    },
+    logo: '/partners/Agence-rouge-Varap.svg',
+    logoAlt: 'Agence Rouge Varap Logo',
   },
 ];
 
@@ -273,7 +286,7 @@ export const Fournisseurs: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </ContactIcon>
                   <a 
-                    href={`tel:${supplier.contact.phone.replace(/\s/g, '')}`}
+                    href={`tel:${supplier.contact.phone.replace(/[\s.]/g, '')}`}
                     className="text-gray-700 hover:text-primary-600 transition-colors"
                   >
                     {supplier.contact.phone}

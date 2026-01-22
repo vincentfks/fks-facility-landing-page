@@ -123,13 +123,19 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-10 right-10 z-20"
             >
+              {/* Badge Offre du moment */}
+              <div className="mb-2 text-center">
+                <span className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg">
+                  Offre du 1er février au 28 février
+                </span>
+              </div>
               <div className="glass-card p-6 rounded-2xl w-72">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center">
                     <TrendingDown className="w-6 h-6 text-secondary-600" />
                   </div>
                   <span className="bg-secondary-50 text-secondary-700 px-2 py-1 rounded text-xs font-medium">
-                    -53% économisé
+                    -52% économisé
                   </span>
                 </div>
                 <div className="flex items-center justify-between mb-1">
@@ -141,8 +147,8 @@ export const HeroSection: React.FC = () => {
                   />
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-gray-900">3,36 €</span>
-                  <span className="text-sm text-gray-500 line-through">7,15 €</span>
+                  <span className="text-2xl font-bold text-gray-900">2,90 €</span>
+                  <span className="text-sm text-gray-500 line-through">5,99 €</span>
                 </div>
               </div>
             </motion.div>
@@ -197,7 +203,7 @@ export const HeroSection: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-gray-600 text-sm">Caisse Carton (x10)</p>
+                  <p className="text-gray-600 text-sm">Caisse Carton DD (300x300x300)</p>
                   <img 
                     src="/home-page/Carton.png" 
                     alt="Caisse Carton" 

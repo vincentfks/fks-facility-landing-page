@@ -6,6 +6,7 @@ import {
   Package,
   Truck,
   Sparkles,
+  PenTool,
 } from 'lucide-react';
 import { SolutionCard } from './SolutionCard';
 
@@ -51,6 +52,13 @@ const solutions = [
     description: 'Nettoyage de vitres professionnel, entretien régulier, après chantier...',
     path: '/solutions/nettoyage',
     color: 'primary' as const,
+  },
+  {
+    icon: PenTool,
+    title: 'Design marque',
+    description: 'Identité visuelle, sites web, réseaux sociaux, print, vidéo, photographie...',
+    path: '/solutions/design-marque',
+    color: 'accent' as const,
   },
   // {
   //   icon: Zap,

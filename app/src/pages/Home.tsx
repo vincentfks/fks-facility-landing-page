@@ -46,6 +46,7 @@ const partners = [
   { name: 'Polaris', src: '/partners/polaris.png' },
   { name: 'CP Consulting', src: '/transport-page/CP-consulting-logo.png' },
   { name: 'Yaklean', src: '/partners/Yaklean-logo.png' },
+  { name: 'Agence Rouge Varap', src: '/partners/Agence-rouge-Varap.svg' },
 ];
 
 export const Home: React.FC = () => {
@@ -70,7 +71,7 @@ export const Home: React.FC = () => {
       <section className="py-10 border-y border-gray-100 bg-gray-50/50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <p className="text-center text-sm font-medium text-gray-500 uppercase tracking-wider">
-            Ils nous font confiance pour leurs achats
+            Vos futurs fournisseurs préférés
           </p>
         </div>
         
@@ -130,7 +131,7 @@ export const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
             <StatCard label="Des clients satisfaits" value={98} suffix="%" delay={0} />
-            <StatCard label="Retour sur investissement (jours)" value={30} suffix="j" delay={0.1} />
+            <StatCard label="Retour sur investissement (jours)" value={30} suffix="J" delay={0.1} />
             <StatCard label="Jusqu'à" value={70} suffix="% d'économies" delay={0.2} />
           </div>
         </div>
