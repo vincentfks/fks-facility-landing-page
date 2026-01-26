@@ -1,0 +1,257 @@
+# Claude AI - Règles de Développement
+> Configuration pour le développement avec Claude - À placer à la racine du projet
+
+## 🎯 Stack Technique
+**Frontend:** React 18+ TypeScript | **Backend:** Node.js 20+ Express TypeScript
+**Base de données:** Aucune pour le moment | **Auth:** Aucune pour le moment  | **State:** Aucune pour le moment 
+
+## ⚡ Règles Absolues - NON NÉGOCIABLES
+
+### TypeScript
+- ❌ **INTERDIT:** Type `any`, fichiers .jsx, composants class
+- ✅ **OBLIGATOIRE:** Typage strict, interfaces pour props, .tsx/.ts uniquement
+
+### Architecture
+```
+Frontend: components/ui → features/[feature]/components → pages
+Backend: routes → controllers → services → models
+```
+
+### Multi-tenant
+```typescript
+// 🔒 CRITIQUE: TOUJOURS filtrer par organizationId
+await prisma.user.findMany({
+  where: { organizationId: req.user.organizationId } // OBLIGATOIRE
+});
+```
+
+## 📁 Nommage de Fichiers
+- Composants React: `UserCard.tsx` (PascalCase)
+- Hooks: `useAuth.ts` (camelCase + préfixe use)
+- Services: `user.service.ts` (camelCase + .service)
+- Utils: `formatDate.ts` (camelCase)
+
+## ⚛️ Composants React - Structure Standard
+
+```typescript
+// 1. Imports
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/Button';
+import type { User } from '@/types/user';
+
+// 2. Types
+interface UserCardProps {
+  user: User;
+  onEdit?: (id: string) => void;
+}
+
+// 3. Composant
+export const UserCard = ({ user, onEdit }: UserCardProps) => {
+  // 3.1 State hooks
+  const [isEditing, setIsEditing] = useState(false);
+  
+  // 3.2 Custom hooks
+  const { currentUser } = useAuth();
+  
+  // 3.3 Effects
+  useEffect(() => { /* ... */ }, [user.id]);
+  
+  // 3.4 Handlers
+  const handleEdit = () => setIsEditing(true);
+  
+  // 3.5 Early returns
+  if (!user) return null;
+  
+  // 3.6 Render
+  return <div>{/* ... */}</div>;
+};
+```
+
+## 🚀 Backend - Structure Standard
+
+```typescript
+// Controller: Validation + HTTP
+export const userController = {
+  create: async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const user = await userService.createUser({
+        ...req.body,
+        organizationId: req.user!.organizationId, // Multi-tenant
+      });
+      res.status(201).json({ success: true, data: user });
+    } catch (error) {
+      next(error);
+    }
+  },
+};
+
+// Service: Logique métier
+export const userService = {
+  createUser: async (input: CreateUserInput) => {
+    // Vérifications métier
+    const existing = await prisma.user.findFirst({
+      where: { 
+        email: input.email,
+        organizationId: input.organizationId, // Multi-tenant
+      },
+    });
+    
+    if (existing) throw new ApiError(409, 'User exists');
+    
+    return prisma.user.create({ data: input });
+  },
+};
+```
+
+## 🔒 Sécurité - Checklist
+
+- [ ] **Multi-tenant:** `organizationId` dans TOUTES les requêtes DB
+- [ ] **Validation:** Zod schemas sur tous les inputs
+- [ ] **Auth:** Middleware `authenticate` sur routes protégées
+- [ ] **Errors:** Classe `ApiError` personnalisée
+- [ ] **Env vars:** Validation avec Zod au démarrage
+- [ ] **CORS:** Origins whitelistées uniquement
+- [ ] **Rate limiting:** Sur endpoints critiques
+
+## 📝 Gestion d'Erreurs
+
+```typescript
+// Custom error class
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    public message: string
+  ) {
+    super(message);
+  }
+}
+
+// Global error handler
+export const errorHandler = (err: Error, req, res, next) => {
+  if (err instanceof ApiError) {
+    return res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+    });
+  }
+  
+  console.error('Unhandled error:', err);
+  res.status(500).json({ success: false, message: 'Internal error' });
+};
+```
+
+## 🎨 Imports - Ordre Standard
+
+```typescript
+// 1. External
+import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+// 2. Internal (alias @/)
+import { Button } from '@/components/ui/Button';
+import { useAuth } from '@/hooks/useAuth';
+
+// 3. Types
+import type { User } from '@/types/user';
+
+// ❌ ÉVITER les imports relatifs profonds
+// import { X } from '../../../utils/x';
+```
+
+## ⚡ Performance
+
+```typescript
+// ✅ Mémoïsation
+const value = useMemo(() => expensiveCalc(data), [data]);
+const handler = useCallback(() => doSomething(), []);
+
+// ✅ Lazy loading
+const Dashboard = lazy(() => import('@/pages/Dashboard'));
+
+// ✅ Pagination backend
+const users = await prisma.user.findMany({
+  where: { organizationId },
+  skip: (page - 1) * limit,
+  take: limit,
+});
+```
+
+## 🧪 Tests - Structure
+
+```typescript
+describe('UserService', () => {
+  describe('createUser', () => {
+    it('should create user successfully', async () => {
+      // Arrange
+      const input = { email: 'test@example.com', ... };
+      
+      // Act
+      const result = await userService.createUser(input);
+      
+      // Assert
+      expect(result).toMatchObject(input);
+    });
+  });
+});
+```
+
+## ✅ Pre-Commit Checklist
+
+```bash
+# Lancer ces commandes AVANT chaque commit
+npm run lint          # ✅ Pas d'erreurs ESLint
+npm run type-check    # ✅ Pas d'erreurs TypeScript
+npm run test          # ✅ Tests passent
+```
+
+- [ ] Pas de `console.log` oubliés
+- [ ] Pas de type `any`
+- [ ] organizationId vérifié sur requêtes DB
+- [ ] Variables d'env documentées si ajoutées
+
+## 🐛 Logging
+
+```typescript
+// ✅ Structured logging
+logger.info({ userId, action: 'login' }, 'User logged in');
+logger.error({ err, userId }, 'Failed to create user');
+
+// ❌ Éviter console.log en production
+```
+
+## 📚 Documentation
+
+```typescript
+// ✅ Documenter les fonctions publiques/complexes
+/**
+ * Calculates prorated subscription cost
+ * @param subscription - Active subscription
+ * @param usageData - Usage metrics for period
+ * @returns Cost in cents
+ */
+export const calculateCost = (subscription, usageData): number => {
+  // Complex logic explained here
+};
+```
+
+## 🚫 INTERDICTIONS
+
+| ❌ NE JAMAIS | ✅ TOUJOURS |
+|-------------|-------------|
+| Type `any` | Types stricts |
+| Logique dans composants React | Hooks/services |
+| Requêtes sans organizationId | Isolation multi-tenant |
+| Default exports (composants) | Named exports |
+| Imports relatifs profonds | Alias @/ |
+| console.log en prod | Structured logging |
+| Passwords en clair | Hashing bcrypt/argon2 |
+
+## 📞 Références Rapides
+
+**Docs complètes:** Voir `.claude-project-config.md`
+**Types:** `/src/types/`
+**Examples:** `/docs/examples/`
+
+---
+
+**Pour Claude:** Respecte TOUJOURS ces règles. Si tu dévies, explique pourquoi et propose une alternative conforme aux standards.

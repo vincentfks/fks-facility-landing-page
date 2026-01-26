@@ -1,0 +1,324 @@
+# Cursor Rules - Standards React/Node.js TypeScript
+
+## 🎯 Vue d'Ensemble
+
+Ce projet suit des standards stricts définis dans `.claudeconfig`. 
+Consulte ce fichier pour les détails complets.
+
+## ⚡ Règles Absolues
+
+### TypeScript
+- Toujours utiliser TypeScript strict
+- JAMAIS de type `any`
+- Interfaces pour toutes les props React
+- Types explicites pour paramètres de fonction
+
+### Architecture
+
+#### Frontend (React)
+```
+src/
+├── components/ui/      # Composants réutilisables
+├── features/[name]/    # Features organisées par domaine
+│   ├── components/
+│   ├── hooks/
+│   ├── services/
+│   └── types/
+├── hooks/              # Hooks globaux
+├── pages/              # Pages/Routes
+└── lib/                # Config librairies
+```
+
+#### Backend (Node.js)
+```
+src/
+├── routes/         # Définition endpoints
+├── controllers/    # Validation + HTTP responses
+├── services/       # Logique métier
+├── models/         # Prisma/DB models
+└── middleware/     # Auth, validation, errors
+```
+
+### Composants React - Structure Standard
+
+```typescript
+// 1. Imports
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/Button';
+import type { User } from '@/types/user';
+
+// 2. Types
+interface ComponentProps {
+  prop: string;
+}
+
+// 3. Composant (Named export)
+export const ComponentName = ({ prop }: ComponentProps) => {
+  // 3.1 State hooks
+  const [state, setState] = useState();
+  
+  // 3.2 Custom hooks
+  const { data } = useCustomHook();
+  
+  // 3.3 Effects
+  useEffect(() => {}, []);
+  
+  // 3.4 Handlers
+  const handleClick = () => {};
+  
+  // 3.5 Early returns
+  if (!data) return null;
+  
+  // 3.6 Render
+  return <div></div>;
+};
+```
+
+### Backend - Structure Standard
+
+```typescript
+// routes/resource.routes.ts
+router.post('/resource', 
+  authenticate,
+  validateRequest(createSchema),
+  controller.create
+);
+
+// controllers/resource.controller.ts
+export const resourceController = {
+  create: async (req, res, next) => {
+    try {
+      const result = await resourceService.create({
+        ...req.body,
+        organizationId: req.user!.organizationId, // Multi-tenant!
+      });
+      res.status(201).json({ success: true, data: result });
+    } catch (error) {
+      next(error);
+    }
+  }
+};
+
+// services/resource.service.ts
+export const resourceService = {
+  create: async (input: CreateInput) => {
+    // Logique métier ici
+    return prisma.resource.create({
+      data: input,
+    });
+  }
+};
+```
+
+## 🔒 Sécurité Multi-Tenant
+
+**CRITIQUE:** Toujours filtrer par `organizationId` dans TOUTES les requêtes DB.
+
+```typescript
+// ✅ CORRECT
+const user = await prisma.user.findFirst({
+  where: {
+    id: userId,
+    organizationId: req.user!.organizationId, // OBLIGATOIRE
+  },
+});
+
+// ❌ INTERDIT - Risque de fuite de données
+const user = await prisma.user.findFirst({
+  where: { id: userId },
+});
+```
+
+## 📝 Conventions de Nommage
+
+```typescript
+// Variables, fonctions: camelCase
+const userName = 'John';
+const fetchUserData = () => {};
+
+// Constantes: UPPER_SNAKE_CASE
+const MAX_RETRY_COUNT = 3;
+
+// Classes, Types, Composants: PascalCase
+class UserService {}
+interface UserProfile {}
+export const UserCard = () => {};
+
+// Fichiers:
+// - Composants: UserCard.tsx
+// - Hooks: useAuth.ts
+// - Services: user.service.ts
+// - Utils: formatDate.ts
+```
+
+## ⚛️ React - Bonnes Pratiques
+
+### Mémoïsation
+```typescript
+// Calculs coûteux
+const value = useMemo(() => expensiveCalc(data), [data]);
+
+// Callbacks passés en props
+const handler = useCallback(() => action(), []);
+```
+
+### Gestion État
+```typescript
+// Données serveur: React Query
+const { data, isLoading } = useQuery({
+  queryKey: ['users', filters],
+  queryFn: () => api.users.list(filters),
+});
+
+// État UI global: Zustand
+const useStore = create((set) => ({
+  count: 0,
+  increment: () => set((state) => ({ count: state.count + 1 })),
+}));
+```
+
+### Performance
+```typescript
+// Code splitting
+const Dashboard = lazy(() => import('./Dashboard'));
+
+// Pagination obligatoire pour listes
+const users = await prisma.user.findMany({
+  skip: (page - 1) * limit,
+  take: limit,
+});
+```
+
+## 🔧 Backend - Bonnes Pratiques
+
+### Validation
+```typescript
+// Zod schemas
+const createUserSchema = z.object({
+  email: z.string().email(),
+  name: z.string().min(2),
+});
+
+// Middleware
+validateRequest(createUserSchema)
+```
+
+### Gestion Erreurs
+```typescript
+// Classe custom
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    public message: string
+  ) {
+    super(message);
+  }
+}
+
+// Usage
+throw new ApiError(404, 'User not found');
+```
+
+### Authentification
+```typescript
+// Middleware auth
+export const authenticate = async (req, res, next) => {
+  const token = req.headers.authorization?.replace('Bearer ', '');
+  if (!token) throw new ApiError(401, 'Auth required');
+  
+  const payload = await verifyToken(token);
+  req.user = payload;
+  next();
+};
+```
+
+## 🧪 Tests
+
+```typescript
+describe('Feature', () => {
+  describe('method', () => {
+    it('should behavior', () => {
+      // Arrange
+      const input = {};
+      
+      // Act
+      const result = method(input);
+      
+      // Assert
+      expect(result).toEqual(expected);
+    });
+  });
+});
+```
+
+## 🚫 Interdictions
+
+| ❌ NE JAMAIS | ✅ FAIRE |
+|-------------|---------|
+| Type `any` | Types stricts |
+| Default exports (composants) | Named exports |
+| Logique dans composants | Hooks/services |
+| Requêtes sans organizationId | Isolation multi-tenant |
+| console.log en prod | Structured logging |
+| Passwords en clair | Hashing bcrypt |
+
+## 📚 Documentation
+
+```typescript
+/**
+ * [Description courte de la fonction]
+ * 
+ * @param input - Description du paramètre
+ * @returns Description du retour
+ * @throws {ApiError} Quand erreur
+ */
+export const functionName = (input: Type): Return => {
+  // Implémentation
+};
+```
+
+## ⚡ Checklist Pre-Commit
+
+```bash
+npm run lint         # ✅ Pas d'erreurs
+npm run type-check   # ✅ Types valides
+npm run test         # ✅ Tests passent
+```
+
+- [ ] Pas de `console.log`
+- [ ] Pas de `any`
+- [ ] organizationId présent
+- [ ] Tests ajoutés/mis à jour
+
+## 🎯 Quand Suggérer
+
+### Refactoring
+Si tu vois du code qui viole ces règles, propose un refactor:
+- Séparer logique/présentation
+- Ajouter typage
+- Implémenter multi-tenant
+- Améliorer structure
+
+### Performance
+Suggère optimisations si:
+- Composant re-rend trop
+- Queries DB lentes (N+1)
+- Pas de pagination
+- Pas de mémoïsation
+
+### Sécurité
+Flag immédiatement:
+- Requêtes sans organizationId
+- Inputs non validés
+- Secrets en dur
+- XSS potentiel
+
+## 📖 Ressources
+
+- Standards complets: `.claudeconfig`
+- Config détaillée: `.claude-project-config.md`
+- Templates: `PROMPT-TEMPLATES.md`
+
+---
+
+**Pour l'AI:** Respecte TOUJOURS ces règles. Si tu dévies, explique pourquoi.
