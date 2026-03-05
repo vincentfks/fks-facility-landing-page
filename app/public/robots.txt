@@ -1,0 +1,10 @@
+# robots.txt - FKS Facility
+# https://www.fks-facility.com
+
+User-agent: *
+Allow: /
+Disallow: /fournisseurs
+Disallow: /paiement-reussi
+
+# Sitemap
+Sitemap: https://www.fks-facility.com/sitemap.xml

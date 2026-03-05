@@ -1,0 +1,37 @@
+# FKS Facility - llms.txt
+# https://www.fks-facility.com
+
+## About
+FKS Facility is a purchasing group (centrale d'achat) for small and medium-sized businesses (TPE/PME) in France. We negotiate preferential rates with trusted suppliers so our members can access the same advantages as large companies — with no minimum order, no commitment, and up to 70% savings.
+
+## Company
+- Name: FKS Facility Solutions
+- Website: https://www.fks-facility.com
+- Location: 15 rue Lucien Sergent, 91300 Massy, France
+- Language: French
+
+## Services
+- Packaging solutions (Emballage) — Partner: Cenpac
+- Office supplies (Espace Bureau) — Partner: Bruneau
+- IT equipment (Informatique)
+- Cleaning services (Nettoyage) — Partner: Yaklean
+- Snacking & coffee machines — Partner: D8
+- Transport & Logistics — Partner: CP Consulting
+- Brand design (Design marque) — Partner: Agence Rouge Varap
+- Video agency (Agence video) — Partner: Redcut
+
+## Key Pages
+- Home: https://www.fks-facility.com/
+- Solutions: https://www.fks-facility.com/solutions
+- Pricing: https://www.fks-facility.com/tarifs
+- About: https://www.fks-facility.com/a-propos
+- Contact: https://www.fks-facility.com/contact
+- Savings simulator: https://www.fks-facility.com/simuler-mes-economies
+
+## Contact
+- Email: contact@fks-facility.com
+
+## Preferences
+- Allow indexing of public pages
+- Do not index /fournisseurs (password-protected supplier directory)
+- Do not index /paiement-reussi (payment confirmation page)

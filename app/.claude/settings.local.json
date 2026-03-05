@@ -13,7 +13,9 @@
       "Bash(npx tsc --noEmit --pretty src/pages/Solutions/[slug].tsx)",
       "Bash(grep -n \"agence-video\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
       "Bash(grep -n \"^  ''[a-z-]*'':\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
-      "Bash(grep -n \"heroImage:\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)"
+      "Bash(grep -n \"heroImage:\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
+      "Bash(grep -E \"case ''|slug ===\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
+      "Bash(grep -o \"slug === ''[^'']*''\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)"
     ]
   }
 }
