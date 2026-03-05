@@ -123,19 +123,13 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               className="absolute top-10 right-10 z-20"
             >
-              {/* Badge Offre du moment */}
-              <div className="mb-2 text-center">
-                <span className="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-lg">
-                  Offre du 1er février au 28 février
-                </span>
-              </div>
               <div className="glass-card p-6 rounded-2xl w-72">
                 <div className="flex justify-between items-start mb-4">
                   <div className="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center">
                     <TrendingDown className="w-6 h-6 text-secondary-600" />
                   </div>
                   <span className="bg-secondary-50 text-secondary-700 px-2 py-1 rounded text-xs font-medium">
-                    -52% économisé
+                    -53% économisé
                   </span>
                 </div>
                 <div className="flex items-center justify-between mb-1">
@@ -147,8 +141,8 @@ export const HeroSection: React.FC = () => {
                   />
                 </div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-gray-900">2,90 €</span>
-                  <span className="text-sm text-gray-500 line-through">5,99 €</span>
+                  <span className="text-2xl font-bold text-gray-900">3,36 €</span>
+                  <span className="text-sm text-gray-500 line-through">7,15 €</span>
                 </div>
               </div>
             </motion.div>
@@ -225,9 +219,9 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Scrolling Banner */}
-      <div className="absolute top-0 left-0 right-0 py-[34px] z-40 pointer-events-none">
-        <div className="relative overflow-hidden">
-          <div className="flex animate-scroll-hero whitespace-nowrap">
+      <div className="absolute top-0 left-0 right-0 pt-[34px] pb-[56px] z-40 pointer-events-none">
+        <div className="relative overflow-hidden py-2">
+          <div className="flex animate-scroll-hero whitespace-nowrap hover:[animation-play-state:paused]" style={{ width: 'fit-content' }}>
             {[
               { text: 'Votre centrale de référencement' },
               { text: 'Des économies massives sur vos achats généraux' },
@@ -254,24 +248,6 @@ export const HeroSection: React.FC = () => {
           <div className="absolute top-0 left-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute top-0 right-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
         </div>
-        <style>{`
-          @keyframes scroll-hero {
-            0% {
-              transform: translateX(0);
-            }
-            100% {
-              transform: translateX(-50%);
-            }
-          }
-          .animate-scroll-hero {
-            animation: scroll-hero 30s linear infinite;
-            display: flex;
-            width: fit-content;
-          }
-          .animate-scroll-hero:hover {
-            animation-play-state: paused;
-          }
-        `}</style>
       </div>
     </section>
   );

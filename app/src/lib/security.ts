@@ -3,26 +3,6 @@
  */
 
 /**
- * Sanitize string input to prevent XSS attacks
- * Escapes HTML entities to prevent injection
- */
-export const sanitizeInput = (input: string): string => {
-  if (typeof input !== 'string') return '';
-  
-  return input
-    .trim()
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#x27;')
-    .replace(/\//g, '&#x2F;')
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    .replace(/javascript:/gi, '')
-    .replace(/on\w+\s*=/gi, '');
-};
-
-/**
  * Validate email format
  */
 export const isValidEmail = (email: string): boolean => {
@@ -89,7 +69,7 @@ export const sanitizeContactData = (data: {
     sanitized.phone = data.phone.trim().substring(0, 50);
     if (sanitized.phone && !isValidPhone(sanitized.phone)) {
       // Phone validation is optional, just log warning
-      console.warn('Format de téléphone potentiellement invalide:', sanitized.phone);
+      // Phone format validation is non-blocking
     }
   }
 
@@ -129,25 +109,4 @@ export const sanitizeContactData = (data: {
   return sanitized;
 };
 
-/**
- * Rate limiting helper (client-side, basic)
- */
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
-
-export const checkRateLimit = (key: string, maxRequests: number = 5, windowMs: number = 900000): boolean => {
-  const now = Date.now();
-  const record = rateLimitStore.get(key);
-
-  if (!record || now > record.resetTime) {
-    rateLimitStore.set(key, { count: 1, resetTime: now + windowMs });
-    return true;
-  }
-
-  if (record.count >= maxRequests) {
-    return false;
-  }
-
-  record.count++;
-  return true;
-};
 

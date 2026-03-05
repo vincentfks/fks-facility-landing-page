@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "Bash(sort -k2)",
+      "Bash(grep -c \"export const\\\\|export function\\\\|export interface\\\\|export type\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/lib/*.ts /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/hooks/*.ts)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx vite build)",
+      "Bash(git -C /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app remote set-head origin main)",
+      "WebFetch(domain:redcut.fr)",
+      "Bash(awk 'NR > 468 && /design-marque/' \"/Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx\")",
+      "Bash(awk 'NR > 468 && /agence-video/' \"/Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx\")",
+      "Bash(npx tsc --noEmit --pretty src/pages/Solutions/[slug].tsx)",
+      "Bash(grep -n \"agence-video\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
+      "Bash(grep -n \"^  ''[a-z-]*'':\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)",
+      "Bash(grep -n \"heroImage:\" /Users/vincentfelisat/Documents/polaris/dev/fksfacility/fks-landing-page/app/src/pages/Solutions/[slug].tsx)"
+    ]
+  }
+}

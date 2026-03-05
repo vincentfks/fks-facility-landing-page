@@ -125,46 +125,6 @@ const solutions: Record<string, any> = {
     ],
     savings: 'jusqu\'à 70%',
   },
-  // energie: {
-  //   title: 'Solutions Énergie',
-  //   description:
-  //     'Illuminez votre parcours avec notre fourniture d\'énergie ENI, élu meilleur fournisseur énergétique en 2022 et 2023. Du gaz à l\'électricité, nous mettons la puissance entre vos mains. Profitez de nos conditions commerciales et faites enfin baisser vos factures.',
-  //   icon: '⚡',
-  //   heroImage: '/energie-page/solutions_energie.jpg',
-  //   partnerLogo: '/partners/eni-logo.png',
-  //   introTitle: 'Le courant passe entre nous !',
-  //   introIcons: ['⚡', '💡', '🌱'],
-  //   introText1: 'Des Mégawatts d\'économies ! FKS Facility vous fait profiter de <span class="text-green-600">tarifs négociés avec notre fournisseur ENI, médaillée Silver d\'Ecovadis 2023.</span>',
-  //   introText2: 'Engagée pour l\'environnement, ENI propose des offres vertes, une solution complète pour <span class="text-green-500">limiter votre impact environnemental</span>, car le respect de la planète est au cœur de nos valeurs.',
-  //   introFeatures: [],
-  //   partnersInfo: [
-  //     { icon: TrendingDown, title: 'Économies', description: 'Tarifs négociés' },
-  //     { icon: Sparkles, title: 'Optimisation', description: 'Énergétique' },
-  //     { icon: Check, title: 'Fiabilité', description: 'ENI certifié' },
-  //     { icon: Leaf, title: 'Durabilité', description: 'Offres vertes' },
-  //   ],
-  //   categories: [
-  //     {
-  //       title: 'Gaz',
-  //       description: 'Optez pour des contrats gaz flexibles et avantageux pour votre entreprise.',
-  //       image: '/energie-page/gaz.svg',
-  //     },
-  //     {
-  //       title: 'Électricité',
-  //       description: 'Des contrats énergétiques adaptés à vos besoins et au meilleur prix !',
-  //       image: '/energie-page/electricite.svg',
-  //     },
-  //   ],
-  //   products: [],
-  //   benefits: [
-  //     'Tarifs négociés avec ENI, meilleur fournisseur énergétique 2022 et 2023',
-  //     'Offres vertes pour limiter votre impact environnemental',
-  //     'Médaillée Silver d\'Ecovadis 2023',
-  //     'Contrats flexibles adaptés à vos besoins',
-  //     'Solution complète gaz et électricité',
-  //   ],
-  //   savings: 'jusqu\'à 40%',
-  // },
   informatique: {
     title: 'Solutions Informatique',
     description:
@@ -440,6 +400,71 @@ const solutions: Record<string, any> = {
     ],
     savings: 'jusqu\'à 20%',
   },
+  'agence-video': {
+    title: 'Solutions Agence Vidéo',
+    description:
+      'Redcut transforme vos réseaux sociaux en accélérateur de business. Production vidéo clé en main : stratégie, tournage sur site, montage dynamique et gestion complète de vos réseaux sociaux pour convertir votre audience en clients.',
+    icon: '🎬',
+    heroImage: '/agence-video/redcut-degrade.png',
+    partnerLogo: '/partners/redcut.png',
+    introTitle: 'Vos réseaux sociaux, votre machine à business !',
+    introIcons: ['🎬', '📱', '🚀'],
+    introText1:
+      '<span class="text-red-600 font-semibold">Redcut</span> ne fait pas "juste des vidéos" — ils convertissent vos vues en prospects qualifiés. Grâce à notre partenariat exclusif, bénéficiez d\'une offre 100% clé en main pour transformer votre expertise en visibilité et surtout en chiffre d\'affaires.',
+    introText2:
+      'BTP, Immobilier, Restauration... Redcut accompagne les entreprises avec une méthode éprouvée : stratégie sur-mesure, tournage sur site, montage dynamique et suivi des performances. Résultat : <span class="text-red-500 font-semibold">jusqu\'à x3.5 de chiffre d\'affaires</span> pour leurs clients.',
+    introFeatures: [],
+    partnersInfo: [
+      { icon: FileText, title: 'Stratégie', description: 'Scripts sur-mesure' },
+      { icon: Camera, title: 'Tournage', description: 'Équipe sur site' },
+      { icon: Sparkles, title: 'Création', description: 'Montage dynamique' },
+      { icon: TrendingDown, title: 'Résultats', description: 'x3.5 de CA' },
+    ],
+    categories: [
+      {
+        title: 'Stratégie & Scripts',
+        description:
+          'Audit de positionnement, direction éditoriale et scripts optimisés adaptés à votre cible et votre secteur d\'activité.',
+        icon: FileText,
+        iconColor: 'text-red-600',
+        gradientColor: 'from-red-50 to-white',
+      },
+      {
+        title: 'Tournage sur site',
+        description:
+          'Nos équipes se déplacent partout en France pour capturer votre savoir-faire et humaniser votre marque avec des contenus authentiques.',
+        icon: Camera,
+        iconColor: 'text-red-600',
+        gradientColor: 'from-red-50 to-white',
+      },
+      {
+        title: 'Montage & Publication',
+        description:
+          'Montage dynamique et créatif, publication optimisée sur vos réseaux sociaux et suivi des performances en temps réel.',
+        icon: Video,
+        iconColor: 'text-red-700',
+        gradientColor: 'from-red-100 to-white',
+      },
+      {
+        title: 'Conversion & ROI',
+        description:
+          'On ne cherche pas juste à faire des vues — on cherche à convertir votre audience en clients avec des résultats mesurables.',
+        icon: TrendingDown,
+        iconColor: 'text-red-700',
+        gradientColor: 'from-red-100 to-white',
+      },
+    ],
+    products: [],
+    benefits: [
+      'Offre 100% clé en main : de la stratégie à la publication',
+      'Tournage professionnel sur site, partout en France',
+      'Résultats prouvés : jusqu\'à x3.5 de chiffre d\'affaires',
+      'Spécialistes BTP, Immobilier, Restauration et plus',
+      '-20% sur toutes les prestations via FKS Facility',
+      'Suivi des performances et optimisation continue',
+    ],
+    savings: 'jusqu\'à 20%',
+  },
 };
 
 export const SolutionDetail: React.FC = () => {
@@ -511,6 +536,8 @@ export const SolutionDetail: React.FC = () => {
           ? 'from-white via-white to-white'
           : slug === 'design-marque'
           ? 'from-white via-white to-white'
+          : slug === 'agence-video'
+          ? 'from-white via-white to-white'
           : 'from-primary-50 via-white to-secondary-50'
       }`}>
         {/* Gradient fade overlay for seamless transition */}
@@ -573,10 +600,10 @@ export const SolutionDetail: React.FC = () => {
         ) : (
           <>
             <div className={`absolute top-[-10%] left-[-5%] w-[500px] h-[500px] rounded-full blur-[100px] pointer-events-none ${
-              slug === 'transport' ? 'bg-pink-200/20' : slug === 'emballage' ? 'bg-orange-200/10' : slug === 'energie' ? 'bg-green-200/20' : slug === 'bureau' ? 'bg-teal-200/20' : slug === 'snacking' ? 'bg-rose-200/20' : slug === 'nettoyage' ? 'bg-blue-200/20' : slug === 'design-marque' ? 'bg-red-200/20' : 'bg-primary-200/20'
+              slug === 'transport' ? 'bg-pink-200/20' : slug === 'emballage' ? 'bg-orange-200/10' : slug === 'energie' ? 'bg-green-200/20' : slug === 'bureau' ? 'bg-teal-200/20' : slug === 'snacking' ? 'bg-rose-200/20' : slug === 'nettoyage' ? 'bg-blue-200/20' : slug === 'design-marque' ? 'bg-red-200/20' : slug === 'agence-video' ? 'bg-red-200/20' : 'bg-primary-200/20'
             }`} />
             <div className={`absolute bottom-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full blur-[100px] pointer-events-none ${
-              slug === 'transport' ? 'bg-pink-200/20' : slug === 'emballage' ? 'bg-orange-200/10' : slug === 'energie' ? 'bg-green-200/20' : slug === 'bureau' ? 'bg-teal-200/20' : slug === 'snacking' ? 'bg-rose-200/20' : slug === 'nettoyage' ? 'bg-blue-200/20' : slug === 'design-marque' ? 'bg-red-200/20' : 'bg-secondary-200/20'
+              slug === 'transport' ? 'bg-pink-200/20' : slug === 'emballage' ? 'bg-orange-200/10' : slug === 'energie' ? 'bg-green-200/20' : slug === 'bureau' ? 'bg-teal-200/20' : slug === 'snacking' ? 'bg-rose-200/20' : slug === 'nettoyage' ? 'bg-blue-200/20' : slug === 'design-marque' ? 'bg-red-200/20' : slug === 'agence-video' ? 'bg-red-200/20' : 'bg-secondary-200/20'
             }`} />
           </>
         )}
@@ -616,6 +643,8 @@ export const SolutionDetail: React.FC = () => {
                   : slug === 'nettoyage'
                   ? 'bg-blue-100 text-blue-700 border-blue-200'
                   : slug === 'design-marque'
+                  ? 'bg-red-100 text-red-700 border-red-200'
+                  : slug === 'agence-video'
                   ? 'bg-red-100 text-red-700 border-red-200'
                   : 'bg-primary-100 text-primary-700 border-primary-200'
               }`}>
@@ -667,7 +696,7 @@ export const SolutionDetail: React.FC = () => {
                     src={displayImage}
                     alt={solution.title}
                     className={`relative rounded-2xl shadow-2xl w-full object-cover transform -rotate-1 hover:rotate-0 transition-transform duration-500 ${
-                      slug === 'transport' ? 'shadow-pink-500/20' : slug === 'emballage' ? 'shadow-orange-500/20' : slug === 'energie' ? 'shadow-green-500/20' : slug === 'bureau' ? 'shadow-teal-500/20' : slug === 'snacking' ? 'shadow-rose-500/20' : slug === 'nettoyage' ? 'shadow-blue-500/20' : slug === 'design-marque' ? 'shadow-red-500/20' : 'shadow-primary-500/20'
+                      slug === 'transport' ? 'shadow-pink-500/20' : slug === 'emballage' ? 'shadow-orange-500/20' : slug === 'energie' ? 'shadow-green-500/20' : slug === 'bureau' ? 'shadow-teal-500/20' : slug === 'snacking' ? 'shadow-rose-500/20' : slug === 'nettoyage' ? 'shadow-blue-500/20' : slug === 'design-marque' ? 'shadow-red-500/20' : slug === 'agence-video' ? 'shadow-red-500/20' : 'shadow-primary-500/20'
                     }`}
                   />
                 )}
@@ -719,6 +748,8 @@ export const SolutionDetail: React.FC = () => {
             ? 'bg-gradient-to-r from-blue-50 via-blue-100/50 to-blue-50'
             : slug === 'design-marque'
             ? 'bg-gradient-to-r from-red-50 via-red-100/50 to-red-50'
+            : slug === 'agence-video'
+            ? 'bg-gradient-to-r from-red-50 via-red-100/50 to-red-50'
             : 'bg-gradient-to-r from-pink-50 via-pink-100/50 to-pink-50'
         }`}>
           {/* Gradient fade overlay for seamless transition */}
@@ -762,6 +793,8 @@ export const SolutionDetail: React.FC = () => {
                   ? 'from-blue-50/80 to-blue-50/80'
                   : slug === 'design-marque'
                   ? 'from-red-50/80 to-red-50/80'
+                  : slug === 'agence-video'
+                  ? 'from-red-50/80 to-red-50/80'
                   : 'from-pink-50/80 to-pink-50/80'
               }`} />
               <div className="relative">
@@ -784,6 +817,8 @@ export const SolutionDetail: React.FC = () => {
                             ? 'border-blue-200/50 hover:border-blue-300'
                             : slug === 'design-marque'
                             ? 'border-red-200/50 hover:border-red-300'
+                            : slug === 'agence-video'
+                            ? 'border-red-200/50 hover:border-red-300'
                             : 'border-pink-200/50 hover:border-pink-300'
                         }`}
                       >
@@ -800,6 +835,8 @@ export const SolutionDetail: React.FC = () => {
                             ? 'bg-blue-100'
                             : slug === 'design-marque'
                             ? 'bg-red-100'
+                            : slug === 'agence-video'
+                            ? 'bg-red-100'
                             : 'bg-pink-100'
                         }`}>
                           <IconComponent className={`w-5 h-5 ${
@@ -814,6 +851,8 @@ export const SolutionDetail: React.FC = () => {
                               : slug === 'nettoyage'
                               ? 'text-blue-600'
                               : slug === 'design-marque'
+                              ? 'text-red-600'
+                              : slug === 'agence-video'
                               ? 'text-red-600'
                               : 'text-pink-600'
                           }`} />
@@ -864,6 +903,8 @@ export const SolutionDetail: React.FC = () => {
           : slug === 'nettoyage'
           ? 'from-white via-white to-white'
           : slug === 'design-marque'
+          ? 'from-white via-white to-white'
+          : slug === 'agence-video'
           ? 'from-white via-white to-white'
           : 'from-white via-primary-50/30 to-secondary-50/30'
         }`}>
@@ -945,6 +986,8 @@ export const SolutionDetail: React.FC = () => {
                     ? 'bg-blue-200/15'
                     : slug === 'design-marque'
                     ? 'bg-red-200/15'
+                    : slug === 'agence-video'
+                    ? 'bg-red-200/15'
                     : 'bg-primary-200/30'
                 }`}
                 animate={{
@@ -968,6 +1011,8 @@ export const SolutionDetail: React.FC = () => {
                     : slug === 'nettoyage'
                     ? 'bg-blue-200/15'
                     : slug === 'design-marque'
+                    ? 'bg-red-200/15'
+                    : slug === 'agence-video'
                     ? 'bg-red-200/15'
                     : 'bg-secondary-200/30'
                 }`}
@@ -1006,6 +1051,8 @@ export const SolutionDetail: React.FC = () => {
                         ? 'bg-white border-blue-100'
                         : slug === 'design-marque'
                         ? 'bg-white border-red-100'
+                        : slug === 'agence-video'
+                        ? 'bg-white border-red-100'
                         : idx % 2 === 0 ? 'bg-white border-primary-100' : 'bg-white border-secondary-100'
                     }`}
                   >
@@ -1032,6 +1079,8 @@ export const SolutionDetail: React.FC = () => {
                   : slug === 'nettoyage'
                   ? 'from-blue-600 via-blue-500 to-blue-600'
                   : slug === 'design-marque'
+                  ? 'from-red-600 via-red-500 to-red-600'
+                  : slug === 'agence-video'
                   ? 'from-red-600 via-red-500 to-red-600'
                   : 'from-primary-600 via-secondary-500 to-primary-600'
               }`} dangerouslySetInnerHTML={{ __html: solution.introTitle }} />
@@ -1347,6 +1396,8 @@ export const SolutionDetail: React.FC = () => {
                 ? 'bg-blue-100/20'
                 : slug === 'design-marque'
                 ? 'bg-red-100/20'
+                : slug === 'agence-video'
+                ? 'bg-red-100/20'
                 : 'bg-secondary-100/30'
             }`} />
           )}
@@ -1381,6 +1432,8 @@ export const SolutionDetail: React.FC = () => {
                       ? 'bg-white shadow-sm hover:shadow-xl border-gray-100 hover:shadow-blue-500/10 hover:border-blue-200'
                       : slug === 'design-marque'
                       ? 'bg-white shadow-sm hover:shadow-xl border-gray-100 hover:shadow-red-500/10 hover:border-red-200'
+                      : slug === 'agence-video'
+                      ? 'bg-white shadow-sm hover:shadow-xl border-gray-100 hover:shadow-red-500/10 hover:border-red-200'
                       : 'bg-white shadow-sm hover:shadow-xl border-gray-100 hover:shadow-primary-500/10 hover:border-primary-200'
                   }`}
                 >
@@ -1404,6 +1457,8 @@ export const SolutionDetail: React.FC = () => {
                         : slug === 'nettoyage'
                         ? 'from-blue-50/0 to-blue-50/0 group-hover:from-blue-50/50 group-hover:to-blue-50/30'
                         : slug === 'design-marque'
+                        ? 'from-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:to-red-50/30'
+                        : slug === 'agence-video'
                         ? 'from-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:to-red-50/30'
                         : 'from-primary-50/0 to-secondary-50/0 group-hover:from-primary-50/50 group-hover:to-secondary-50/30'
                     }`} />
@@ -1430,11 +1485,13 @@ export const SolutionDetail: React.FC = () => {
                           ? 'from-blue-50 to-white'
                           : slug === 'design-marque'
                           ? 'from-red-50 to-white'
+                          : slug === 'agence-video'
+                          ? 'from-red-50 to-white'
                           : 'from-primary-50 to-white'
                       }`}>
                         <img src={cat.image} alt={cat.title} className="w-full h-full object-contain" />
                       </div>
-                    ) : cat.icon && slug === 'design-marque' ? (
+                    ) : cat.icon && (slug === 'design-marque' || slug === 'agence-video') ? (
                       <div className={`w-full h-full bg-gradient-to-br rounded-xl p-3 flex items-center justify-center group-hover:shadow-lg transition-shadow ${cat.gradientColor || 'from-red-50 to-white'}`}>
                         {React.createElement(cat.icon, { className: `w-8 h-8 ${cat.iconColor || 'text-red-600'}` })}
                       </div>
@@ -1455,19 +1512,19 @@ export const SolutionDetail: React.FC = () => {
                           : 'bg-primary-50 group-hover:bg-primary-100'
                       }`}>
                         {idx === 0 && <Package className={`w-6 h-6 ${
-                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-primary-600'
+                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-primary-600'
                         }`} />}
                         {idx === 1 && <PenTool className={`w-6 h-6 ${
-                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-primary-600'
+                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-primary-600'
                         }`} />}
                         {idx === 2 && <FileText className={`w-6 h-6 ${
-                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-primary-600'
+                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-primary-600'
                         }`} />}
                         {idx === 3 && <Sparkles className={`w-6 h-6 ${
-                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-primary-600'
+                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-primary-600'
                         }`} />}
                         {idx > 3 && <Check className={`w-6 h-6 ${
-                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-primary-600'
+                          slug === 'informatique' ? 'text-amber-300' : slug === 'transport' ? 'text-pink-600' : slug === 'emballage' ? 'text-orange-600' : slug === 'energie' ? 'text-green-600' : slug === 'bureau' ? 'text-teal-600' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-primary-600'
                         }`} />}
                       </div>
                     )}
@@ -1490,6 +1547,8 @@ export const SolutionDetail: React.FC = () => {
                       : slug === 'nettoyage'
                       ? 'text-gray-900 group-hover:text-blue-700'
                       : slug === 'design-marque'
+                      ? 'text-gray-900 group-hover:text-red-700'
+                      : slug === 'agence-video'
                       ? 'text-gray-900 group-hover:text-red-700'
                       : 'text-gray-900 group-hover:text-primary-700'
                   }`}>
@@ -1537,6 +1596,8 @@ export const SolutionDetail: React.FC = () => {
                   ? 'text-blue-600 border-blue-100'
                   : slug === 'design-marque'
                   ? 'text-red-600 border-red-100'
+                  : slug === 'agence-video'
+                  ? 'text-red-600 border-red-100'
                   : 'text-primary-600 border-primary-100'
               }`}>
                 EXEMPLES DE TARIFS NÉGOCIÉS
@@ -1566,6 +1627,8 @@ export const SolutionDetail: React.FC = () => {
                       ? 'hover:shadow-blue-500/10 hover:border-blue-200'
                       : slug === 'design-marque'
                       ? 'hover:shadow-red-500/10 hover:border-red-200'
+                      : slug === 'agence-video'
+                      ? 'hover:shadow-red-500/10 hover:border-red-200'
                       : 'hover:shadow-primary-500/10 hover:border-primary-200'
                   }`}
                 >
@@ -1583,6 +1646,8 @@ export const SolutionDetail: React.FC = () => {
                       ? 'from-blue-50/0 via-blue-50/0 to-blue-50/0 group-hover:from-blue-50/50 group-hover:via-blue-50/30 group-hover:to-blue-50/50'
                       : slug === 'design-marque'
                       ? 'from-red-50/0 via-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:via-red-50/30 group-hover:to-red-50/50'
+                      : slug === 'agence-video'
+                      ? 'from-red-50/0 via-red-50/0 to-red-50/0 group-hover:from-red-50/50 group-hover:via-red-50/30 group-hover:to-red-50/50'
                       : 'from-primary-50/0 via-primary-50/0 to-secondary-50/0 group-hover:from-primary-50/50 group-hover:via-primary-50/30 group-hover:to-secondary-50/50'
                   }`} />
                   
@@ -1599,6 +1664,8 @@ export const SolutionDetail: React.FC = () => {
                       ? 'bg-blue-50 text-blue-700'
                       : slug === 'design-marque'
                       ? 'bg-red-50 text-red-700'
+                      : slug === 'agence-video'
+                      ? 'bg-red-50 text-red-700'
                       : 'bg-secondary-50 text-secondary-700'
                   }`}>
                     <TrendingDown className="w-3 h-3 mr-1" />
@@ -1608,28 +1675,28 @@ export const SolutionDetail: React.FC = () => {
                   <div className="mb-6 p-4 bg-gradient-to-br from-gray-50 to-white rounded-xl h-48 w-full flex items-center justify-center relative overflow-hidden">
                     {/* Subtle light effect behind image */}
                     <div className={`absolute inset-0 bg-gradient-to-br to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
-                      slug === 'transport' ? 'from-pink-100/20' : slug === 'emballage' ? 'from-orange-100/20' : slug === 'energie' ? 'from-green-100/20' : slug === 'bureau' ? 'from-teal-100/20' : slug === 'snacking' ? 'from-rose-100/20' : slug === 'nettoyage' ? 'from-blue-100/20' : slug === 'design-marque' ? 'from-red-100/20' : 'from-primary-100/20'
+                      slug === 'transport' ? 'from-pink-100/20' : slug === 'emballage' ? 'from-orange-100/20' : slug === 'energie' ? 'from-green-100/20' : slug === 'bureau' ? 'from-teal-100/20' : slug === 'snacking' ? 'from-rose-100/20' : slug === 'nettoyage' ? 'from-blue-100/20' : slug === 'design-marque' ? 'from-red-100/20' : slug === 'agence-video' ? 'from-red-100/20' : 'from-primary-100/20'
                     }`} />
                     {prod.image ? (
                       <img src={prod.image} alt={prod.name} className="max-w-full max-h-full object-contain relative z-10" />
                     ) : (
                       <div className="p-4 bg-gray-50 rounded-full relative z-10">
                         <ShoppingCart className={`w-8 h-8 text-gray-400 transition-colors ${
-                          slug === 'transport' ? 'group-hover:text-pink-600' : slug === 'emballage' ? 'group-hover:text-orange-600' : slug === 'energie' ? 'group-hover:text-green-600' : slug === 'bureau' ? 'group-hover:text-teal-600' : slug === 'snacking' ? 'group-hover:text-rose-600' : slug === 'nettoyage' ? 'group-hover:text-blue-600' : slug === 'design-marque' ? 'group-hover:text-red-600' : 'group-hover:text-primary-600'
+                          slug === 'transport' ? 'group-hover:text-pink-600' : slug === 'emballage' ? 'group-hover:text-orange-600' : slug === 'energie' ? 'group-hover:text-green-600' : slug === 'bureau' ? 'group-hover:text-teal-600' : slug === 'snacking' ? 'group-hover:text-rose-600' : slug === 'nettoyage' ? 'group-hover:text-blue-600' : slug === 'design-marque' ? 'group-hover:text-red-600' : slug === 'agence-video' ? 'group-hover:text-red-600' : 'group-hover:text-primary-600'
                         }`} />
                       </div>
                     )}
                   </div>
 
                   <h4 className={`font-display font-bold text-gray-900 mb-2 text-lg transition-colors ${
-                    slug === 'transport' ? 'group-hover:text-pink-700' : slug === 'emballage' ? 'group-hover:text-orange-700' : slug === 'energie' ? 'group-hover:text-green-700' : slug === 'bureau' ? 'group-hover:text-teal-700' : slug === 'snacking' ? 'group-hover:text-rose-700' : slug === 'nettoyage' ? 'group-hover:text-blue-700' : slug === 'design-marque' ? 'group-hover:text-red-700' : 'group-hover:text-primary-700'
+                    slug === 'transport' ? 'group-hover:text-pink-700' : slug === 'emballage' ? 'group-hover:text-orange-700' : slug === 'energie' ? 'group-hover:text-green-700' : slug === 'bureau' ? 'group-hover:text-teal-700' : slug === 'snacking' ? 'group-hover:text-rose-700' : slug === 'nettoyage' ? 'group-hover:text-blue-700' : slug === 'design-marque' ? 'group-hover:text-red-700' : slug === 'agence-video' ? 'group-hover:text-red-700' : 'group-hover:text-primary-700'
                   }`}>{prod.name}</h4>
                   <p className="text-sm text-gray-500 mb-6">{prod.description}</p>
                   
                   <div className="mt-auto flex flex-col items-center w-full pt-6 border-t border-gray-100">
                     <div className="flex items-baseline gap-3 mb-1">
                       <span className={`text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r ${
-                        slug === 'transport' ? 'from-pink-600 to-pink-400' : slug === 'emballage' ? 'from-orange-600 to-orange-400' : slug === 'energie' ? 'from-green-600 to-green-400' : slug === 'bureau' ? 'from-teal-600 to-teal-400' : slug === 'snacking' ? 'from-rose-600 to-rose-400' : slug === 'nettoyage' ? 'from-blue-600 to-blue-400' : slug === 'design-marque' ? 'from-red-600 to-red-400' : 'from-primary-600 to-primary-400'
+                        slug === 'transport' ? 'from-pink-600 to-pink-400' : slug === 'emballage' ? 'from-orange-600 to-orange-400' : slug === 'energie' ? 'from-green-600 to-green-400' : slug === 'bureau' ? 'from-teal-600 to-teal-400' : slug === 'snacking' ? 'from-rose-600 to-rose-400' : slug === 'nettoyage' ? 'from-blue-600 to-blue-400' : slug === 'design-marque' ? 'from-red-600 to-red-400' : slug === 'agence-video' ? 'from-red-600 to-red-400' : 'from-primary-600 to-primary-400'
                       }`}>{prod.price}</span>
                       <span className="text-lg text-gray-400 line-through decoration-2">{prod.oldPrice}</span>
                     </div>
@@ -1712,7 +1779,7 @@ export const SolutionDetail: React.FC = () => {
           </>
         ) : (
           <div className={`absolute top-0 left-0 w-[600px] h-[600px] rounded-full blur-[120px] translate-x-[-25%] translate-y-[-25%] pointer-events-none ${
-            slug === 'transport' ? 'bg-pink-100/40' : slug === 'emballage' ? 'bg-orange-100/20' : slug === 'energie' ? 'bg-green-100/40' : slug === 'bureau' ? 'bg-teal-100/40' : slug === 'snacking' ? 'bg-rose-100/40' : slug === 'nettoyage' ? 'bg-blue-100/40' : slug === 'design-marque' ? 'bg-red-100/40' : 'bg-primary-100/40'
+            slug === 'transport' ? 'bg-pink-100/40' : slug === 'emballage' ? 'bg-orange-100/20' : slug === 'energie' ? 'bg-green-100/40' : slug === 'bureau' ? 'bg-teal-100/40' : slug === 'snacking' ? 'bg-rose-100/40' : slug === 'nettoyage' ? 'bg-blue-100/40' : slug === 'design-marque' ? 'bg-red-100/40' : slug === 'agence-video' ? 'bg-red-100/40' : 'bg-primary-100/40'
           }`} />
         )}
         
@@ -1734,6 +1801,8 @@ export const SolutionDetail: React.FC = () => {
                 : slug === 'nettoyage'
                 ? 'bg-white text-blue-600 border-blue-100'
                 : slug === 'design-marque'
+                ? 'bg-white text-red-600 border-red-100'
+                : slug === 'agence-video'
                 ? 'bg-white text-red-600 border-red-100'
                 : 'bg-white text-primary-600 border-primary-100'
             }`}>
@@ -1768,6 +1837,8 @@ export const SolutionDetail: React.FC = () => {
                     ? 'bg-white border-gray-100 hover:shadow-lg hover:border-blue-200'
                     : slug === 'design-marque'
                     ? 'bg-white border-gray-100 hover:shadow-lg hover:border-red-200'
+                    : slug === 'agence-video'
+                    ? 'bg-white border-gray-100 hover:shadow-lg hover:border-red-200'
                     : 'bg-white border-gray-100 hover:shadow-lg hover:border-primary-200'
                 }`}
               >
@@ -1790,6 +1861,8 @@ export const SolutionDetail: React.FC = () => {
                       ? 'from-blue-50/0 group-hover:from-blue-50/30'
                       : slug === 'design-marque'
                       ? 'from-red-50/0 group-hover:from-red-50/30'
+                      : slug === 'agence-video'
+                      ? 'from-red-50/0 group-hover:from-red-50/30'
                       : 'from-primary-50/0 group-hover:from-primary-50/30'
                   }`} />
                 )}
@@ -1808,10 +1881,12 @@ export const SolutionDetail: React.FC = () => {
                       ? 'bg-blue-50 group-hover:bg-blue-100'
                       : slug === 'design-marque'
                       ? 'bg-red-50 group-hover:bg-red-100'
+                      : slug === 'agence-video'
+                      ? 'bg-red-50 group-hover:bg-red-100'
                       : 'bg-green-50 group-hover:bg-green-100'
                   }`}>
                     <Check className={`w-3 h-3 ${
-                      slug === 'informatique' ? 'text-amber-300' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : 'text-green-600'
+                      slug === 'informatique' ? 'text-amber-300' : slug === 'snacking' ? 'text-rose-600' : slug === 'nettoyage' ? 'text-blue-600' : slug === 'design-marque' ? 'text-red-600' : slug === 'agence-video' ? 'text-red-600' : 'text-green-600'
                     }`} />
                   </div>
                   <p className={`transition-colors ${
@@ -1841,6 +1916,8 @@ export const SolutionDetail: React.FC = () => {
           : slug === 'nettoyage'
           ? 'bg-gradient-to-br from-white via-white to-white'
           : slug === 'design-marque'
+          ? 'bg-gradient-to-br from-white via-white to-white'
+          : slug === 'agence-video'
           ? 'bg-gradient-to-br from-white via-white to-white'
           : 'bg-gradient-to-br from-primary-50 via-white to-secondary-50'
       }`}>
@@ -1883,7 +1960,7 @@ export const SolutionDetail: React.FC = () => {
         ) : (
           <>
             <div className={`absolute top-0 right-0 w-[500px] h-[500px] rounded-full blur-[100px] translate-x-[25%] translate-y-[-25%] pointer-events-none ${
-              slug === 'transport' ? 'bg-pink-100/30' : slug === 'emballage' ? 'bg-orange-100/15' : slug === 'energie' ? 'bg-green-100/30' : slug === 'bureau' ? 'bg-teal-100/30' : slug === 'snacking' ? 'bg-rose-100/30' : slug === 'nettoyage' ? 'bg-blue-100/30' : slug === 'design-marque' ? 'bg-red-100/30' : 'bg-primary-100/30'
+              slug === 'transport' ? 'bg-pink-100/30' : slug === 'emballage' ? 'bg-orange-100/15' : slug === 'energie' ? 'bg-green-100/30' : slug === 'bureau' ? 'bg-teal-100/30' : slug === 'snacking' ? 'bg-rose-100/30' : slug === 'nettoyage' ? 'bg-blue-100/30' : slug === 'design-marque' ? 'bg-red-100/30' : slug === 'agence-video' ? 'bg-red-100/30' : 'bg-primary-100/30'
             }`} />
             <div className={`absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[100px] translate-x-[-25%] translate-y-[25%] pointer-events-none ${
               slug === 'transport' ? 'bg-pink-100/30' : slug === 'emballage' ? 'bg-orange-100/15' : slug === 'energie' ? 'bg-green-100/30' : slug === 'bureau' ? 'bg-teal-100/30' : slug === 'snacking' ? 'bg-rose-100/30' : slug === 'nettoyage' ? 'bg-blue-100/30' : 'bg-secondary-100/30'
@@ -1921,6 +1998,8 @@ export const SolutionDetail: React.FC = () => {
               : slug === 'nettoyage'
               ? 'border-blue-100'
               : slug === 'design-marque'
+              ? 'border-red-100'
+              : slug === 'agence-video'
               ? 'border-red-100'
               : 'border-primary-100'
           }`}>

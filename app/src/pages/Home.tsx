@@ -47,6 +47,7 @@ const partners = [
   { name: 'CP Consulting', src: '/transport-page/CP-consulting-logo.png' },
   { name: 'Yaklean', src: '/partners/Yaklean-logo.png' },
   { name: 'Agence Rouge Varap', src: '/partners/Agence-rouge-Varap.svg' },
+  { name: 'Redcut', src: '/partners/redcut.png' },
 ];
 
 export const Home: React.FC = () => {

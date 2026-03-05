@@ -78,16 +78,13 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
   const handleSubmit = useCallback(async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      console.log('📝 Soumission formulaire:', data);
-      const result = await onSubmit(data);
-      console.log('✅ Résultat soumission:', result);
+      await onSubmit(data);
       setIsSubmitted(true);
       setSavedData({});
       setTimeout(() => {
         onSuccess?.();
       }, 2000);
     } catch (error) {
-      console.error('❌ Form submission error:', error);
       const errorMessage = error instanceof Error 
         ? error.message 
         : 'Une erreur est survenue. Veuillez réessayer.';

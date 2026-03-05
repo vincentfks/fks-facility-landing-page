@@ -7,6 +7,7 @@ import {
   Truck,
   Sparkles,
   PenTool,
+  Video,
 } from 'lucide-react';
 import { SolutionCard } from './SolutionCard';
 
@@ -60,13 +61,13 @@ const solutions = [
     path: '/solutions/design-marque',
     color: 'accent' as const,
   },
-  // {
-  //   icon: Zap,
-  //   title: 'Énergie',
-  //   description: 'Vos contrats gaz et électricité, au meilleur prix.',
-  //   path: '/solutions/energie',
-  //   color: 'accent' as const,
-  // },
+  {
+    icon: Video,
+    title: 'Agence vidéo',
+    description: 'Production vidéo clé en main, stratégie réseaux sociaux, tournage et montage professionnel...',
+    path: '/solutions/agence-video',
+    color: 'primary' as const,
+  },
 ];
 
 export const SolutionsGrid: React.FC = () => {

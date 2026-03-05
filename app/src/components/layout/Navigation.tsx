@@ -6,17 +6,7 @@ import { Button } from '../ui/Button';
 import { Modal } from '../ui/Modal';
 import { MultiStepForm } from '../forms/MultiStepForm';
 import { api } from '../../lib/api';
-
-const solutions = [
-  { name: 'Emballage', path: '/solutions/emballage' },
-  { name: 'Espace Bureau', path: '/solutions/bureau' },
-  // { name: 'Énergie', path: '/solutions/energie' },
-  { name: 'Informatique', path: '/solutions/informatique' },
-  { name: 'Nettoyage', path: '/solutions/nettoyage' },
-  { name: 'Snacking', path: '/solutions/snacking' },
-  { name: 'Transport & Logistique', path: '/solutions/transport' },
-  { name: 'Design marque', path: '/solutions/design-marque' },
-];
+import { solutionRoutes as solutions } from '../../lib/solutions';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +23,6 @@ export const Navigation: React.FC = () => {
         source: 'offre-du-moment',
       });
     } catch (error) {
-      console.error('Form submission error:', error);
       throw error;
     }
   };
@@ -60,20 +49,6 @@ export const Navigation: React.FC = () => {
 
   return (
     <>
-      <style>{`
-        @keyframes neon-blink {
-          0%, 100% {
-            opacity: 1;
-            text-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.6), 0 0 30px rgba(239, 68, 68, 0.4);
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 10px rgba(239, 68, 68, 0.2);
-          }
-          50% {
-            opacity: 0.7;
-            text-shadow: 0 0 5px rgba(239, 68, 68, 0.4), 0 0 10px rgba(239, 68, 68, 0.3), 0 0 15px rgba(239, 68, 68, 0.2);
-            box-shadow: 0 0 5px rgba(239, 68, 68, 0.3), inset 0 0 5px rgba(239, 68, 68, 0.1);
-          }
-        }
-      `}</style>
     <nav 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
@@ -95,17 +70,6 @@ export const Navigation: React.FC = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-1">
-            {/* Offre du moment - Neon blinking button */}
-            <button
-              onClick={() => setOfferModalOpen(true)}
-              className="relative px-4 py-2 text-sm font-bold text-red-500 rounded-lg overflow-hidden mr-2"
-              style={{
-                animation: 'neon-blink 1.5s ease-in-out infinite',
-              }}
-            >
-              <span className="relative z-10">Offre du moment</span>
-            </button>
-            
             <div className="relative group px-3">
               <button
                 className={cn(
@@ -203,20 +167,6 @@ export const Navigation: React.FC = () => {
         )}
       >
           <div className="px-4 py-6 space-y-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
-          {/* Mobile Offre du moment */}
-          <button
-            onClick={() => {
-              setOfferModalOpen(true);
-              setIsOpen(false);
-            }}
-            className="w-full text-left px-4 py-3 text-sm font-bold text-red-500 rounded-lg mb-2"
-            style={{
-              animation: 'neon-blink 1.5s ease-in-out infinite',
-            }}
-          >
-            Offre du moment
-          </button>
-          
           <div>
             <button
               className="flex items-center justify-between w-full text-gray-900 font-medium py-2"

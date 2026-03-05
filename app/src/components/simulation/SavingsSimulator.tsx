@@ -5,6 +5,7 @@ import { Button } from '../ui/Button';
 import { Card } from '../ui/Card';
 import { Input } from '../ui/Input';
 import { MultiStepForm } from '../forms/MultiStepForm';
+import { api } from '../../lib/api';
 
 export const SavingsSimulator: React.FC = () => {
   const [spendAmount, setSpendAmount] = useState<number>(5000);
@@ -236,9 +237,11 @@ export const SavingsSimulator: React.FC = () => {
             </div>
             <Card className="p-8 shadow-xl border-gray-200">
               <MultiStepForm onSubmit={async (data) => {
-                // Here we would normally submit the data
-                console.log('Form data:', { ...data, simulatedSavings: savingsAmount, period });
-                // You can add your API call here
+                await api.submitContact({
+                  ...data,
+                  current_spending: spendAmount,
+                  source: 'simulation',
+                });
               }} />
             </Card>
           </motion.div>
