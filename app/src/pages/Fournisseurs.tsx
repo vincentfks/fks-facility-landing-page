@@ -109,6 +109,19 @@ const suppliers: Supplier[] = [
     logo: '/partners/Agence-rouge-Varap.svg',
     logoAlt: 'Agence Rouge Varap Logo',
   },
+  {
+    name: 'Redcut',
+    category: 'Agence vidéo',
+    categoryColor: 'secondary',
+    contact: {
+      name: 'Johansen Morgen',
+      phone: '+33 7.86.24.99.14',
+      email: 'johansen@redcut.fr',
+      website: 'https://www.redcut.fr',
+    },
+    logo: '/partners/redcut.png',
+    logoAlt: 'Redcut Logo',
+  },
 ];
 
 const ContactIcon = ({ children, className }: { children: React.ReactNode; className?: string }) => (
