@@ -1,9 +1,13 @@
-/**
- * Utility functions for the application
- */
+const FRENCH_MONTHS = [
+  'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+  'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre',
+];
 
 /**
- * Merge Tailwind CSS classes
- * Re-exported from cn.ts for convenience
+ * Formate une date ISO (AAAA-MM-JJ) en « 15 septembre 2026 ».
+ * Implémentation manuelle pour un rendu identique au pré-rendu et dans le navigateur.
  */
-export { cn } from './cn';
+export function formatFrenchDate(isoDate: string): string {
+  const [year, month, day] = isoDate.split('-').map(Number);
+  return `${day} ${FRENCH_MONTHS[month - 1]} ${year}`;
+}

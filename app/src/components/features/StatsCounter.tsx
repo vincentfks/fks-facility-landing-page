@@ -7,7 +7,7 @@ interface StatsCounterProps {
   duration?: number;
 }
 
-export const StatsCounter: React.FC<StatsCounterProps> = ({
+const StatsCounter: React.FC<StatsCounterProps> = ({
   value,
   suffix = '',
   duration = 2.5,

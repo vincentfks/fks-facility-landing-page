@@ -1,10 +1,29 @@
 # robots.txt - FKS Facility
 # https://www.fks-facility.com
 
+# Toutes les pages publiques sont explorables.
+# Pages privées exclues : espace fournisseurs (accès par mot de passe),
+# confirmation de paiement et API.
 User-agent: *
 Allow: /
 Disallow: /fournisseurs
 Disallow: /paiement-reussi
+Disallow: /api/
 
-# Sitemap
+# Moteurs de recherche et assistants IA : mêmes règles, déclarées explicitement
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /fournisseurs
+Disallow: /paiement-reussi
+Disallow: /api/
+
 Sitemap: https://www.fks-facility.com/sitemap.xml

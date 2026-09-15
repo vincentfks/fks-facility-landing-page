@@ -16,7 +16,7 @@ export const Pricing: React.FC = () => {
           >
             <p className="text-primary-500 font-medium mb-3">| ADHÉSION</p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Nos tarifs
+              Tarifs d'adhésion à la centrale d'achat
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Choisissez votre tarif d'adhésion, ajustée à la taille de votre entreprise, basée

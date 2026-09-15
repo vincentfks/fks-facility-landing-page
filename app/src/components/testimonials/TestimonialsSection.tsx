@@ -69,7 +69,9 @@ export const TestimonialsSection: React.FC = () => {
               <div className="flex -space-x-3">
                  {[16, 11, 5, 12].map((imgId, i) => (
                    <div key={i} className="w-10 h-10 rounded-full border-2 border-gray-900 overflow-hidden">
-                     <img 
+                     <img
+                       loading="lazy"
+                       decoding="async"
                        src={`https://i.pravatar.cc/150?img=${imgId}`} 
                        alt="Avatar client" 
                        className="w-full h-full object-cover"

@@ -15,7 +15,7 @@ export const SolutionsIndex: React.FC = () => {
           >
             <p className="text-primary-500 font-medium mb-3">| NOS SOLUTIONS</p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Des solutions complètes pour les entreprises
+              Solutions d'achats négociées pour TPE et PME
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Bénéficiez de nos tarifs négociés et de notre expertise dans divers secteurs

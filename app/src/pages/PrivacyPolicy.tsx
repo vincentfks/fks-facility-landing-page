@@ -5,7 +5,7 @@ import { ArrowLeft, Building2, Shield, Database, Target, Clock, Scale, Globe, Co
 
 export const PrivacyPolicy: React.FC = () => {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24 pb-16">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link to="/">
@@ -385,6 +385,6 @@ export const PrivacyPolicy: React.FC = () => {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };

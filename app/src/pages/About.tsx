@@ -37,7 +37,7 @@ export const About: React.FC = () => {
           >
             <p className="text-primary-500 font-medium mb-3">| À PROPOS</p>
             <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Une équipe à l'écoute
+              Une centrale d'achat à l'écoute des entreprises
             </h1>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Notre mission est simple : faciliter la réussite de nos clients en leur permettant
@@ -97,8 +97,10 @@ export const About: React.FC = () => {
                   className="relative w-full flex justify-center"
                 >
                   <div className="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-white">
-                    <img 
-                      src="/a-propos/franck.jpeg" 
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="/a-propos/franck.webp" 
                       alt="Franck - Fondateur et directeur commercial FKS Facility" 
                       className="w-full h-full object-cover"
                     />
@@ -118,8 +120,10 @@ export const About: React.FC = () => {
                   className="relative w-full flex justify-center"
                 >
                   <div className="relative w-64 h-64 lg:w-96 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform hover:scale-105 transition-all duration-300 border-4 border-white">
-                    <img 
-                      src="/a-propos/vincent.jpeg" 
+                    <img
+                      loading="lazy"
+                      decoding="async"
+                      src="/a-propos/vincent.webp" 
                       alt="Vincent - Associé et directeur marketing FKS Facility" 
                       className="w-full h-full object-cover"
                     />

@@ -10,7 +10,7 @@
     "dev:server": "node server.js",
     "dev:vercel": "vercel dev",
     "typecheck": "node node_modules/typescript/bin/tsc --noEmit",
-    "build": "node scripts/inject-password-hash.js && npm run typecheck && vite build",
+    "build": "node scripts/inject-password-hash.js && npm run typecheck && vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "vercel:dev": "vercel dev",
@@ -18,18 +18,14 @@
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe",
     "stripe:trigger:checkout": "stripe trigger checkout.session.completed",
     "stripe:trigger:payment": "stripe trigger payment_intent.succeeded",
-    "stripe:trigger:subscription": "stripe trigger customer.subscription.created"
+    "stripe:trigger:subscription": "stripe trigger customer.subscription.created",
+    "build:prerender": "vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {
-    "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-accordion": "^1.1.2",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-label": "^2.0.2",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@stripe/stripe-js": "^8.5.3",
     "@vercel/node": "^4.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
@@ -45,8 +41,7 @@
     "resend": "^6.5.2",
     "stripe": "^20.0.0",
     "tailwind-merge": "^2.2.0",
-    "zod": "^3.22.4",
-    "zustand": "^4.4.7"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

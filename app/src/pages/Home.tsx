@@ -40,7 +40,6 @@ const features = [
 
 const partners = [
   { name: 'D8', src: '/partners/D8-logo.webp' },
-  // { name: 'ENI', src: '/partners/eni-logo.png' },
   { name: 'Cenpac', src: '/partners/cenpac-logo.png' },
   { name: 'Bruneau', src: '/partners/logo-bruneau.png' },
   { name: 'Polaris', src: '/partners/polaris.png' },
@@ -49,6 +48,8 @@ const partners = [
   { name: 'Agence Rouge Varap', src: '/partners/Agence-rouge-Varap.svg' },
   { name: 'Redcut', src: '/partners/redcut.png' },
 ];
+
+const LOGO_LOOP_SETS = [1, 2, 3];
 
 export const Home: React.FC = () => {
   const handleFormSubmit = async (data: any) => {
@@ -64,7 +65,7 @@ export const Home: React.FC = () => {
   };
 
   return (
-    <main className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <HeroSection />
 
@@ -78,47 +79,23 @@ export const Home: React.FC = () => {
         
         <div className="relative flex overflow-x-hidden group">
           <div className="flex items-center gap-12 lg:gap-20 animate-scroll whitespace-nowrap group-hover:[animation-play-state:paused]">
-            {/* First set of logos */}
-            {partners.map((partner, index) => (
-              <div
-                key={`partner-1-${index}`}
-                className="flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20 opacity-60 hover:opacity-100 transition-opacity duration-300 mx-6"
-              >
-                <img
-                  src={partner.src}
-                  alt={`${partner.name} logo`}
-                  className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
-            
-            {/* Second set of logos for infinite loop */}
-            {partners.map((partner, index) => (
-              <div
-                key={`partner-2-${index}`}
-                className="flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20 opacity-60 hover:opacity-100 transition-opacity duration-300 mx-6"
-              >
-                <img
-                  src={partner.src}
-                  alt={`${partner.name} logo`}
-                  className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
-
-            {/* Third set of logos for smoother infinite loop on wide screens */}
-            {partners.map((partner, index) => (
-              <div
-                key={`partner-3-${index}`}
-                className="flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20 opacity-60 hover:opacity-100 transition-opacity duration-300 mx-6"
-              >
-                <img
-                  src={partner.src}
-                  alt={`${partner.name} logo`}
-                  className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
+            {/* Logos répétés 3 fois pour un défilement continu, y compris sur grand écran */}
+            {LOGO_LOOP_SETS.map((set) =>
+              partners.map((partner, index) => (
+                <div
+                  key={`partner-${set}-${index}`}
+                  className="flex items-center justify-center w-32 h-16 lg:w-40 lg:h-20 opacity-60 hover:opacity-100 transition-opacity duration-300 mx-6"
+                >
+                  <img
+                    loading="lazy"
+                    decoding="async"
+                    src={partner.src}
+                    alt={`${partner.name} logo`}
+                    className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              ))
+            )}
           </div>
           
           {/* Fade edges */}
@@ -232,6 +209,6 @@ export const Home: React.FC = () => {
       <div className="bg-gray-50 py-8 border-t border-gray-200">
         <SecurityBadges />
       </div>
-    </main>
+    </div>
   );
 };
