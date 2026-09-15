@@ -29,7 +29,14 @@ type Step1Data = z.infer<typeof step1Schema>;
 type Step2Data = z.infer<typeof step2Schema>;
 type Step3Data = z.infer<typeof step3Schema>;
 
-type FormData = Step1Data & Step2Data & Step3Data;
+// Anti-spam : champ piège invisible pour les humains (les bots le remplissent)
+// + durée de remplissage envoyée au serveur, qui ignore silencieusement les soumissions suspectes.
+type AntiSpamData = {
+  website?: string;
+  form_elapsed_ms?: number;
+};
+
+type FormData = Step1Data & Step2Data & Step3Data & AntiSpamData;
 
 interface MultiStepFormProps {
   onSubmit: (data: FormData) => Promise<void>;
@@ -41,15 +48,16 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [savedData, setSavedData] = useLocalStorage<Partial<FormData>>('fks_contact_form', {});
+  const startedAtRef = React.useRef(Date.now());
 
   const form = useForm<FormData>({
     mode: 'onChange',
-    defaultValues: savedData,
+    defaultValues: { ...savedData, website: '' },
   });
 
   // Save to localStorage on change (debounced)
   React.useEffect(() => {
-    const subscription = form.watch((data) => {
+    const subscription = form.watch(({ website: _honeypot, ...data }) => {
       setSavedData(data);
     });
     return () => subscription.unsubscribe();
@@ -78,7 +86,7 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
   const handleSubmit = useCallback(async (data: FormData) => {
     setIsSubmitting(true);
     try {
-      await onSubmit(data);
+      await onSubmit({ ...data, form_elapsed_ms: Date.now() - startedAtRef.current });
       setIsSubmitted(true);
       setSavedData({});
       setTimeout(() => {
@@ -115,6 +123,21 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({ onSubmit, onSucces
 
   return (
     <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+      {/* Honeypot : hors écran (pas display:none, que certains bots ignorent), non focusable, non obligatoire */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-10000px', top: 'auto', width: '1px', height: '1px', overflow: 'hidden' }}
+      >
+        <label htmlFor="fks-website">Site web (laissez ce champ vide)</label>
+        <input
+          id="fks-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...form.register('website')}
+        />
+      </div>
+
       {/* Progress indicator */}
       <div className="flex items-center justify-between mb-8">
         {[1, 2, 3].map((stepNumber) => (

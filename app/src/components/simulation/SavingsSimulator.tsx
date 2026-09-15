@@ -56,9 +56,9 @@ export const SavingsSimulator: React.FC = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-2xl mb-6 shadow-sm">
                 <Calculator className="w-8 h-8" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">
                 Simulez vos économies potentielles
-              </h2>
+              </h1>
               <p className="text-lg text-gray-600 max-w-2xl mx-auto">
                 Estimez combien vous pourriez économiser en rejoignant la centrale d'achat FKS Facility.
                 Basé sur une moyenne constatée de 30% d'économies.

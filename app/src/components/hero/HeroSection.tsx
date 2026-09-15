@@ -44,12 +44,12 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center space-x-2 px-4 py-2 bg-white/80 backdrop-blur-md border border-primary-100 text-primary-700 rounded-full text-sm font-medium mb-8 shadow-sm"
             >
-              <TrendingDown className="w-4 h-4 text-primary-500" />
-              <span>Centrale d'achat pour TPE & PME</span>
+              <TrendingDown className="w-4 h-4 text-primary-500" aria-hidden="true" />
+              <h1 className="text-sm font-medium">Centrale d'achat pour TPE & PME en France</h1>
             </motion.div>
 
             {/* Main Heading */}
-            <motion.h1
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -59,7 +59,7 @@ export const HeroSection: React.FC = () => {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">
                 pas vos ambitions
               </span>
-            </motion.h1>
+            </motion.p>
 
             {/* Description */}
             <motion.p
@@ -135,7 +135,7 @@ export const HeroSection: React.FC = () => {
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-gray-600 text-sm">Papier A4 (500 feuilles)</p>
                   <img 
-                    src="/home-page/Feuille.png" 
+                    src="/home-page/Feuille.webp" 
                     alt="Papier A4" 
                     className="w-20 h-20 object-contain ml-2"
                   />
@@ -199,7 +199,7 @@ export const HeroSection: React.FC = () => {
                 <div className="flex items-center justify-between mb-1">
                   <p className="text-gray-600 text-sm">Caisse Carton DD (300x300x300)</p>
                   <img 
-                    src="/home-page/Carton.png" 
+                    src="/home-page/Carton.webp" 
                     alt="Caisse Carton" 
                     className="w-20 h-20 object-contain ml-2"
                   />

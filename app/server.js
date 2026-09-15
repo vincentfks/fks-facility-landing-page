@@ -13,8 +13,24 @@ app.use(express.json());
 
 const resend = new Resend(process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY);
 
+// Un humain ne remplit pas 3 étapes en moins de 2 s
+const MIN_FORM_FILL_TIME_MS = 2000;
+
+const isLikelyBot = (body) => {
+  const honeypot = body.website;
+  if (typeof honeypot === 'string' && honeypot.trim() !== '') return true;
+
+  const elapsed = Number(body.form_elapsed_ms);
+  return body.form_elapsed_ms !== undefined && Number.isFinite(elapsed) && elapsed < MIN_FORM_FILL_TIME_MS;
+};
+
 app.post('/api/send-email', async (req, res) => {
   try {
+    // Bot détecté : on simule un succès pour ne pas lui signaler le piège, sans envoyer d'email
+    if (isLikelyBot(req.body ?? {})) {
+      return res.status(200).json({ success: true, message: 'Email envoyé avec succès' });
+    }
+
     const { name, email, phone, company, employees_range, sector, message, current_spending, source, supplies_interests } = req.body;
 
     if (!name || !email) {

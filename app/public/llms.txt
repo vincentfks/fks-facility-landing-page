@@ -1,37 +1,57 @@
-# FKS Facility - llms.txt
-# https://www.fks-facility.com
+# FKS Facility
 
-## About
-FKS Facility is a purchasing group (centrale d'achat) for small and medium-sized businesses (TPE/PME) in France. We negotiate preferential rates with trusted suppliers so our members can access the same advantages as large companies — with no minimum order, no commitment, and up to 70% savings.
+> FKS Facility est une centrale d'achat et de référencement pour les TPE, PME, indépendants et artisans en France. Basée à Massy (Essonne, Île-de-France), elle négocie des tarifs avec des fournisseurs partenaires sur les achats généraux : emballage et cartons, fournitures et mobilier de bureau, nettoyage, snacking, transport et logistique, informatique, design de marque et vidéo. Les adhérents commandent directement chez les fournisseurs, aux conditions négociées, sans minimum d'achat.
 
-## Company
-- Name: FKS Facility Solutions
-- Website: https://www.fks-facility.com
-- Location: 15 rue Lucien Sergent, 91300 Massy, France
-- Language: French
+## Entreprise
+- Raison sociale : FKS FACILITY (SARL au capital de 5 000 €)
+- SIRET : 910 470 988 00015 — RCS Evry — TVA FR64910470988
+- Adresse : 15 rue Lucien Sergent, 91300 Massy, France
+- Zone servie : toute la France, avec un ancrage en Île-de-France
+- Email : franck.k@fks-facility.com
+- Téléphone : 06 14 27 57 00
+- Langue du site : français
 
-## Services
-- Packaging solutions (Emballage) — Partner: Cenpac
-- Office supplies (Espace Bureau) — Partner: Bruneau
-- IT equipment (Informatique)
-- Cleaning services (Nettoyage) — Partner: Yaklean
-- Snacking & coffee machines — Partner: D8
-- Transport & Logistics — Partner: CP Consulting
-- Brand design (Design marque) — Partner: Agence Rouge Varap
-- Video agency (Agence video) — Partner: Redcut
+## Offre
+- Adhésion annuelle selon l'effectif : 79 € HT (moins de 10 salariés), 129 € HT (10 à 20), 199 € HT (20 à 50), sur devis au-delà
+- Aucune obligation d'achat, aucun minimum de commande
+- Facturation directe par les fournisseurs aux tarifs négociés
+- Remises jusqu'à -70 % sur certaines catégories, selon les fournisseurs
 
-## Key Pages
-- Home: https://www.fks-facility.com/
-- Solutions: https://www.fks-facility.com/solutions
-- Pricing: https://www.fks-facility.com/tarifs
-- About: https://www.fks-facility.com/a-propos
-- Contact: https://www.fks-facility.com/contact
-- Savings simulator: https://www.fks-facility.com/simuler-mes-economies
+## Solutions
+- [Emballage et cartons](https://www.fks-facility.com/solutions/emballage) : partenaire CENPAC, plus de 6 000 références, livraison 24/72 h
+- [Fournitures et mobilier de bureau](https://www.fks-facility.com/solutions/bureau) : partenaire Bruneau
+- [Informatique et IA](https://www.fks-facility.com/solutions/informatique) : partenaire Polaris
+- [Nettoyage de vitres et locaux (91, 92)](https://www.fks-facility.com/solutions/nettoyage) : partenaire Yak Clean
+- [Snacking et machines à café](https://www.fks-facility.com/solutions/snacking) : partenaire D8
+- [Transport et logistique](https://www.fks-facility.com/solutions/transport) : partenaire CP Consulting
+- [Design de marque](https://www.fks-facility.com/solutions/design-marque) : partenaire Agence Rouge Varap
+- [Agence vidéo](https://www.fks-facility.com/solutions/agence-video) : partenaire Redcut
 
-## Contact
-- Email: contact@fks-facility.com
+## Pages principales
+- [Accueil](https://www.fks-facility.com/)
+- [Toutes les solutions](https://www.fks-facility.com/solutions)
+- [Tarifs d'adhésion](https://www.fks-facility.com/tarifs)
+- [Simulateur d'économies](https://www.fks-facility.com/simuler-mes-economies)
+- [À propos](https://www.fks-facility.com/a-propos)
+- [Contact](https://www.fks-facility.com/contact)
 
-## Preferences
-- Allow indexing of public pages
-- Do not index /fournisseurs (password-protected supplier directory)
-- Do not index /paiement-reussi (payment confirmation page)
+## Guides (blog)
+- [Tous les articles](https://www.fks-facility.com/blog)
+- [Centrale d'achat pour TPE et PME](https://www.fks-facility.com/blog/centrale-achat-tpe-pme)
+- [Centrale d'achat ou centrale de référencement](https://www.fks-facility.com/blog/centrale-achat-vs-centrale-referencement)
+- [Centrale d'achat en Île-de-France et en Essonne](https://www.fks-facility.com/blog/centrale-achat-ile-de-france)
+- [Réduire les achats généraux d'une PME](https://www.fks-facility.com/blog/reduire-achats-generaux-pme)
+- [Acheter des cartons et emballages moins cher](https://www.fks-facility.com/blog/acheter-cartons-emballages-moins-cher)
+- [Snacking en entreprise](https://www.fks-facility.com/blog/snacking-entreprise)
+- [Groupement d'achat pour indépendants et artisans](https://www.fks-facility.com/blog/groupement-achat-independants-artisans)
+- [Réduire les coûts de fournitures de bureau](https://www.fks-facility.com/blog/fournitures-bureau-reduire-couts)
+
+## Informations légales
+- [Mentions légales](https://www.fks-facility.com/mentions-legales)
+- [Conditions générales de vente](https://www.fks-facility.com/cgv)
+- [Politique de confidentialité](https://www.fks-facility.com/confidentialite)
+- [Politique cookies](https://www.fks-facility.com/cookies)
+
+## Pages non publiques
+- /fournisseurs : espace fournisseurs protégé par mot de passe, à ne pas indexer
+- /paiement-reussi : confirmation de paiement, à ne pas indexer

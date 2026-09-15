@@ -7,14 +7,6 @@ const SESSION_DURATION = 24 * 60 * 60 * 1000; // 24 heures
 const EXPECTED_HASH = import.meta.env.VITE_SUPPLIERS_PASSWORD_HASH || '__PASSWORD_HASH_PLACEHOLDER__';
 const isHashConfigured = EXPECTED_HASH && EXPECTED_HASH !== '__PASSWORD_HASH_PLACEHOLDER__';
 
-// Debug log (only in development)
-if (import.meta.env.DEV) {
-  console.log('🔐 Password protection status:', {
-    hashConfigured: isHashConfigured,
-    hashPreview: EXPECTED_HASH.substring(0, 16) + '...',
-  });
-}
-
 // SHA-256 hash function
 async function sha256(message: string): Promise<string> {
   const msgBuffer = new TextEncoder().encode(message);

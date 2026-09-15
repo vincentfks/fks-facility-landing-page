@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { ScrollToTop } from './components/layout/ScrollToTop';
+import { RouteSeo } from './components/seo/RouteSeo';
 
 // Lazy load pages for better initial performance
 const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
@@ -18,6 +19,9 @@ const Cookies = lazy(() => import('./pages/Cookies').then(module => ({ default: 
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy })));
 const CGV = lazy(() => import('./pages/CGV').then(module => ({ default: module.CGV })));
 const Fournisseurs = lazy(() => import('./pages/Fournisseurs').then(module => ({ default: module.Fournisseurs })));
+const BlogIndex = lazy(() => import('./pages/Blog').then(module => ({ default: module.BlogIndex })));
+const BlogPostPage = lazy(() => import('./pages/Blog/[slug]').then(module => ({ default: module.BlogPostPage })));
+const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
 
 function AppContent() {
   const location = useLocation();
@@ -44,10 +48,11 @@ function AppContent() {
             <Route path="/mentions-legales" element={<LegalNotice />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/confidentialite" element={<PrivacyPolicy />} />
-            <Route path="/politique-de-confidentialite" element={<PrivacyPolicy />} />
             <Route path="/cgv" element={<CGV />} />
             <Route path="/fournisseurs" element={<Fournisseurs />} />
-            <Route path="*" element={<Home />} />
+            <Route path="/blog" element={<BlogIndex />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
@@ -56,17 +61,14 @@ function AppContent() {
   );
 }
 
+/** Arbre applicatif sans routeur : BrowserRouter côté client, StaticRouter au pré-rendu */
 function App() {
   return (
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <>
       <ScrollToTop />
+      <RouteSeo />
       <AppContent />
-    </BrowserRouter>
+    </>
   );
 }
 

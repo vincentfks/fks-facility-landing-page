@@ -142,15 +142,6 @@ export const Fournisseurs: React.FC = () => {
     })
   );
 
-  // Debug in development
-  if (import.meta.env.DEV) {
-    console.log('📄 Fournisseurs page loaded', {
-      isAuthenticated,
-      isLoading,
-      isHashConfigured,
-    });
-  }
-
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     const success = await handleLogin(password);

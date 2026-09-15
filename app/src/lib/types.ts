@@ -9,6 +9,9 @@ export interface ContactData {
   current_spending?: number;
   source?: 'contact' | 'simulation' | 'solution';
   supplies_interests?: string;
+  // Anti-spam (honeypot + temps de remplissage), vérifiés côté serveur
+  website?: string;
+  form_elapsed_ms?: number;
 }
 
 export interface SimulationData extends ContactData {
