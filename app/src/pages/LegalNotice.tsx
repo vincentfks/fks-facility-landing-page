@@ -20,35 +20,63 @@ export const LegalNotice: React.FC = () => {
           <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-8">
             Mentions Légales
           </h1>
-          
+
           <p className="text-lg text-gray-600 mb-8">
             Informations légales sur le site de fks-facility.com
           </p>
 
           <div className="space-y-8 text-gray-600">
-            {/* Propriétaire */}
+            {/* Éditeur du site */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Propriétaire du site FKS FACILITY</h2>
-              <p className="mb-2">FKS FACILITY est une SARL enregistrée sous le numéro 89344618700013 au R.C.S. de Evry B 893 446 187.</p>
-              <p className="mb-2">N° TVA Intracommunautaire: FR41893446187</p>
-              <p className="mb-2">15 Rue Lucien Sergent, 91300 Massy</p>
-              <p>Téléphone : 06 14 27 57 00</p>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Éditeur du site</h2>
+              <p className="mb-2">FKS FACILITY</p>
+              <p className="mb-2">Société à responsabilité limitée (SARL) au capital de 5 000 €</p>
+              <p className="mb-2">Siège social : 15 rue Lucien Sergent, 91300 Massy</p>
+              <p className="mb-2">SIRET : 910 470 988 00015</p>
+              <p className="mb-2">RCS : Evry 910 470 988</p>
+              <p className="mb-2">N° TVA Intracommunautaire : FR64910470988</p>
+              <p className="mb-2">Téléphone : 06 14 27 57 00</p>
+              <p className="mb-2">
+                Email : <a href="mailto:franck.k@fks-facility.com" className="text-primary-600 hover:underline">franck.k@fks-facility.com</a>
+              </p>
+              <p>Gérant : Franck KIRECHE</p>
+            </section>
+
+            {/* Directeur de la publication */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Directeur de la publication</h2>
+              <p>Vincent Felisat</p>
             </section>
 
             {/* Hébergement */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Hébergement du site de FKS FACILITY</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Hébergement</h2>
+              <p className="mb-2">Vercel Inc.</p>
+              <p className="mb-2">440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</p>
               <p>
-                Ce site internet est hébergé par l’Agence Saycom situé 243 rue Roger Salengro, 85000 La Roche-sur-Yon. 
-                L’hébergeur est contactable par téléphone au 02 51 95 18 55.
+                Site web : <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">https://vercel.com</a>
               </p>
             </section>
 
-            {/* Droit d'auteur */}
+            {/* Prestataire de paiement */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Droit d’auteur – Copyright</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Prestataire de paiement</h2>
+              <p className="mb-4">
+                Les paiements sont traités par Stripe Technology Europe Limited, dont le siège est situé 1 Grand Canal Street Lower, Grand Canal Dock, Dublin 2, Irlande.
+              </p>
+              <p className="mb-4">
+                Stripe est certifié PCI DSS Level 1, le plus haut niveau de certification dans l'industrie du paiement.
+              </p>
+              <p>
+                FKS Facility ne stocke, ne collecte ni ne traite directement aucune donnée bancaire. L'ensemble des transactions est sécurisé par Stripe.
+              </p>
+            </section>
+
+            {/* Propriété intellectuelle */}
+            <section>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Propriété intellectuelle</h2>
               <p className="leading-relaxed">
-                Tous les éléments de toute nature (images fixes, images animées, photographies, bases de données, marques, illustrations, logos, dessins, modèles, documents téléchargeable, etc) contenus dans ce site sont protégés par le droit d’auteur. A ce titre, sauf autorisation préalable et écrite de la société FKS FACILITY, toute reproduction, représentation, adaptation, modification partielle ou intégrale de tout élément composant le site, par quelque moyen que ce soit, est interdite sous peine de poursuite judiciaire.
+                Tous les éléments de toute nature (images fixes, images animées, photographies, bases de données, marques, illustrations, logos, dessins, modèles, documents téléchargeable, etc) contenus dans ce site sont protégés par le droit d'auteur. A ce titre, sauf autorisation préalable et écrite de la société FKS FACILITY, toute reproduction, représentation, adaptation, modification partielle ou intégrale de tout élément composant le site, par quelque moyen que ce soit, est interdite sous peine de poursuite judiciaire.
               </p>
             </section>
 
@@ -56,19 +84,19 @@ export const LegalNotice: React.FC = () => {
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Données personnelles</h2>
               <p className="mb-4">
-                Les informations recueillies à partir du formulaire de contact font l’objet d’un traitement informatique destiné à la gestion de notre clientèle pour améliorer nos services.
+                Les informations recueillies font l'objet d'un traitement informatique destiné à la gestion de notre relation commerciale.
               </p>
               <p className="mb-4">
-                Conformément à la loi « informatique et libertés » du 6 janvier 1978 modifiée, vous disposez d’un droit d’accès et de rectification aux informations qui vous concernent.
+                Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi « Informatique et Libertés » du 6 janvier 1978 modifiée, vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité, de limitation et d'opposition au traitement de vos données.
               </p>
               <p className="mb-4">
-                Vous pouvez accéder aux informations vous concernant en vous adressant à : <a href="mailto:franck.k@fks-facility.com" className="text-primary-600 hover:underline">franck.k@fks-facility.com</a>
+                Pour exercer ces droits, contactez-nous à : <a href="mailto:franck.k@fks-facility.com" className="text-primary-600 hover:underline">franck.k@fks-facility.com</a> ou par courrier à FKS FACILITY, 15 rue Lucien Sergent, 91300 Massy.
               </p>
               <p className="mb-4">
-                Vous pouvez également, pour des motifs légitimes, vous opposer au traitement des données vous concernant.
+                Vous pouvez également introduire une réclamation auprès de la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">CNIL</a> (www.cnil.fr).
               </p>
               <p>
-                Pour en savoir plus, consultez vos droits sur le site de la <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">CNIL</a>.
+                Pour plus d'informations, consultez notre <Link to="/confidentialite" className="text-primary-600 hover:underline">politique de confidentialité</Link>.
               </p>
             </section>
 
@@ -76,44 +104,26 @@ export const LegalNotice: React.FC = () => {
             <section>
               <h2 className="text-xl font-bold text-gray-900 mb-4">Cookies</h2>
               <p className="leading-relaxed">
-                Notre site utilise des cookies. Ces fichiers stockés sur votre ordinateur nous servent à faciliter votre accès aux services que nous proposons. Les cookies du site ne contiennent pas de données permettant de vous identifier personnellement, et ils sont conçus pour être utilisés uniquement par FKS FACILITY. Nous vous informons que vous pouvez vous opposer à l’enregistrement de ces « cookies » en configurant votre ordinateur selon les modalités détaillées sur le site <a href="http://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">http://www.cnil.fr</a>.
-              </p>
-            </section>
-
-            {/* Statistiques */}
-            <section>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Utilisation à des fins statistiques d’informations relatives à la navigation</h2>
-              <p className="mb-4">
-                Quand vous accédez au site Internet, les serveurs consultés collectent automatiquement les données suivantes :
-              </p>
-              <ul className="list-disc list-inside mb-4 space-y-1 ml-4">
-                <li>l’adresse IP qui vous est attribuée lors de la connexion ;</li>
-                <li>la date et l’heure d’accès au site ;</li>
-                <li>les pages consultées ;</li>
-                <li>le type de navigateur utilisé ;</li>
-                <li>le système d’exploitation installé sur le PC ;</li>
-                <li>le moteur de recherche ainsi que les mots-clés utilisés pour retrouver le site.</li>
-              </ul>
-              <p>
-                Ces informations ne sont conservées qu’à la seule fin de mesurer le nombre de visiteurs dans les différentes sections du site et d’y apporter des améliorations.
+                Notre site utilise des cookies soumis à votre consentement. Pour en savoir plus, consultez notre <Link to="/cookies" className="text-primary-600 hover:underline">politique relative aux cookies</Link>.
               </p>
             </section>
 
             {/* Liens hypertextes */}
             <section>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">Liens hypertextes : responsabilité</h2>
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Liens hypertextes</h2>
               <p className="mb-4">
-                Les liens hypertextes présents sur le site orientant les utilisateurs vers d’autres sites Internet n’engagent pas la responsabilité de FKS FACILITY quant au contenu de ces sites.
+                Les liens hypertextes présents sur le site orientant les utilisateurs vers d'autres sites Internet n'engagent pas la responsabilité de FKS FACILITY quant au contenu de ces sites.
               </p>
               <p>
-                La création d’un lien pointant vers notre site ne requiert pas d’autorisation. Nous dégageons toute responsabilité dans ce cas.
+                La création d'un lien pointant vers notre site ne requiert pas d'autorisation. Nous dégageons toute responsabilité dans ce cas.
               </p>
             </section>
 
             {/* Contact */}
             <section className="pt-8 border-t border-gray-100">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Contact</h2>
               <p className="font-medium">
-                Pour toute question relative à l’utilisation de ce site internet, adressez-nous un mail à l’adresse : <a href="mailto:franck.k@fks-facility.com" className="text-primary-600 hover:underline">franck.k@fks-facility.com</a>
+                Pour toute question relative aux présentes mentions légales, contactez-nous à : <a href="mailto:franck.k@fks-facility.com" className="text-primary-600 hover:underline">franck.k@fks-facility.com</a>
               </p>
             </section>
           </div>
@@ -122,4 +132,3 @@ export const LegalNotice: React.FC = () => {
     </main>
   );
 };
-

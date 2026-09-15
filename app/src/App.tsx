@@ -16,6 +16,7 @@ const PaymentSuccess = lazy(() => import('./pages/PaymentSuccess').then(module =
 const LegalNotice = lazy(() => import('./pages/LegalNotice').then(module => ({ default: module.LegalNotice })));
 const Cookies = lazy(() => import('./pages/Cookies').then(module => ({ default: module.Cookies })));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy').then(module => ({ default: module.PrivacyPolicy })));
+const CGV = lazy(() => import('./pages/CGV').then(module => ({ default: module.CGV })));
 const Fournisseurs = lazy(() => import('./pages/Fournisseurs').then(module => ({ default: module.Fournisseurs })));
 
 function AppContent() {
@@ -44,6 +45,7 @@ function AppContent() {
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/confidentialite" element={<PrivacyPolicy />} />
             <Route path="/politique-de-confidentialite" element={<PrivacyPolicy />} />
+            <Route path="/cgv" element={<CGV />} />
             <Route path="/fournisseurs" element={<Fournisseurs />} />
             <Route path="*" element={<Home />} />
           </Routes>

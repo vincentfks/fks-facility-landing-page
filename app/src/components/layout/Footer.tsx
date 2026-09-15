@@ -81,6 +81,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-wrap justify-center gap-6">
             <span>© {new Date().getFullYear()} FKS Facility Solutions</span>
             <Link to="/mentions-legales" className="hover:text-gray-300">Mentions légales</Link>
+            <Link to="/cgv" className="hover:text-gray-300">CGV</Link>
             <Link to="/confidentialite" className="hover:text-gray-300">Politique de confidentialité</Link>
             <Link to="/cookies" className="hover:text-gray-300">Cookies</Link>
           </div>
