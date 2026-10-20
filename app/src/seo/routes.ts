@@ -3,6 +3,8 @@ import { faqData } from '../content/faq';
 import { CONTENT_UPDATED_AT, SITE_NAME } from './site';
 import { breadcrumbSchema, blogPostingSchema, buildGraph, faqSchema, serviceSchema } from './schema';
 import { getSolutionSeo, solutionsSeo } from './solutions';
+import { CURRENT_PROMO } from '../content/promo';
+import { isPromoActive, isPromoUpcomingOrActive } from '../lib/promo';
 
 export type ChangeFrequency = 'weekly' | 'monthly' | 'yearly';
 
@@ -12,6 +14,8 @@ export interface PageSeo {
   description: string;
   noindex?: boolean;
   ogType?: 'website' | 'article';
+  /** Date ISO après laquelle la page doit sortir de l'index (robots unavailable_after) */
+  unavailableAfter?: string;
   jsonLd: Record<string, unknown>;
   /** Absent = page exclue du sitemap */
   sitemap?: { priority: number; changefreq: ChangeFrequency; lastmod: string };
@@ -155,6 +159,18 @@ const staticPageSeo = (path: string, pageDef: StaticPage): PageSeo => {
 export const getSeoForPath = (pathname: string): PageSeo => {
   const path = normalizePath(pathname);
 
+  if (CURRENT_PROMO && path === CURRENT_PROMO.path) {
+    if (!isPromoActive(CURRENT_PROMO, Date.now())) return { path, ...NOT_FOUND };
+    return {
+      path,
+      title: CURRENT_PROMO.seo.title,
+      description: CURRENT_PROMO.seo.description,
+      unavailableAfter: CURRENT_PROMO.endsAt,
+      jsonLd: buildGraph([breadcrumbSchema([homeCrumb, { name: CURRENT_PROMO.nav.label, path }])]),
+      sitemap: { priority: 0.7, changefreq: 'weekly', lastmod: CURRENT_PROMO.startsAt.slice(0, 10) },
+    };
+  }
+
   const staticPage = STATIC_PAGES[path];
   if (staticPage) return staticPageSeo(path, staticPage);
 
@@ -198,6 +214,8 @@ export const getSeoForPath = (pathname: string): PageSeo => {
 /** Toutes les URL générées en HTML statique au build (pages privées incluses, en noindex) */
 export const getPrerenderPaths = (): string[] => [
   ...Object.keys(STATIC_PAGES),
+  // Promo à venir ou en cours : la page existe déjà pour s'afficher seule à l'ouverture
+  ...(isPromoUpcomingOrActive(CURRENT_PROMO, Date.now()) ? [CURRENT_PROMO.path] : []),
   ...solutionsSeo.map((solution) => `/solutions/${solution.slug}`),
   ...blogPosts.map((post) => `/blog/${post.slug}`),
 ];

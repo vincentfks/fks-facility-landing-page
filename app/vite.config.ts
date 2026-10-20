@@ -5,6 +5,10 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react()],
+  // Horodatage du build : sert d'état initial des contenus datés (promo) au pré-rendu et à l'hydratation
+  define: {
+    __BUILD_TIME__: JSON.stringify(Date.now()),
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

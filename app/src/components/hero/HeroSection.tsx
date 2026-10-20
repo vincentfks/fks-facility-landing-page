@@ -1,10 +1,14 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, MotionConfig } from 'framer-motion';
 import { ArrowRight, TrendingDown, CheckCircle2, Star } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { Link } from 'react-router-dom';
+import { PromoHeroCard } from '../promo/PromoHeroCard';
+import { useActivePromo } from '../../hooks/useActivePromo';
 
 export const HeroSection: React.FC = () => {
+  const promo = useActivePromo();
+
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-20 overflow-hidden bg-white">
       {/* Background Mesh Gradient */}
@@ -113,6 +117,9 @@ export const HeroSection: React.FC = () => {
                 <span>5/5 avis clients</span>
               </div>
             </motion.div>
+
+            {/* Promo temporaire : en ligne tant que le visuel flottant manque de place (sous xl) */}
+            {promo && <PromoHeroCard promo={promo} variant="inline" className="mt-8 lg:mx-0 xl:hidden" />}
           </div>
 
           {/* Right Column: Floating Cards Visual */}
@@ -210,6 +217,19 @@ export const HeroSection: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+
+            {/* Card 4: Promo temporaire */}
+            {promo && (
+              <MotionConfig reducedMotion="user">
+                <motion.div
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                  className="absolute top-0 left-0 z-40 hidden xl:block"
+                >
+                  <PromoHeroCard promo={promo} variant="floating" />
+                </motion.div>
+              </MotionConfig>
+            )}
 
             {/* Decorative elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-dashed border-gray-200 rounded-full animate-[spin_60s_linear_infinite]" />

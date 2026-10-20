@@ -12,7 +12,10 @@ interface HeadTag {
 
 const buildHeadTags = (seo: PageSeo): HeadTag[] => {
   const url = absoluteUrl(seo.path);
-  const robots = seo.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large';
+  const indexable = seo.unavailableAfter
+    ? `index, follow, max-image-preview:large, unavailable_after: ${seo.unavailableAfter}`
+    : 'index, follow, max-image-preview:large';
+  const robots = seo.noindex ? 'noindex, nofollow' : indexable;
 
   const tags: HeadTag[] = [
     { tag: 'title', attrs: {}, content: seo.title },
