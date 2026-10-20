@@ -4,6 +4,7 @@ import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { ScrollToTop } from './components/layout/ScrollToTop';
 import { RouteSeo } from './components/seo/RouteSeo';
+import { CURRENT_PROMO } from './content/promo';
 
 // Lazy load pages for better initial performance
 const Home = lazy(() => import('./pages/Home').then(module => ({ default: module.Home })));
@@ -21,6 +22,7 @@ const CGV = lazy(() => import('./pages/CGV').then(module => ({ default: module.C
 const Fournisseurs = lazy(() => import('./pages/Fournisseurs').then(module => ({ default: module.Fournisseurs })));
 const BlogIndex = lazy(() => import('./pages/Blog').then(module => ({ default: module.BlogIndex })));
 const BlogPostPage = lazy(() => import('./pages/Blog/[slug]').then(module => ({ default: module.BlogPostPage })));
+const Promo = lazy(() => import('./pages/Promo').then(module => ({ default: module.Promo })));
 const NotFound = lazy(() => import('./pages/NotFound').then(module => ({ default: module.NotFound })));
 
 function AppContent() {
@@ -52,6 +54,7 @@ function AppContent() {
             <Route path="/fournisseurs" element={<Fournisseurs />} />
             <Route path="/blog" element={<BlogIndex />} />
             <Route path="/blog/:slug" element={<BlogPostPage />} />
+            {CURRENT_PROMO && <Route path={CURRENT_PROMO.path} element={<Promo />} />}
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

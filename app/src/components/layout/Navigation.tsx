@@ -7,6 +7,10 @@ import { Modal } from '../ui/Modal';
 import { MultiStepForm } from '../forms/MultiStepForm';
 import { api } from '../../lib/api';
 import { solutionRoutes as solutions } from '../../lib/solutions';
+import { useActivePromo } from '../../hooks/useActivePromo';
+
+const PROMO_FOCUS_RING =
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2';
 
 export const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,6 +19,7 @@ export const Navigation: React.FC = () => {
   const [offerModalOpen, setOfferModalOpen] = useState(false);
   const [showOfferForm, setShowOfferForm] = useState(false);
   const location = useLocation();
+  const promo = useActivePromo();
 
   const handleOfferFormSubmit = async (data: any) => {
     try {
@@ -106,6 +111,20 @@ export const Navigation: React.FC = () => {
               </div>
             </div>
 
+            {promo && (
+              <Link
+                to={promo.path}
+                aria-current={isActive(promo.path) ? 'page' : undefined}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 text-sm font-semibold text-red-700 transition-colors rounded-full hover:bg-red-50 hover:text-red-800',
+                  isActive(promo.path) && 'bg-red-50',
+                  PROMO_FOCUS_RING
+                )}
+              >
+                <span className="w-2 h-2 rounded-full bg-red-600" aria-hidden="true" />
+                {promo.nav.label}
+              </Link>
+            )}
             <Link
               to="/a-propos"
               className={cn(
@@ -190,6 +209,22 @@ export const Navigation: React.FC = () => {
               ))}
             </div>
           </div>
+          {promo && (
+            <Link
+              to={promo.path}
+              aria-current={isActive(promo.path) ? 'page' : undefined}
+              className={cn(
+                'flex items-center gap-2 text-red-700 font-semibold py-2 border-t border-gray-100 rounded-sm',
+                PROMO_FOCUS_RING
+              )}
+            >
+              <span className="w-2 h-2 rounded-full bg-red-600" aria-hidden="true" />
+              {promo.nav.label}
+              <span className="ml-auto rounded-md bg-red-600 px-2 py-0.5 text-xs font-bold text-white">
+                {promo.badge}
+              </span>
+            </Link>
+          )}
           <Link
             to="/a-propos"
             className="block text-gray-900 font-medium py-2 border-t border-gray-100"

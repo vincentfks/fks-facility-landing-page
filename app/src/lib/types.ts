@@ -7,7 +7,7 @@ export interface ContactData {
   sector?: string;
   message?: string;
   current_spending?: number;
-  source?: 'contact' | 'simulation' | 'solution';
+  source?: 'contact' | 'simulation' | 'solution' | 'promo';
   supplies_interests?: string;
   // Anti-spam (honeypot + temps de remplissage), vérifiés côté serveur
   website?: string;
